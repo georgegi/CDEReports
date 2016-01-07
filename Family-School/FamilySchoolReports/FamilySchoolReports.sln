@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "FamilySchoolReports", "FamilySchoolReports\FamilySchoolReports.rptproj", "{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{1DEBD0AF-1FFC-4960-9C27-735A34D633D5}"
+	ProjectSection(SolutionItems) = preProject
+		doc\Parent Survey reports.docx = doc\Parent Survey reports.docx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{E6002D48-6246-452F-B91C-C48206FAD915}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.Debug|Default.ActiveCfg = Debug
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.Debug|Default.Build.0 = DebugLocal
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.Debug|Default.Deploy.0 = DebugLocal
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.DebugLocal|Default.Build.0 = DebugLocal
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.Release|Default.ActiveCfg = Release
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.Release|Default.Build.0 = Release
+		{EB0F5566-D082-4E8D-AA5E-81922D7CAE78}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
