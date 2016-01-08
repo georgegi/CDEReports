@@ -64,6 +64,7 @@
                               <Value>=Fields!AdminUnit.Value</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -139,7 +140,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!RosterYear.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -239,7 +242,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Position.Value + " 3"</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
