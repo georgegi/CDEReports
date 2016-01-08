@@ -33,16 +33,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.42708in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.24959in</Width>
+              <Width>3.46834in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.68708in</Width>
+              <Width>0.5725in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.76041in</Width>
+              <Width>3.1875in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.66666in</Width>
@@ -63,7 +63,9 @@
                             <TextRun>
                               <Value>=Fields!AdminUnit.Value</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -333,7 +335,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>TopLikert</rd:DefaultName>
@@ -395,7 +399,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>BottomLikert</rd:DefaultName>
@@ -489,7 +495,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.69667in</Top>
         <Height>0.75in</Height>
-        <Width>8.47833in</Width>
+        <Width>8.43667in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -498,7 +504,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.69667in</Height>
+    <Height>1.67584in</Height>
     <Style />
   </Body>
   <Width>14.95833in</Width>
