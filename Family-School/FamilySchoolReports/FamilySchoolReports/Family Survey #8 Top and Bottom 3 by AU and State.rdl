@@ -76,6 +76,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>CornflowerBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -83,7 +84,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>5</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -456,6 +456,9 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>AdminUnit1</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
                     <Style>
                       <Border>
                         <Color>LightGrey</Color>
@@ -667,11 +670,6 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
