@@ -9,6 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{1DEBD0AF-1FF
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{E6002D48-6246-452F-B91C-C48206FAD915}"
+	ProjectSection(SolutionItems) = preProject
+		sql\QUERY - Family Survey - Top 3 and Bottom 3 Responses by AU by Year (3-year Comparison).sql = sql\QUERY - Family Survey - Top 3 and Bottom 3 Responses by AU by Year (3-year Comparison).sql
+		sql\report8_20150107.sql = sql\report8_20150107.sql
+		sql\report8_20150108.sql = sql\report8_20150108.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
