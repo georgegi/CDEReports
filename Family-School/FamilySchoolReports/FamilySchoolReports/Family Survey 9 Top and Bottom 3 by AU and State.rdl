@@ -555,7 +555,7 @@
 		(@language = 'All' or cast(Language as varchar(10)) = @language) AND
 		(@disabMatch = 'All' or cast(DisabilityMatch as varchar(10)) = @disabMatch) AND
 		RosterYearID in (select ID from RosterYear where StartYear in (select StartYear from RosterYear where getdate() between StartDate and dateadd(yy, 2, EndDate)))
-	group by AdminUnit, RosterYear, Question 
+	group by rollup (AdminUnit), RosterYear, Question 
 --order by AdminUnit, RosterYear, LikertScore
 )
 
