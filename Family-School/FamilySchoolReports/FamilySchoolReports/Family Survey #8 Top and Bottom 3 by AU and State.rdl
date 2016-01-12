@@ -444,40 +444,6 @@
                   <Value>=Fields!AdminUnit.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <TablixHeader>
-                <Size>0.11458in</Size>
-                <CellContents>
-                  <Textbox Name="AdminUnit1">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>AdminUnit1</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>true</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
               <TablixMembers>
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
@@ -495,7 +461,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.69667in</Top>
         <Height>0.75in</Height>
-        <Width>8.43667in</Width>
+        <Width>8.32208in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -676,6 +642,11 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
@@ -702,7 +673,7 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
           <Value>All</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Select a language for wich to view data:</Prompt>
+      <Prompt>Select a language for which to view data:</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>language</DataSetName>
