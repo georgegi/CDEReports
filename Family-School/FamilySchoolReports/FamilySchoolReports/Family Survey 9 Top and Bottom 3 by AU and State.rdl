@@ -21,7 +21,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>12.75in</Width>
+        <Width>6.93666in</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -42,10 +42,10 @@
               <Width>0.22917in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.55688in</Width>
+              <Width>6.17625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.61937in</Width>
+              <Width>0.56729in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -159,7 +159,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>4</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -497,7 +496,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.69667in</Top>
         <Height>1in</Height>
-        <Width>6.93666in</Width>
+        <Width>7.50395in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -509,10 +508,10 @@
     <Height>1.94667in</Height>
     <Style />
   </Body>
-  <Width>14.95833in</Width>
+  <Width>8.46875in</Width>
   <Page>
     <LeftMargin>0.5in</LeftMargin>
-    <RightMargin>1in</RightMargin>
+    <RightMargin>0.5in</RightMargin>
     <TopMargin>1in</TopMargin>
     <BottomMargin>1in</BottomMargin>
     <Style />

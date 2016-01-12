@@ -21,7 +21,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>12.75in</Width>
+        <Width>8.32208in</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -39,7 +39,7 @@
               <Width>3.46834in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.5725in</Width>
+              <Width>0.6666in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.1875in</Width>
@@ -461,7 +461,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.69667in</Top>
         <Height>0.75in</Height>
-        <Width>8.32208in</Width>
+        <Width>8.41618in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -473,7 +473,7 @@
     <Height>1.67584in</Height>
     <Style />
   </Body>
-  <Width>14.95833in</Width>
+  <Width>8.46875in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
