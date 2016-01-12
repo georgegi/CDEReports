@@ -441,6 +441,9 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
+                  <Value>=Fields!SortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
                   <Value>=Fields!AdminUnit.Value</Value>
                 </SortExpression>
               </SortExpressions>

@@ -4,10 +4,11 @@
   <DataSet Name="RosterYears">
     <Query>
       <DataSourceReference>SSRS datasource</DataSourceReference>
-      <CommandText>select distinct ID = RosterYearID, RosterYear
-from x_DATATEAM.FamilySurveyMaster
-order by 2
-</CommandText>
+      <CommandText>SELECT        TOP (3) ID, RosterYear
+FROM            (SELECT DISTINCT TOP (100) PERCENT RosterYearID AS ID, RosterYear
+                          FROM            x_DATATEAM.FamilySurveyMaster
+                          ORDER BY RosterYear DESC) AS x
+ORDER BY RosterYear</CommandText>
     </Query>
     <Fields>
       <Field Name="ID">
