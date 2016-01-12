@@ -7,7 +7,24 @@
       <FullPath>SSRS datasource.rds</FullPath>
     </ProjectItem>
   </DataSources>
-  <DataSets />
+  <DataSets>
+    <ProjectItem>
+      <Name>RosterYears.rsd</Name>
+      <FullPath>RosterYears.rsd</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>RosterYearTop1.rsd</Name>
+      <FullPath>RosterYearTop1.rsd</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>language.rsd</Name>
+      <FullPath>language.rsd</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>disabMatch.rsd</Name>
+      <FullPath>disabMatch.rsd</FullPath>
+    </ProjectItem>
+  </DataSets>
   <Reports>
     <ProjectItem>
       <Name>Family Survey #7 Question by AU - Backup.rdl</Name>
@@ -24,6 +41,10 @@
     <ProjectItem>
       <Name>Family Survey 9 Top and Bottom 3 by AU and State.rdl</Name>
       <FullPath>Family Survey 9 Top and Bottom 3 by AU and State.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Family Survey #2 - Parent Survey Average Likert Responses by AU by Question (also by District by School).rdl</Name>
+      <FullPath>Family Survey #2 - Parent Survey Average Likert Responses by AU by Question (also by District by School).rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
