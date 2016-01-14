@@ -1,15 +1,10 @@
-USE [CDE_Prodreal]
-GO
 
-/****** Object:  View [x_DATATEAM].[MonRecord_Key_Attribute_Value]    Script Date: 1/7/2016 3:14:59 PM ******/
-SET ANSI_NULLS ON
-GO
+if object_id('x_DATATEAM.MonRecord_Key_Attribute_Value') is not null
+drop view x_DATATEAM.MonRecord_Key_Attribute_Value
+go
 
-SET QUOTED_IDENTIFIER ON
-GO
 
----- select count(*) from x_DATATEAM.MonRecord_Key_Attribute_Value -- 37 seconds, 127403 rows
-create view [x_DATATEAM].[MonRecord_Key_Attribute_Value]
+create view x_DATATEAM.MonRecord_Key_Attribute_Value
 as
 with recdata as (
 	select 
@@ -17,6 +12,7 @@ with recdata as (
 		, st.LocationID 
 		, subs.SubmissionTypeID
 		, subs.SubmissionModeID
+		, subs.RosterYearID
 		, reca.RecordSetID
 		, recsel.RecordID
 		, srf.SubmissionRecordID
@@ -72,11 +68,6 @@ with recdata as (
 --join ColumnSizes z on r.AttributeID = z.AttributeID
 
 select * from recdata -- the columnsizes cte takes significantly longer to run. (37 seconds compared to immediate)
-
- --where r.InstanceID = 'CFF54AF9-F8A6-4188-B875-0016C87E2A01' -- testing
-
-
-
 GO
 
 
