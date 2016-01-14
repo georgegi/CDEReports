@@ -8,6 +8,80 @@
             <TablixCornerRow>
               <TablixCornerCell>
                 <CellContents>
+                  <Textbox Name="Textbox79">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox79</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox80">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox80</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
                   <Textbox Name="textbox4">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
@@ -26,6 +100,9 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>textbox4</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
                     <Style>
                       <Border>
                         <Color>LightGrey</Color>
@@ -52,7 +129,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.30209in</Width>
+              <Width>0.37501in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.3125in</Width>
@@ -138,31 +215,31 @@
         <TablixColumnHierarchy>
           <TablixMembers>
             <TablixMember>
-              <Group Name="matrix1_Disability">
+              <Group Name="Group2">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!Disability.Value</GroupExpression>
+                  <GroupExpression>=1</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!Disability.Value</Value>
+                  <Value>=1</Value>
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>0.21in</Size>
+                <Size>0.25in</Size>
                 <CellContents>
-                  <Textbox Name="Disability">
-                    <CanGrow>true</CanGrow>
+                  <Textbox Name="Group2">
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=Fields!Disability.Value</Value>
+                            <Value>Disability Categories</Value>
                             <Style>
                               <FontFamily>Tahoma</FontFamily>
                               <FontSize>11pt</FontSize>
                               <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -171,7 +248,7 @@
                         </Style>
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>Disability</rd:DefaultName>
+                    <rd:DefaultName>Group2</rd:DefaultName>
                     <Style>
                       <Border>
                         <Color>LightGrey</Color>
@@ -188,19 +265,31 @@
               </TablixHeader>
               <TablixMembers>
                 <TablixMember>
+                  <Group Name="matrix1_Disability">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!GroupByValue.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!GroupByValue.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                   <TablixHeader>
                     <Size>0.21in</Size>
                     <CellContents>
-                      <Textbox Name="textbox5">
+                      <Textbox Name="GroupByValue">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>n</Value>
+                                <Value>=Fields!GroupByValue.Value</Value>
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -209,13 +298,13 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>textbox5</rd:DefaultName>
+                        <rd:DefaultName>GroupByValue</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>#c7d9f9</BackgroundColor>
+                          <BackgroundColor>#8fb3f3</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -224,50 +313,90 @@
                       </Textbox>
                     </CellContents>
                   </TablixHeader>
-                  <KeepTogether>true</KeepTogether>
-                </TablixMember>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>0.21in</Size>
-                    <CellContents>
-                      <Textbox Name="textbox6">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>%</Value>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox5">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>n</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
                                 <Style>
-                                  <FontFamily>Tahoma</FontFamily>
+                                  <TextAlign>Center</TextAlign>
                                 </Style>
-                              </TextRun>
-                            </TextRuns>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox5</rd:DefaultName>
                             <Style>
-                              <TextAlign>Center</TextAlign>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
                             </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>textbox6</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <BackgroundColor>#c7d9f9</BackgroundColor>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox6">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>%</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox6</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <DataElementOutput>Output</DataElementOutput>
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
               </TablixMembers>
-              <DataElementOutput>Output</DataElementOutput>
-              <KeepTogether>true</KeepTogether>
             </TablixMember>
           </TablixMembers>
         </TablixColumnHierarchy>
@@ -281,7 +410,16 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
+                  <Value>=Fields!AUSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
                   <Value>=Fields!AdminUnit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!DistrictSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!District.Value</Value>
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
@@ -340,7 +478,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!District.Value</Value>
+                                <Value>=IIf(Fields!District.Value="Admin Unit Total","",Fields!District.Value)</Value>
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
                                 </Style>
@@ -371,7 +509,7 @@
                     </TablixMember>
                   </TablixMembers>
                   <Visibility>
-                    <Hidden>=Fields!District.Value="Admin Unit Total"</Hidden>
+                    <Hidden>=(Fields!District.Value="Admin Unit Total") And (Fields!AdminUnit.Value &lt;&gt; "State Total")</Hidden>
                   </Visibility>
                   <DataElementOutput>Output</DataElementOutput>
                 </TablixMember>
@@ -382,10 +520,14 @@
         </TablixRowHierarchy>
         <RepeatColumnHeaders>true</RepeatColumnHeaders>
         <RepeatRowHeaders>true</RepeatRowHeaders>
-        <DataSetName>DataSet1</DataSetName>
-        <Top>0.33in</Top>
-        <Height>0.61in</Height>
-        <Width>3.23958in</Width>
+        <DataSetName>DS_Disability</DataSetName>
+        <PageBreak>
+          <BreakLocation>Start</BreakLocation>
+        </PageBreak>
+        <Top>1.94458in</Top>
+        <Left>0.01042in</Left>
+        <Height>0.86in</Height>
+        <Width>3.31251in</Width>
         <Style />
       </Tablix>
       <Textbox Name="textbox1">
@@ -395,7 +537,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Percentage of youth enrolled in higher education within one year of leaving school by Disability</Value>
+                <Value>Percentage of youth enrolled in higher education within one year of leaving school for exit, disability, gender, race/ethnicity</Value>
                 <Style>
                   <FontFamily>Tahoma</FontFamily>
                   <FontSize>18pt</FontSize>
@@ -406,8 +548,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
+        <Left>0in</Left>
         <Height>0.33in</Height>
-        <Width>10.625in</Width>
+        <Width>9.26042in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -416,11 +559,1596 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Tablix Name="matrix2">
+        <TablixCorner>
+          <TablixCornerRows>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox71">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox71</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox72">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox72</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="textbox9">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>textbox4</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <ColSpan>2</ColSpan>
+                  <RowSpan>2</RowSpan>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell />
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell />
+              <TablixCornerCell />
+            </TablixCornerRow>
+          </TablixCornerRows>
+        </TablixCorner>
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.22918in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.16667in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.19in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="nSize2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!nSize.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>nSize</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="pct2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!pct.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <Format>0;(0)</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>pct</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Group1">
+                <GroupExpressions>
+                  <GroupExpression>=1</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=1</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.25in</Size>
+                <CellContents>
+                  <Textbox Name="Group1">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Gender</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>11pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Group1</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_Disability2">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!GroupByValue.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!GroupByValue.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.21in</Size>
+                    <CellContents>
+                      <Textbox Name="GroupByValue2">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!GroupByValue.Value</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>GroupByValue</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#8fb3f3</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox7">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>n</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox5</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox8">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>%</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox6</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="matrix1_AdminUnit2">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!AdminUnit.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AUSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!AdminUnit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!DistrictSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!District.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>2.1875in</Size>
+                <CellContents>
+                  <Textbox Name="AdminUnit2">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!AdminUnit.Value</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>AdminUnit</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_District2">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!District.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!District.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.4375in</Size>
+                    <CellContents>
+                      <Textbox Name="District2">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=IIf(Fields!District.Value="Admin Unit Total","",Fields!District.Value)</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>District</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#c7d9f9</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <Visibility>
+                    <Hidden>=(Fields!District.Value = "Admin Unit Total") And (Fields!AdminUnit.Value &lt;&gt; "State Total")</Hidden>
+                  </Visibility>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixMember>
+              </TablixMembers>
+              <DataElementOutput>Output</DataElementOutput>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <DataSetName>DS_Gender</DataSetName>
+        <PageBreak>
+          <BreakLocation>Start</BreakLocation>
+        </PageBreak>
+        <Top>3.03438in</Top>
+        <Left>0.00001in</Left>
+        <Height>0.86in</Height>
+        <Width>5.02085in</Width>
+        <ZIndex>2</ZIndex>
+        <Style />
+      </Tablix>
+      <Tablix Name="matrix3">
+        <TablixCorner>
+          <TablixCornerRows>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox63">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox63</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox64">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox64</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="textbox12">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>textbox4</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <ColSpan>2</ColSpan>
+                  <RowSpan>2</RowSpan>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell />
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell />
+              <TablixCornerCell />
+            </TablixCornerRow>
+          </TablixCornerRows>
+        </TablixCorner>
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>0.69792in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.53125in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.19in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="nSize3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!nSize.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>nSize</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="pct3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!pct.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <Format>0;(0)</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>pct</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="NoGroup">
+                <GroupExpressions>
+                  <GroupExpression>=1</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AUSortBit.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.25in</Size>
+                <CellContents>
+                  <Textbox Name="AUSortBit">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Reason For Exit</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>11pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>AUSortBit</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_Disability3">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!GroupByValue.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!GroupByValue.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.21in</Size>
+                    <CellContents>
+                      <Textbox Name="GroupByValue3">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!GroupByValue.Value</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>GroupByValue</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#8fb3f3</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox10">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>n</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox5</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox11">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>%</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox6</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="matrix1_AdminUnit3">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!AdminUnit.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AUSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!AdminUnit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!DistrictSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!District.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>2.1875in</Size>
+                <CellContents>
+                  <Textbox Name="AdminUnit3">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!AdminUnit.Value</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>AdminUnit</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_District3">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!District.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!District.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.4375in</Size>
+                    <CellContents>
+                      <Textbox Name="District3">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=IIf(Fields!District.Value="Admin Unit Total","",Fields!District.Value)</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>District</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#c7d9f9</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <Visibility>
+                    <Hidden>=(Fields!District.Value = "Admin Unit Total") And (Fields!AdminUnit.Value &lt;&gt; "State Total")</Hidden>
+                  </Visibility>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixMember>
+              </TablixMembers>
+              <DataElementOutput>Output</DataElementOutput>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <DataSetName>DS_Exit</DataSetName>
+        <Top>0.70104in</Top>
+        <Left>0.00001in</Left>
+        <Height>0.86in</Height>
+        <Width>3.85417in</Width>
+        <ZIndex>3</ZIndex>
+        <Style />
+      </Tablix>
+      <Tablix Name="matrix4">
+        <TablixCorner>
+          <TablixCornerRows>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox87">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox87</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox88">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox88</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="textbox15">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>textbox4</rd:DefaultName>
+                    <Visibility>
+                      <Hidden>true</Hidden>
+                    </Visibility>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <ColSpan>2</ColSpan>
+                  <RowSpan>2</RowSpan>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell />
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell />
+              <TablixCornerCell />
+            </TablixCornerRow>
+          </TablixCornerRows>
+        </TablixCorner>
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>0.68751in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.67708in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.19in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="nSize4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!nSize.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>nSize</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="pct4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!pct.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <Format>0;(0)</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>pct</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Group3">
+                <GroupExpressions>
+                  <GroupExpression>=1</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=1</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.25in</Size>
+                <CellContents>
+                  <Textbox Name="Group3">
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Ethnicity and Race</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>11pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Group3</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_Disability4">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!GroupByValue.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!GroupByValue.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.21in</Size>
+                    <CellContents>
+                      <Textbox Name="GroupByValue4">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!GroupByValue.Value</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>GroupByValue</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#8fb3f3</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox13">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>n</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox5</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.21in</Size>
+                        <CellContents>
+                          <Textbox Name="textbox14">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>%</Value>
+                                    <Style>
+                                      <FontFamily>Tahoma</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>textbox6</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#c7d9f9</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="matrix1_AdminUnit4">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!AdminUnit.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AUSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!AdminUnit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!DistrictSortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!District.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>2.1875in</Size>
+                <CellContents>
+                  <Textbox Name="AdminUnit4">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!AdminUnit.Value</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>AdminUnit</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_District4">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!District.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!District.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.4375in</Size>
+                    <CellContents>
+                      <Textbox Name="District4">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=IIf(Fields!District.Value="Admin Unit Total","",Fields!District.Value)</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>District</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#c7d9f9</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <Visibility>
+                    <Hidden>=(Fields!District.Value = "Admin Unit Total") And (Fields!AdminUnit.Value &lt;&gt; "State Total")</Hidden>
+                  </Visibility>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixMember>
+              </TablixMembers>
+              <DataElementOutput>Output</DataElementOutput>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <DataSetName>DS_Race</DataSetName>
+        <PageBreak>
+          <BreakLocation>Start</BreakLocation>
+        </PageBreak>
+        <Top>4.13542in</Top>
+        <Height>0.86in</Height>
+        <Width>3.98959in</Width>
+        <ZIndex>4</ZIndex>
+        <Style />
+      </Tablix>
     </ReportItems>
-    <Height>0.96in</Height>
+    <Height>5.235in</Height>
     <Style />
   </Body>
-  <Width>10.72917in</Width>
+  <Width>10.28126in</Width>
   <Page>
     <PageHeight>8.5in</PageHeight>
     <PageWidth>11in</PageWidth>
@@ -439,7 +2167,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="DS_Disability">
       <Query>
         <DataSourceName>SSRSPSODatasource</DataSourceName>
         <QueryParameters>
@@ -454,6 +2182,9 @@
           </QueryParameter>
           <QueryParameter Name="@questionID">
             <Value>=Parameters!questionID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@groupByAttribute">
+            <Value>D</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandText>;with rData as (
@@ -485,24 +2216,46 @@ from (Values
 		('16', 'OHI')
 	) d (Code, Abbreviation)
 )
+, exitReason as (
+	select StateCode, Name
+	from PrgStatus
+	where ProgramID = 'F98A8EF2-98E2-4CAC-95AF-D7D89EF7F80C'
+	and IsExit = 1
+	and DeletedDate is null
+)
+, gender as (
+	select StateCode, Name = DisplayValue 
+	from EnumValue 
+	where Type = 'D6194389-17AC-494C-9C37-FD911DA2DD4B' 
+	and IsActive = 1
+)
+, race as (
+	select e.StateCode, Name = e.DisplayValue 
+	from EnumValue e 
+	where Type = 'CBB84AE3-A547-4E81-82D2-060AA3A50535' 
+	and IsActive = 1 
+)
 , rPivot as (
-	select InstanceID
-		, r.AU
+	select k.InstanceID
+		, k.AU
 		, [ADMIN_UNIT_CODE] = max(case when AttributeID = '5A18DC11-C92A-498C-A231-519B0BB9C5A0' then Value end)
 		, [DISTRICT_OF_ATTENDANCE] = max(case when AttributeID = '1CEF0429-8BFF-4799-BFF2-23861737B229' then Value end)
 		, [SCHOOL_CODE] = max(case when AttributeID = '2D73FDD2-E725-4B97-A1BE-74D0C0066FA0' then Value end)
-		, [GENDER_STUDENT] = max(case when AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB' then Value end)
-		, [FEDERAL_RACE_STUDENT] = max(case when AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3' then Value end)
-		, [PRIMARY_DISABILITY] = max(case when AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06' then d.Abbreviation end)
-		, [REASON_EXITED_SPED] = max(case when AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7' then Value end)
-	from x_DATATEAM.MonRecord_Key_Attribute_Value r
-	left join disab d on r.Value = d.Code and r.AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06'
+		, [GENDER_STUDENT] = max(case when AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB' then isnull(g.Name, Value) end)
+		, [FEDERAL_RACE_STUDENT] = max(case when AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3' then isnull(r.Name, Value) end)
+		, [PRIMARY_DISABILITY] = max(case when AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06' then isnull(d.Abbreviation, Value) end)
+		, [REASON_EXITED_SPED] = max(case when AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7' then isnull(e.Name, Value) end)
+	from x_DATATEAM.MonRecord_Key_Attribute_Value k
+	left join disab d on k.Value = d.Code and k.AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06'
+	left join exitReason e on k.Value = e.StateCode and k.AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7'
+	left join gender g on k.Value = g.StateCode and k.AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB'
+	left join race r on k.Value = r.StateCode and k.AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3'
 	where 1=1
 	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
 	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
 	and RosterYearID = @rosterYearID
 	and (RecordSetID is null or RecordSetID = @recordSetID)
-	group by InstanceID, AU
+	group by k.InstanceID, k.AU
 )
 , fPivot as (
 	select f.InstanceID
@@ -516,18 +2269,28 @@ from (Values
 select 
 	AdminUnit = case when grouping(r.AU) = 0 then r.AU else 'State Total' end
 	, District = case when grouping(r.DISTRICT_OF_ATTENDANCE) = 0 then r.DISTRICT_OF_ATTENDANCE else 'Admin Unit Total' end
-	, School = case when grouping(r.SCHOOL_CODE) = 0 then r.SCHOOL_CODE else 'District Total' end
-	, Disability = r.PRIMARY_DISABILITY
+	, GroupByValue = 
+			case @groupByAttribute
+				when 'D' then r.PRIMARY_DISABILITY
+				when 'E' then r.REASON_EXITED_SPED
+				when 'G' then r.GENDER_STUDENT
+				when 'R' then r.FEDERAL_RACE_STUDENT
+			end
 	, nSize = count(distinct r.InstanceID)
 	, MetCount = sum(f.Answer)
 	, pct = cast(round(((sum(f.Answer)*100.0)/count(distinct r.InstanceID)),2) as decimal(5,2))
 	, AUSortBit = grouping(r.AU)
 	, DistrictSortBit = grouping(r.DISTRICT_OF_ATTENDANCE)
-	, SchoolSortBit = grouping(r.SCHOOL_CODE)
 from rPivot r
 left join fPivot f on r.InstanceID = f.InstanceID
-group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE, r.SCHOOL_CODE), r.PRIMARY_DISABILITY
-order by AUSortBit, AU, DistrictSortBit, District, SchoolSortBit, School</CommandText>
+group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE), 
+	case @groupByAttribute
+		when 'D' then r.PRIMARY_DISABILITY
+		when 'E' then r.REASON_EXITED_SPED
+		when 'G' then r.GENDER_STUDENT
+		when 'R' then r.FEDERAL_RACE_STUDENT
+	end
+order by AUSortBit, AU, DistrictSortBit, District</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -539,12 +2302,8 @@ order by AUSortBit, AU, DistrictSortBit, District, SchoolSortBit, School</Comman
           <DataField>District</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="School">
-          <DataField>School</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Disability">
-          <DataField>Disability</DataField>
+        <Field Name="GroupByValue">
+          <DataField>GroupByValue</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nSize">
@@ -565,10 +2324,6 @@ order by AUSortBit, AU, DistrictSortBit, District, SchoolSortBit, School</Comman
         </Field>
         <Field Name="DistrictSortBit">
           <DataField>DistrictSortBit</DataField>
-          <rd:TypeName>System.Byte</rd:TypeName>
-        </Field>
-        <Field Name="SchoolSortBit">
-          <DataField>SchoolSortBit</DataField>
           <rd:TypeName>System.Byte</rd:TypeName>
         </Field>
       </Fields>
@@ -645,10 +2400,495 @@ order by RosterYear
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="DS_Exit">
+      <Query>
+        <DataSourceName>SSRSPSODatasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@recordSetID">
+            <Value>=Parameters!recordSetID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@questionID">
+            <Value>=Parameters!questionID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@groupByAttribute">
+            <Value>E</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>;with rData as (
+	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
+	from x_DATATEAM.MonRecord_Key_Attribute_Value r
+	where 1=1
+	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
+	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID
+	and (RecordSetID is null or RecordSetID = @recordSetID)
+)
+, disab as (
+select Code, Abbreviation
+from (Values 
+		('01', 'ID'), 
+		('03', 'SED'), 
+		('04', 'SLD'), 
+		('05', 'HI'), 
+		('06', 'VI'), 
+		('07', 'PD'), 
+		('08', 'SLI'), 
+		('09', 'DB'), 
+		('10', 'MD'), 
+		('11', 'DD'), 
+		('12', 'IT'), 
+		('13', 'Aut'), 
+		('14', 'TBI'), 
+		('15', 'OI'), 
+		('16', 'OHI')
+	) d (Code, Abbreviation)
+)
+, exitReason as (
+	select StateCode, Name
+	from PrgStatus
+	where ProgramID = 'F98A8EF2-98E2-4CAC-95AF-D7D89EF7F80C'
+	and IsExit = 1
+	and DeletedDate is null
+)
+, gender as (
+	select StateCode, Name = DisplayValue 
+	from EnumValue 
+	where Type = 'D6194389-17AC-494C-9C37-FD911DA2DD4B' 
+	and IsActive = 1
+)
+, race as (
+	select e.StateCode, Name = e.DisplayValue 
+	from EnumValue e 
+	where Type = 'CBB84AE3-A547-4E81-82D2-060AA3A50535' 
+	and IsActive = 1 
+)
+, rPivot as (
+	select k.InstanceID
+		, k.AU
+		, [ADMIN_UNIT_CODE] = max(case when AttributeID = '5A18DC11-C92A-498C-A231-519B0BB9C5A0' then Value end)
+		, [DISTRICT_OF_ATTENDANCE] = max(case when AttributeID = '1CEF0429-8BFF-4799-BFF2-23861737B229' then Value end)
+		, [SCHOOL_CODE] = max(case when AttributeID = '2D73FDD2-E725-4B97-A1BE-74D0C0066FA0' then Value end)
+		, [GENDER_STUDENT] = max(case when AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB' then isnull(g.Name, Value) end)
+		, [FEDERAL_RACE_STUDENT] = max(case when AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3' then isnull(r.Name, Value) end)
+		, [PRIMARY_DISABILITY] = max(case when AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06' then isnull(d.Abbreviation, Value) end)
+		, [REASON_EXITED_SPED] = max(case when AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7' then isnull(e.Name, Value) end)
+	from x_DATATEAM.MonRecord_Key_Attribute_Value k
+	left join disab d on k.Value = d.Code and k.AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06'
+	left join exitReason e on k.Value = e.StateCode and k.AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7'
+	left join gender g on k.Value = g.StateCode and k.AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB'
+	left join race r on k.Value = r.StateCode and k.AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3'
+	where 1=1
+	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
+	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID
+	and (RecordSetID is null or RecordSetID = @recordSetID)
+	group by k.InstanceID, k.AU
+)
+, fPivot as (
+	select f.InstanceID
+		, Answer = max(case when f.Value = 'Met' then 1 else 0 end)
+	from rPivot r
+	left join x_DATATEAM.MonFormlet_Key_Attribute_Value f on r.InstanceID = f.InstanceID
+	where f.AttributeID = @questionID
+	group by f.InstanceID
+)
+
+select 
+	AdminUnit = case when grouping(r.AU) = 0 then r.AU else 'State Total' end
+	, District = case when grouping(r.DISTRICT_OF_ATTENDANCE) = 0 then r.DISTRICT_OF_ATTENDANCE else 'Admin Unit Total' end
+	, GroupByValue = 
+			case @groupByAttribute
+				when 'D' then r.PRIMARY_DISABILITY
+				when 'E' then r.REASON_EXITED_SPED
+				when 'G' then r.GENDER_STUDENT
+				when 'R' then r.FEDERAL_RACE_STUDENT
+			end
+	, nSize = count(distinct r.InstanceID)
+	, MetCount = sum(f.Answer)
+	, pct = cast(round(((sum(f.Answer)*100.0)/count(distinct r.InstanceID)),2) as decimal(5,2))
+	, AUSortBit = grouping(r.AU)
+	, DistrictSortBit = grouping(r.DISTRICT_OF_ATTENDANCE)
+from rPivot r
+left join fPivot f on r.InstanceID = f.InstanceID
+group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE), 
+	case @groupByAttribute
+		when 'D' then r.PRIMARY_DISABILITY
+		when 'E' then r.REASON_EXITED_SPED
+		when 'G' then r.GENDER_STUDENT
+		when 'R' then r.FEDERAL_RACE_STUDENT
+	end
+order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="AdminUnit">
+          <DataField>AdminUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="District">
+          <DataField>District</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GroupByValue">
+          <DataField>GroupByValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nSize">
+          <DataField>nSize</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MetCount">
+          <DataField>MetCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="pct">
+          <DataField>pct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AUSortBit">
+          <DataField>AUSortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="DistrictSortBit">
+          <DataField>DistrictSortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DS_Gender">
+      <Query>
+        <DataSourceName>SSRSPSODatasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@recordSetID">
+            <Value>=Parameters!recordSetID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@questionID">
+            <Value>=Parameters!questionID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@groupByAttribute">
+            <Value>G</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>;with rData as (
+	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
+	from x_DATATEAM.MonRecord_Key_Attribute_Value r
+	where 1=1
+	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
+	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID
+	and (RecordSetID is null or RecordSetID = @recordSetID)
+)
+, disab as (
+select Code, Abbreviation
+from (Values 
+		('01', 'ID'), 
+		('03', 'SED'), 
+		('04', 'SLD'), 
+		('05', 'HI'), 
+		('06', 'VI'), 
+		('07', 'PD'), 
+		('08', 'SLI'), 
+		('09', 'DB'), 
+		('10', 'MD'), 
+		('11', 'DD'), 
+		('12', 'IT'), 
+		('13', 'Aut'), 
+		('14', 'TBI'), 
+		('15', 'OI'), 
+		('16', 'OHI')
+	) d (Code, Abbreviation)
+)
+, exitReason as (
+	select StateCode, Name
+	from PrgStatus
+	where ProgramID = 'F98A8EF2-98E2-4CAC-95AF-D7D89EF7F80C'
+	and IsExit = 1
+	and DeletedDate is null
+)
+, gender as (
+	select StateCode, Name = DisplayValue 
+	from EnumValue 
+	where Type = 'D6194389-17AC-494C-9C37-FD911DA2DD4B' 
+	and IsActive = 1
+)
+, race as (
+	select e.StateCode, Name = e.DisplayValue 
+	from EnumValue e 
+	where Type = 'CBB84AE3-A547-4E81-82D2-060AA3A50535' 
+	and IsActive = 1 
+)
+, rPivot as (
+	select k.InstanceID
+		, k.AU
+		, [ADMIN_UNIT_CODE] = max(case when AttributeID = '5A18DC11-C92A-498C-A231-519B0BB9C5A0' then Value end)
+		, [DISTRICT_OF_ATTENDANCE] = max(case when AttributeID = '1CEF0429-8BFF-4799-BFF2-23861737B229' then Value end)
+		, [SCHOOL_CODE] = max(case when AttributeID = '2D73FDD2-E725-4B97-A1BE-74D0C0066FA0' then Value end)
+		, [GENDER_STUDENT] = max(case when AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB' then isnull(g.Name, Value) end)
+		, [FEDERAL_RACE_STUDENT] = max(case when AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3' then isnull(r.Name, Value) end)
+		, [PRIMARY_DISABILITY] = max(case when AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06' then isnull(d.Abbreviation, Value) end)
+		, [REASON_EXITED_SPED] = max(case when AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7' then isnull(e.Name, Value) end)
+	from x_DATATEAM.MonRecord_Key_Attribute_Value k
+	left join disab d on k.Value = d.Code and k.AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06'
+	left join exitReason e on k.Value = e.StateCode and k.AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7'
+	left join gender g on k.Value = g.StateCode and k.AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB'
+	left join race r on k.Value = r.StateCode and k.AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3'
+	where 1=1
+	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
+	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID
+	and (RecordSetID is null or RecordSetID = @recordSetID)
+	group by k.InstanceID, k.AU
+)
+, fPivot as (
+	select f.InstanceID
+		, Answer = max(case when f.Value = 'Met' then 1 else 0 end)
+	from rPivot r
+	left join x_DATATEAM.MonFormlet_Key_Attribute_Value f on r.InstanceID = f.InstanceID
+	where f.AttributeID = @questionID
+	group by f.InstanceID
+)
+
+select 
+	AdminUnit = case when grouping(r.AU) = 0 then r.AU else 'State Total' end
+	, District = case when grouping(r.DISTRICT_OF_ATTENDANCE) = 0 then r.DISTRICT_OF_ATTENDANCE else 'Admin Unit Total' end
+	, GroupByValue = 
+			case @groupByAttribute
+				when 'D' then r.PRIMARY_DISABILITY
+				when 'E' then r.REASON_EXITED_SPED
+				when 'G' then r.GENDER_STUDENT
+				when 'R' then r.FEDERAL_RACE_STUDENT
+			end
+	, nSize = count(distinct r.InstanceID)
+	, MetCount = sum(f.Answer)
+	, pct = cast(round(((sum(f.Answer)*100.0)/count(distinct r.InstanceID)),2) as decimal(5,2))
+	, AUSortBit = grouping(r.AU)
+	, DistrictSortBit = grouping(r.DISTRICT_OF_ATTENDANCE)
+from rPivot r
+left join fPivot f on r.InstanceID = f.InstanceID
+group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE), 
+	case @groupByAttribute
+		when 'D' then r.PRIMARY_DISABILITY
+		when 'E' then r.REASON_EXITED_SPED
+		when 'G' then r.GENDER_STUDENT
+		when 'R' then r.FEDERAL_RACE_STUDENT
+	end
+order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="AdminUnit">
+          <DataField>AdminUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="District">
+          <DataField>District</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GroupByValue">
+          <DataField>GroupByValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nSize">
+          <DataField>nSize</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MetCount">
+          <DataField>MetCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="pct">
+          <DataField>pct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AUSortBit">
+          <DataField>AUSortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="DistrictSortBit">
+          <DataField>DistrictSortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DS_Race">
+      <Query>
+        <DataSourceName>SSRSPSODatasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@recordSetID">
+            <Value>=Parameters!recordSetID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@questionID">
+            <Value>=Parameters!questionID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@groupByAttribute">
+            <Value>R</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>;with rData as (
+	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
+	from x_DATATEAM.MonRecord_Key_Attribute_Value r
+	where 1=1
+	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
+	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID
+	and (RecordSetID is null or RecordSetID = @recordSetID)
+)
+, disab as (
+select Code, Abbreviation
+from (Values 
+		('01', 'ID'), 
+		('03', 'SED'), 
+		('04', 'SLD'), 
+		('05', 'HI'), 
+		('06', 'VI'), 
+		('07', 'PD'), 
+		('08', 'SLI'), 
+		('09', 'DB'), 
+		('10', 'MD'), 
+		('11', 'DD'), 
+		('12', 'IT'), 
+		('13', 'Aut'), 
+		('14', 'TBI'), 
+		('15', 'OI'), 
+		('16', 'OHI')
+	) d (Code, Abbreviation)
+)
+, exitReason as (
+	select StateCode, Name
+	from PrgStatus
+	where ProgramID = 'F98A8EF2-98E2-4CAC-95AF-D7D89EF7F80C'
+	and IsExit = 1
+	and DeletedDate is null
+)
+, gender as (
+	select StateCode, Name = DisplayValue 
+	from EnumValue 
+	where Type = 'D6194389-17AC-494C-9C37-FD911DA2DD4B' 
+	and IsActive = 1
+)
+, race as (
+	select e.StateCode, Name = e.DisplayValue 
+	from EnumValue e 
+	where Type = 'CBB84AE3-A547-4E81-82D2-060AA3A50535' 
+	and IsActive = 1 
+)
+, rPivot as (
+	select k.InstanceID
+		, k.AU
+		, [ADMIN_UNIT_CODE] = max(case when AttributeID = '5A18DC11-C92A-498C-A231-519B0BB9C5A0' then Value end)
+		, [DISTRICT_OF_ATTENDANCE] = max(case when AttributeID = '1CEF0429-8BFF-4799-BFF2-23861737B229' then Value end)
+		, [SCHOOL_CODE] = max(case when AttributeID = '2D73FDD2-E725-4B97-A1BE-74D0C0066FA0' then Value end)
+		, [GENDER_STUDENT] = max(case when AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB' then isnull(g.Name, Value) end)
+		, [FEDERAL_RACE_STUDENT] = max(case when AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3' then isnull(r.Name, Value) end)
+		, [PRIMARY_DISABILITY] = max(case when AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06' then isnull(d.Abbreviation, Value) end)
+		, [REASON_EXITED_SPED] = max(case when AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7' then isnull(e.Name, Value) end)
+	from x_DATATEAM.MonRecord_Key_Attribute_Value k
+	left join disab d on k.Value = d.Code and k.AttributeID = '8E9BEE88-F15A-4EEF-B036-940EC0EFFF06'
+	left join exitReason e on k.Value = e.StateCode and k.AttributeID = 'B4438144-4BF5-4C47-8F37-79C69B3F31B7'
+	left join gender g on k.Value = g.StateCode and k.AttributeID = '7B7330CD-C397-48C7-9119-2F4D84373FAB'
+	left join race r on k.Value = r.StateCode and k.AttributeID = '285BCCBD-7A70-4999-AE54-9DF05567A3E3'
+	where 1=1
+	and SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D' -- PS Interview
+	and OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID
+	and (RecordSetID is null or RecordSetID = @recordSetID)
+	group by k.InstanceID, k.AU
+)
+, fPivot as (
+	select f.InstanceID
+		, Answer = max(case when f.Value = 'Met' then 1 else 0 end)
+	from rPivot r
+	left join x_DATATEAM.MonFormlet_Key_Attribute_Value f on r.InstanceID = f.InstanceID
+	where f.AttributeID = @questionID
+	group by f.InstanceID
+)
+
+select 
+	AdminUnit = case when grouping(r.AU) = 0 then r.AU else 'State Total' end
+	, District = case when grouping(r.DISTRICT_OF_ATTENDANCE) = 0 then r.DISTRICT_OF_ATTENDANCE else 'Admin Unit Total' end
+	, GroupByValue = 
+			case @groupByAttribute
+				when 'D' then r.PRIMARY_DISABILITY
+				when 'E' then r.REASON_EXITED_SPED
+				when 'G' then r.GENDER_STUDENT
+				when 'R' then r.FEDERAL_RACE_STUDENT
+			end
+	, nSize = count(distinct r.InstanceID)
+	, MetCount = sum(f.Answer)
+	, pct = cast(round(((sum(f.Answer)*100.0)/count(distinct r.InstanceID)),2) as decimal(5,2))
+	, AUSortBit = grouping(r.AU)
+	, DistrictSortBit = grouping(r.DISTRICT_OF_ATTENDANCE)
+from rPivot r
+left join fPivot f on r.InstanceID = f.InstanceID
+group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE), 
+	case @groupByAttribute
+		when 'D' then r.PRIMARY_DISABILITY
+		when 'E' then r.REASON_EXITED_SPED
+		when 'G' then r.GENDER_STUDENT
+		when 'R' then r.FEDERAL_RACE_STUDENT
+	end
+order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="AdminUnit">
+          <DataField>AdminUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="District">
+          <DataField>District</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GroupByValue">
+          <DataField>GroupByValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nSize">
+          <DataField>nSize</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MetCount">
+          <DataField>MetCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="pct">
+          <DataField>pct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AUSortBit">
+          <DataField>AUSortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="DistrictSortBit">
+          <DataField>DistrictSortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
