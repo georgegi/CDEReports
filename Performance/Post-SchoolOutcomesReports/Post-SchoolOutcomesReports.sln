@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Post-SchoolOutcomesReports", "Post-SchoolOutcomesReports\Post-SchoolOutcomesReports.rptproj", "{05255753-DD5D-4924-B178-8AE8C85D2FFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.Debug|Default.ActiveCfg = Debug
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.Debug|Default.Build.0 = DebugLocal
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.Debug|Default.Deploy.0 = DebugLocal
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.DebugLocal|Default.Build.0 = DebugLocal
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.Release|Default.ActiveCfg = Release
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.Release|Default.Build.0 = Release
+		{05255753-DD5D-4924-B178-8AE8C85D2FFF}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

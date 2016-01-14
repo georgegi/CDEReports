@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="SSRSPSODatasource">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=10.86.23.151;Initial Catalog=CDE_Prodreal</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>520084da-0dfa-4d8e-8a48-fbbf01ebe452</DataSourceID>
+</RptDataSource>
