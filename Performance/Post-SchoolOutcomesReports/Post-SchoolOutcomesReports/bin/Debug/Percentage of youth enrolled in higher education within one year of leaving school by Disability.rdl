@@ -37,15 +37,13 @@
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
                   </Textbox>
-                  <ColSpan>3</ColSpan>
+                  <ColSpan>2</ColSpan>
                   <RowSpan>2</RowSpan>
                 </CellContents>
               </TablixCornerCell>
               <TablixCornerCell />
-              <TablixCornerCell />
             </TablixCornerRow>
             <TablixCornerRow>
-              <TablixCornerCell />
               <TablixCornerCell />
               <TablixCornerCell />
             </TablixCornerRow>
@@ -54,10 +52,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.41667in</Width>
+              <Width>0.30209in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.45833in</Width>
+              <Width>0.3125in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -66,14 +64,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="textbox2">
+                    <Textbox Name="nSize">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!nSize.Value)</Value>
+                              <Value>=Fields!nSize.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -83,7 +81,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <rd:DefaultName>nSize</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -100,24 +98,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="textbox3">
+                    <Textbox Name="pct">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!MetCount.Value)</Value>
+                              <Value>=Fields!pct.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <rd:DefaultName>pct</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -162,10 +161,14 @@
                             <Value>=Fields!Disability.Value</Value>
                             <Style>
                               <FontFamily>Tahoma</FontFamily>
+                              <FontSize>11pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
                         </TextRuns>
-                        <Style />
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Disability</rd:DefaultName>
@@ -195,14 +198,14 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>n Size</Value>
+                                <Value>n</Value>
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
                                 </Style>
                               </TextRun>
                             </TextRuns>
                             <Style>
-                              <TextAlign>Right</TextAlign>
+                              <TextAlign>Center</TextAlign>
                             </Style>
                           </Paragraph>
                         </Paragraphs>
@@ -234,14 +237,14 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Met Count</Value>
+                                <Value>%</Value>
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
                                 </Style>
                               </TextRun>
                             </TextRuns>
                             <Style>
-                              <TextAlign>Right</TextAlign>
+                              <TextAlign>Center</TextAlign>
                             </Style>
                           </Paragraph>
                         </Paragraphs>
@@ -282,7 +285,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>2.82292in</Size>
+                <Size>2.27084in</Size>
                 <CellContents>
                   <Textbox Name="AdminUnit">
                     <CanGrow>true</CanGrow>
@@ -328,7 +331,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>1.17708in</Size>
+                    <Size>0.4375in</Size>
                     <CellContents>
                       <Textbox Name="District">
                         <CanGrow>true</CanGrow>
@@ -363,54 +366,13 @@
                   </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="matrix1_School">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!School.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
-                      <SortExpressions>
-                        <SortExpression>
-                          <Value>=Fields!School.Value</Value>
-                        </SortExpression>
-                      </SortExpressions>
-                      <TablixHeader>
-                        <Size>1in</Size>
-                        <CellContents>
-                          <Textbox Name="School">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>=Fields!School.Value</Value>
-                                    <Style>
-                                      <FontFamily>Tahoma</FontFamily>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style />
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>School</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Color>LightGrey</Color>
-                                <Style>Solid</Style>
-                              </Border>
-                              <BackgroundColor>#e6eefc</BackgroundColor>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
                       <DataElementOutput>Output</DataElementOutput>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
                   </TablixMembers>
+                  <Visibility>
+                    <Hidden>=Fields!District.Value="Admin Unit Total"</Hidden>
+                  </Visibility>
                   <DataElementOutput>Output</DataElementOutput>
                 </TablixMember>
               </TablixMembers>
@@ -423,7 +385,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.33in</Top>
         <Height>0.61in</Height>
-        <Width>5.875in</Width>
+        <Width>3.32292in</Width>
         <Style />
       </Tablix>
       <Textbox Name="textbox1">
@@ -445,7 +407,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>5in</Width>
+        <Width>10.625in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -458,12 +420,14 @@
     <Height>0.96in</Height>
     <Style />
   </Body>
-  <Width>13.47917in</Width>
+  <Width>10.72917in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>11in</PageWidth>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.5in</TopMargin>
+    <BottomMargin>0.5in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -648,8 +612,7 @@ order by AUSortBit, AU, DistrictSortBit, District, SchoolSortBit, School</Comman
         <CommandText>select distinct ID = RecordSetID, Name = RecordSet
 from x_DATATEAM.MonRecord_Key_Attribute_Value 
 where SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D'
-order by RecordSet
-</CommandText>
+order by RecordSet</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
@@ -713,7 +676,7 @@ order by RosterYear
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>A6D0DC62-A691-4598-AECB-F48643F752CF</Value>
+          <Value>2013-2014 EOY Ind14 Full Record Master_2-24-2015</Value>
         </Values>
       </DefaultValue>
       <Prompt>Select a record set</Prompt>
@@ -727,6 +690,11 @@ order by RosterYear
     </ReportParameter>
     <ReportParameter Name="questionID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Were you enrolled in a 2-year or 4-year college or university?</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>question ID</Prompt>
       <ValidValues>
         <DataSetReference>
