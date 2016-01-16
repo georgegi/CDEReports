@@ -13,6 +13,10 @@
       <Name>TestReportToStartProject.rdl</Name>
       <FullPath>TestReportToStartProject.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Compliance Report 3.rdl</Name>
+      <FullPath>Compliance Report 3.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>
