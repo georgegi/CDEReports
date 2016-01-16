@@ -35,6 +35,7 @@ select @rosterYearID = ID from RosterYear where StartYear = 2014
 	where tl.ParentId is null
 	and loc.ID = '651161A6-8091-448D-826A-1235735134A4'
 	and msm.ID = '61C193FE-4781-4071-A68F-124A151DDA17' -- (Standard Review)
+	---
 
 	union all 
 
@@ -93,12 +94,11 @@ select @rosterYearID = ID from RosterYear where StartYear = 2014
 	left join MonSubmissionArea msa2 on c2.InputAreaID = msa2.FormTemplateControlID
 ) 
 
-
 select [Administrative Unit] = ou.Name
 	, Item = 'Example'
 	, [Type of Review] = a.SubmissionMode
 	, a.SubmissionAreaSequence
-	, a.SubmissionAreaID
+--	, a.SubmissionAreaID
 	, a.SubmissionAreaLabel
 	, Pct = cast(sum(case sfo.ReportLabel when 'Met' then 1 end)/sum(case when sfo.ReportLabel in ('Met', 'Not Met') then 1 end*1.0)*100 as money)
 from FormInstance fi
@@ -116,11 +116,7 @@ left join RosterYear ry on sub.RosterYearID = ry.ID
 join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, not nec to check a.inputitemtype
 left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
 
-where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' 
-and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
-and RosterYearID = @rosterYearID 
---and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
---and RosterYearID = '83EEB57A-4E8C-449C-9543-7BDC3FE056C0'
+where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
 and SubmissionAreaID in (
 	'FD836CC5-ECE7-475D-8F4B-70B4E5A3E235'	-- Dates of Meeting (Confirm dates with evidence in the file)
 	, 'AB755A6C-83D3-4594-9DFE-83CD52FE7CFD' -- Present Levels of Academic Achievement and Functional Performance
@@ -134,5 +130,7 @@ and SubmissionAreaID in (
 	, '14D8D04C-191F-429D-98C8-9FB1B8B7DF33' -- Appendix A: Early Childhood IEP
 	, 'EA0784B9-9712-4291-962B-15147DCD3775' -- Appendix B: Evaluation/Reevaluation
 	)
+and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+and RosterYearID = @rosterYearID 
 group by ou.Name, a.SubmissionMode, a.SubmissionAreaSequence, a.SubmissionAreaID, a.SubmissionAreaLabel
-order by 1, 4
+order by ou.name, SubmissionAreaSequence
