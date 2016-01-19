@@ -598,7 +598,7 @@ order by SortBit, [Administrative Unit], SectionSequence</CommandText>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Compliance Reports 1, 4, 5, 6 and 7</Value>
+                    <Value>Present Levels of Performance: By AU with State summaries</Value>
                     <Style>
                       <FontFamily>Tahoma</FontFamily>
                       <FontSize>18pt</FontSize>
@@ -610,9 +610,12 @@ order by SortBit, [Administrative Unit], SectionSequence</CommandText>
             </Paragraphs>
             <rd:DefaultName>textbox1</rd:DefaultName>
             <Height>0.33in</Height>
-            <Width>5in</Width>
+            <Width>6.96875in</Width>
             <ZIndex>1</ZIndex>
             <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -623,7 +626,7 @@ order by SortBit, [Administrative Unit], SectionSequence</CommandText>
         <Height>0.98in</Height>
         <Style />
       </Body>
-      <Width>6.375in</Width>
+      <Width>6.96875in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
