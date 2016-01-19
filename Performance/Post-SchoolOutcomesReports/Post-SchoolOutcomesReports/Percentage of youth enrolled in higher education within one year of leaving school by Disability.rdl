@@ -2878,7 +2878,7 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
     </ReportParameter>
     <ReportParameter Name="questionID">
       <DataType>String</DataType>
-      <Prompt>question ID</Prompt>
+      <Prompt>Question</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>SurveyQuestions</DataSetName>
