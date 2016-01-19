@@ -2822,6 +2822,11 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
