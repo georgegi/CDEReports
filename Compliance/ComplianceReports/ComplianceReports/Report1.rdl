@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSRS_Compliance_Reports_Datasource">
+      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>b6e36270-5cbf-4822-9adc-b92131911243</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@submissionAreaID">
+            <Value>=Parameters!submissionAreaID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>; with iiCTE as (
+	select LocationID = loc.ID
+		, SubmissionTypeID = mst.ID
+		, SubmissionModeID = msm.ID
+		, Location = loc.DisplayName
+		, SubmissionType = mst.Name
+		, SubmissionMode = msm.Name
+		, TemplateName = t.Name
+		, TemplateID = t.ID
+		, LayoutID = tl.ID 
+		, InputAreaID = tl.ControlId
+		, tl.ParentId 
+		, tlSequence = tl.Sequence --- will always be zero in the anchor
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+		, ControlType = tct.Name
+		, ControlIsRepeatable = tc.IsRepeatable
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+	from MonSubmissionType mst -- this will narrow the result set to only CO DMS-related formlets.
+	left join MonSubmissionMode msm on mst.ID = msm.SubmissionTypeID
+	left join MonLocation loc on mst.LocationID = loc.ID -- select * from MonLocation -- select * from MonSubmissionType 
+	left join MonProgram p on loc.ProgramID = p.ID
+	left join FormTemplate t on mst.FormTemplateID = t.ID
+	left join FormTemplateLayout tl on t.ID = tl.TemplateID
+	left join FormTemplateControl tc on tl.ControlID = tc.Id
+	left join FormTemplateControlType tct on tc.TypeID = tct.ID
+	where tl.ParentId is null
+	and loc.ID = '651161A6-8091-448D-826A-1235735134A4'
+	and msm.ID = '61C193FE-4781-4071-A68F-124A151DDA17' -- (Standard Review)
+
+	union all 
+
+	select c.LocationID
+		, c.SubmissionTypeID
+		, c.SubmissionModeID
+		, c.Location
+		, c.SubmissionType
+		, c.SubmissionMode
+		, TemplateName = t.Name
+		, TemplateID = t.ID
+		, LayoutID = tl.ID 
+		, InputAreaID = tl.ControlId
+		, tl.ParentId 
+		, tlSequence = tl.Sequence 
+		, CTELevel = c.CTELevel+1 
+		, ControlType = tct.Name
+		, ControlIsRepeatable = tc.IsRepeatable
+		, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+	from FormTemplate t 
+	join FormTemplateLayout tl on t.ID = tl.TemplateID and tl.ParentId is not null -- inner join
+	join FormTemplateControl tc on tl.ControlID = tc.Id
+	join FormTemplateControlType tct on tc.TypeID = tct.ID
+	join iiCTE c on tl.ParentID = c.LayoutID
+)
+, sectionsCTE as (
+	select AreaSequence = a.Sequence, AreaLabel = a.Label, i.SubmissionAreaID, SectionID = i.ID, ItemLabel = i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = 'AB755A6C-83D3-4594-9DFE-83CD52FE7CFD' -- Present Levels of Academic Achievement and Functional Performance
+	union all
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = '3FDCF6FB-8270-400B-BB6D-3A241FCD675A' -- Annual Goals/Objectives
+	and i.ID in ('C18AB906-2987-4D1F-AFB1-3541553AA073', '3128E00E-196D-412C-B1CE-8A872F51A6D0', '902BCD1A-8E6E-4B60-AC28-433A83D8B3E0', 'F58CB312-BF9B-4909-AF68-E526A66CC8EF', '1AD33D76-E936-44F3-A521-8C39A639778C', '570D3112-67F2-4215-8F0E-4B6D232A95FA')
+	union all
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = '660326E3-1C67-4248-B82D-B72E29561699' -- Service Delivery Statement
+	and i.ID in ('9E6DF724-BA13-490C-90BC-D52747B703D7', 'D6159356-DC03-4FC2-999E-27695715722D', '5C7000D0-B695-4E7D-8F10-AE6C56C2D1B7', 'E9EFA4A3-50D2-4E54-A537-35B0121B132B', '13695A07-7B79-491A-AE35-C59BA9E3745E')
+	union all
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = '8C783B24-F2D3-4A2A-AE5D-1D7256D144A5' -- Recommended Placement in the LRE
+	and i.ID in ('FD1F2A83-81EF-4D12-9554-1E70CA6C0A55', 'F33C8DAF-A639-4B33-896E-0FA2079BD5CD', 'C18FF111-2453-4CC6-BE18-37B6E321DFE9', '5EFFB70D-D3F1-4E79-80F6-BC79D6748A8E')
+
+	union all
+
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, 
+		ItemSequence = case when SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' then i.Sequence else i.Sequence+(a.Sequence*100) end
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where 1=1 
+	--and SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' -- Post-School Considerations
+	and i.ID in ('88C21C21-4A9A-46F4-A39A-2AE6D5C0B67D', '0C549036-57CC-4338-80D6-5CCF81FA7A0E', '392C7565-2134-4E9D-A05D-B78F3CC7B9A3', 'C5A55DB8-0A8E-409E-980B-8E641E54AC6A', 'B20741E1-018E-4D99-B742-F02A5DA59FBC', '4AC1D3F2-A398-4EA2-8795-6519B41C48AF', 'B3D8142C-DA30-4EDE-9AED-FF38897360E8', '618E4F8E-217D-40B2-9B51-92AA7F906520', 'E530E8B0-C427-411E-A71C-10EC6652EE37')
+	union all
+-- adding this goal section as if it were part of the post-school consideration sections. IMPORTANT : This "SubmissionAreaID" used below
+	select AreaSequence = 6, Label = 'Post-School Considerations', SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B', 
+		SectionID = i.ID, i.Label, 
+		ItemSequence = case when SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' then i.Sequence else i.Sequence+(a.Sequence*100) end
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where i.ID = 'C18AB906-2987-4D1F-AFB1-3541553AA073' -- this one is from Goals section
+)
+, attributesCTE as (
+	select 
+		c.TemplateID
+		, c.LocationID
+		, c.SubmissionTypeID
+		, c.SubmissionModeID
+		, c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName
+		, c.InputAreaID
+		, AttributeID = ii.ID
+		, c.ParentId
+		, c.LayoutID
+		, SubmissionAreaID = msa2.ID
+		, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
+		, AttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
+-- the reverseAttributeSequence allows us to distinguish the comments field from other text fields
+		, reverseAttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName, msa2.Label order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc)
+		, c.ControlType
+		, InputItemType = iit.Name
+		, SubmissionAreaLabel = msa2.Label
+		, SubmissionAreaSequence = msa2.Sequence
+		, ii.ReportLabel
+		, ii.Code
+		, Attribute = isnull(ii.reportlabel, ii.code)
+		, InputItemLabel = ii.Label
+		, SectionID = mii.ID
+		, SectionLabel = mii.Label
+		, SectionSequence = mii.Sequence
+	from iiCTE c
+	join iiCTE c2 on c.SubmissionModeID = c2.SubmissionModeID and c.ParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.InputAreaID = ii.InputAreaId 
+	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
+	left join MonSubmissionItem mii on ii.id = mii.FormTemplateInputItemID
+	left join MonSubmissionArea msa2 on c2.InputAreaID = msa2.FormTemplateControlID
+	where 1=1 -- msa2.ID = @submissionAreaID 
+	and iit.Name = 'SingleSelect'
+	and mii.ID in (select SectionID from sectionsCTE where SubmissionAreaID = @submissionAreaID)
+) 
+, areaSectionCount as (
+	select a.SubmissionAreaID, a.SubmissionAreaLabel, SectionCount = count(*) 
+	from attributesCTE a
+	group by a.SubmissionAreaID, a.SubmissionAreaLabel
+)
+, formDataDetail as (
+	select [Administrative Unit] = ou.Name
+		, a.SubmissionAreaID
+		, a.SubmissionAreaLabel
+		, a.SectionLabel
+		, a.InputItemLabel
+		, a.ReportLabel
+		, a.AttributeID
+		, SectionSequence = case when SectionID = 'C18AB906-2987-4D1F-AFB1-3541553AA073' then 700+a.SectionSequence else a.SectionSequence end -- setting the sequence again here..
+		, InstanceID = fi.ID
+		, Yes = case when sfo.ReportLabel = 'Met' then 1 else 0 end
+		--, ac.SectionCount
+	from FormInstance fi
+	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
+	left join FormInputValue fiv on fii.ID = fiv.IntervalID
+	join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
+	-- mon
+	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
+	left join MonSubmissionRecord r on rf.SubmissionRecordID = r.ID
+	left join MonSubmissions sub on r.SubmissionsID = sub.ID
+	left join OrgUnit ou on sub.OrgUnitID = ou.ID
+	left join RosterYear ry on sub.RosterYearID = ry.ID
+
+	-- single select
+	join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
+	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
+
+	---- areaSectionCount
+	--left join areaSectionCount ac on a.SubmissionAreaID = ac.SubmissionAreaID
+
+	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
+	and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID 
+
+	---- TESTING
+ 		and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
+	---- TESTING
+)
+, AUSampleSize as (
+	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
+		, SortBit = grouping([Administrative Unit])
+		, IEPCount = count(distinct InstanceID) 
+	from formDataDetail
+	group by rollup([Administrative Unit])
+)
+, InstanceCounts as (
+	select fdd.[Administrative Unit]
+		, fdd.InstanceID
+		, InstanceYesCount = sum(fdd.Yes) 
+		, SectionCount = max(ac.SectionCount)
+	from formDataDetail fdd
+	left join areaSectionCount ac on fdd.SubmissionAreaID = ac.SubmissionAreaID
+	group by fdd.[Administrative Unit], fdd.InstanceID
+)
+, AUCounts as (
+	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
+		, SubmissionAreaLabel
+		, SectionLabel
+		, InputItemLabel
+		, ReportLabel
+		, AttributeID
+		, SectionSequence
+		, ItemYesCount = sum(fdd.Yes) --- rename to SectionYesCount
+		, SortBit = grouping([Administrative Unit])
+	from formDataDetail fdd
+	group by rollup([Administrative Unit]), SubmissionAreaLabel, SectionLabel, InputItemLabel, SectionSequence, ReportLabel, AttributeID
+)
+, TopAndBottom as (
+	select t.SubmissionAreaLabel
+		, [Administrative Unit]
+		, ReportLabel
+		, InputItemLabel
+		, SectionSequence
+		, TopSort = row_number() over (partition by [Administrative Unit] order by PerItemPct desc)
+		, BottomSort = row_number() over (partition by [Administrative Unit] order by PerItemPct)
+		, PerItemPct
+	from (
+	select 
+		SubmissionAreaLabel = case when @submissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' then 'Post-School Considerations' else ac.SubmissionAreaLabel end
+		, ac.[Administrative Unit]
+		, ac.SectionLabel
+		, ReportLabel
+		, InputItemLabel
+		, ac.SectionSequence
+		, PerItemPct = cast(round((ac.ItemYesCount/cast(ss.IEPCount as float))*100, 2) as decimal(5,1))
+		, ac.SortBit
+	from AUCounts ac
+	left join AUSampleSize ss on ac.[Administrative Unit] = ss.[Administrative Unit]
+	) t
+	where t.[Administrative Unit] = 'State'
+)
+
+select Position, Sort = TopSort, SubmissionAreaLabel, [Administrative Unit], ReportLabel, InputItemLabel, PerItemPct
+from (select top 5 Position = 'Top', * from TopAndBottom order by TopSort) t
+union all
+select Position, Sort = BottomSort, SubmissionAreaLabel, [Administrative Unit], ReportLabel, InputItemLabel, PerItemPct
+from (select top 5 Position = 'Bottom', * from TopAndBottom order by BottomSort) b 
+order by Position desc, Sort</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Position">
+          <DataField>Position</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Sort">
+          <DataField>Sort</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SubmissionAreaLabel">
+          <DataField>SubmissionAreaLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Administrative_Unit">
+          <DataField>Administrative Unit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ReportLabel">
+          <DataField>ReportLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InputItemLabel">
+          <DataField>InputItemLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PerItemPct">
+          <DataField>PerItemPct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SubmissionAreas">
+      <SharedDataSet>
+        <SharedDataSetReference>SubmissionAreas</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="List1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>10.96875in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.91in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="List1_Contents">
+                          <ReportItems>
+                            <Tablix Name="table1">
+                              <TablixBody>
+                                <TablixColumns>
+                                  <TablixColumn>
+                                    <Width>0.77083in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.45833in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>8.63542in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>1in</Width>
+                                  </TablixColumn>
+                                </TablixColumns>
+                                <TablixRows>
+                                  <TablixRow>
+                                    <Height>0.22in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox2">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Position</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox2</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox3">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Sort</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox3</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox4">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Input Item Label</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox4</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="textbox5">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Per Item Pct</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>textbox5</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                  <TablixRow>
+                                    <Height>0.19in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Position">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!Position.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>9pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Position</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Sort">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!Sort.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>9pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Sort</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="InputItemLabel">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!InputItemLabel.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>9pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>InputItemLabel</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="PerItemPct">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!PerItemPct.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>9pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>PerItemPct</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                </TablixRows>
+                              </TablixBody>
+                              <TablixColumnHierarchy>
+                                <TablixMembers>
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                </TablixMembers>
+                              </TablixColumnHierarchy>
+                              <TablixRowHierarchy>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <KeepWithGroup>After</KeepWithGroup>
+                                    <RepeatOnNewPage>true</RepeatOnNewPage>
+                                    <KeepTogether>true</KeepTogether>
+                                  </TablixMember>
+                                  <TablixMember>
+                                    <Group Name="table1_Details_Group">
+                                      <DataElementName>Detail</DataElementName>
+                                    </Group>
+                                    <TablixMembers>
+                                      <TablixMember />
+                                    </TablixMembers>
+                                    <DataElementName>Detail_Collection</DataElementName>
+                                    <DataElementOutput>Output</DataElementOutput>
+                                    <KeepTogether>true</KeepTogether>
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixRowHierarchy>
+                              <DataSetName>DataSet1</DataSetName>
+                              <Top>0.5in</Top>
+                              <Height>0.41in</Height>
+                              <Width>10.86458in</Width>
+                              <Style />
+                            </Tablix>
+                            <Textbox Name="SubmissionAreaLabel">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!SubmissionAreaLabel.Value</Value>
+                                      <Style>
+                                        <FontFamily>Tahoma</FontFamily>
+                                        <FontSize>12pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>SubmissionAreaLabel</rd:DefaultName>
+                              <Height>0.24in</Height>
+                              <Width>5in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style />
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="list1_SubmissionAreaLabel">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SubmissionAreaLabel.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Between</BreakLocation>
+                    </PageBreak>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!SubmissionAreaLabel.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+            </PageBreak>
+            <Top>0.33in</Top>
+            <Height>0.91in</Height>
+            <Width>10.96875in</Width>
+            <Style>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>12pt</FontSize>
+            </Style>
+          </Tablix>
+          <Textbox Name="textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Top 5 and Bottom 5 Questions across Compliance Reviews</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>18pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>textbox1</rd:DefaultName>
+            <Height>0.33in</Height>
+            <Width>10.69792in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>1.24in</Height>
+        <Style />
+      </Body>
+      <Width>10.96875in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="userID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>user ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rosterYearID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>83EEB57A-4E8C-449C-9543-7BDC3FE056C0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>roster Year ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="submissionAreaID">
+      <DataType>String</DataType>
+      <Prompt>Select a submission area</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SubmissionAreas</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>2df75dce-01f3-4898-b1c7-b54cbad4a613</rd:ReportID>
+</Report>

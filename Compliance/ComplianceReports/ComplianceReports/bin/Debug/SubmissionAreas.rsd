@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <Description />
+  <DataSet Name="SubmissionAreas">
+    <Query>
+      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
+      <CommandText>	select a.ID, Name = a.Label
+	from MonSubmissionArea a 
+	where a.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A' -- Compliance Checklist
+	and a.ID in (
+	  'AB755A6C-83D3-4594-9DFE-83CD52FE7CFD' -- (4) -- Present Levels of Academic Achievement and Functional Performance
+	, '3FDCF6FB-8270-400B-BB6D-3A241FCD675A' -- (5) -- Annual Goals/Objectives
+	, '660326E3-1C67-4248-B82D-B72E29561699' -- (6) -- Service Delivery Statement
+	, '8C783B24-F2D3-4A2A-AE5D-1D7256D144A5' -- (7) -- Recommended Placement in the LRE
+	, '97075423-230C-4D80-99C5-C8053D08615B' -- (1) -- Post-School Considerations (ALONG WITH THE ITEM IN THE GOAL AREA SPECIFIC TO TRANSITION IEPS)
+	)
+	order by sequence
+</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="ID">
+        <DataField>ID</DataField>
+        <rd:TypeName>System.Guid</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
