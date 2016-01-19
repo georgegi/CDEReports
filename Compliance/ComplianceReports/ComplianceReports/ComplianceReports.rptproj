@@ -10,12 +10,16 @@
   <DataSets />
   <Reports>
     <ProjectItem>
+      <Name>Compliance Report 3.rdl</Name>
+      <FullPath>Compliance Report 3.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>TestReportToStartProject.rdl</Name>
       <FullPath>TestReportToStartProject.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Compliance Report 3.rdl</Name>
-      <FullPath>Compliance Report 3.rdl</FullPath>
+      <Name>Compliance Report 4.rdl</Name>
+      <FullPath>Compliance Report 4.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

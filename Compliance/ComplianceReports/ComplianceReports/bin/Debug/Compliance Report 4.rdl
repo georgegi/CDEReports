@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="matrix1">
+        <TablixCorner>
+          <TablixCornerRows>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox14">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox14</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="textbox3">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>textbox3</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+          </TablixCornerRows>
+        </TablixCorner>
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.19in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Sum(Fields!PerItemPct.Value)</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="SubmissionAreaLabel">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!SubmissionAreaLabel.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!SubmissionAreaLabel.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.25in</Size>
+                <CellContents>
+                  <Textbox Name="SubmissionAreaLabel">
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!SubmissionAreaLabel.Value</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                              <FontSize>12pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>SubmissionAreaLabel</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#8fb3f3</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="matrix1_SectionLabel">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SectionLabel.Value</GroupExpression>
+                    </GroupExpressions>
+                    <Parent>=Fields!SubmissionAreaLabel.Value</Parent>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!SectionSequence.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.21in</Size>
+                    <CellContents>
+                      <Textbox Name="SubmissionItemLabel">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!SectionLabel.Value</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>SubmissionItemLabel</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#8fb3f3</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="matrix1_Administrative_Unit">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Administrative_Unit.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!SortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!Administrative_Unit.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>3.41667in</Size>
+                <CellContents>
+                  <Textbox Name="Administrative_Unit">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!Administrative_Unit.Value</Value>
+                            <Style>
+                              <FontFamily>Tahoma</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Administrative_Unit</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#c7d9f9</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <DataSetName>DataSet1</DataSetName>
+        <Top>0.33in</Top>
+        <Height>0.65in</Height>
+        <Width>4.41667in</Width>
+        <Style />
+      </Tablix>
+      <Textbox Name="textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Compliance Report 4</Value>
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>18pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Height>0.33in</Height>
+        <Width>5in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>0.98in</Height>
+    <Style />
+  </Body>
+  <Width>6.375in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSRS_Compliance_Reports_Datasource">
+      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>d0fa9051-c621-49e3-87cb-a51990117779</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@submissionAreaID">
+            <Value>=Parameters!submissionAreaID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>; with iiCTE as (
+	select LocationID = loc.ID
+		, SubmissionTypeID = mst.ID
+		, SubmissionModeID = msm.ID
+		, Location = loc.DisplayName
+		, SubmissionType = mst.Name
+		, SubmissionMode = msm.Name
+		, TemplateName = t.Name
+		, TemplateID = t.ID
+		, LayoutID = tl.ID 
+		, InputAreaID = tl.ControlId
+		, tl.ParentId 
+		, tlSequence = tl.Sequence --- will always be zero in the anchor
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+		, ControlType = tct.Name
+		, ControlIsRepeatable = tc.IsRepeatable
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+	from MonSubmissionType mst -- this will narrow the result set to only CO DMS-related formlets.
+	left join MonSubmissionMode msm on mst.ID = msm.SubmissionTypeID
+	left join MonLocation loc on mst.LocationID = loc.ID -- select * from MonLocation -- select * from MonSubmissionType 
+	left join MonProgram p on loc.ProgramID = p.ID
+	left join FormTemplate t on mst.FormTemplateID = t.ID
+	left join FormTemplateLayout tl on t.ID = tl.TemplateID
+	left join FormTemplateControl tc on tl.ControlID = tc.Id
+	left join FormTemplateControlType tct on tc.TypeID = tct.ID
+	where tl.ParentId is null
+	and loc.ID = '651161A6-8091-448D-826A-1235735134A4'
+	and msm.ID = '61C193FE-4781-4071-A68F-124A151DDA17' -- (Standard Review)
+
+	union all 
+
+	select c.LocationID
+		, c.SubmissionTypeID
+		, c.SubmissionModeID
+		, c.Location
+		, c.SubmissionType
+		, c.SubmissionMode
+		, TemplateName = t.Name
+		, TemplateID = t.ID
+		, LayoutID = tl.ID 
+		, InputAreaID = tl.ControlId
+		, tl.ParentId 
+		, tlSequence = tl.Sequence 
+		, CTELevel = c.CTELevel+1 
+		, ControlType = tct.Name
+		, ControlIsRepeatable = tc.IsRepeatable
+		, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+	from FormTemplate t 
+	join FormTemplateLayout tl on t.ID = tl.TemplateID and tl.ParentId is not null -- inner join
+	join FormTemplateControl tc on tl.ControlID = tc.Id
+	join FormTemplateControlType tct on tc.TypeID = tct.ID
+	join iiCTE c on tl.ParentID = c.LayoutID
+)
+, sectionsCTE as (
+	select AreaSequence = a.Sequence, AreaLabel = a.Label, i.SubmissionAreaID, SectionID = i.ID, ItemLabel = i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = 'AB755A6C-83D3-4594-9DFE-83CD52FE7CFD' -- Present Levels of Academic Achievement and Functional Performance
+	union all
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = '3FDCF6FB-8270-400B-BB6D-3A241FCD675A' -- Annual Goals/Objectives
+	and i.ID in ('C18AB906-2987-4D1F-AFB1-3541553AA073', '3128E00E-196D-412C-B1CE-8A872F51A6D0', '902BCD1A-8E6E-4B60-AC28-433A83D8B3E0', 'F58CB312-BF9B-4909-AF68-E526A66CC8EF', '1AD33D76-E936-44F3-A521-8C39A639778C', '570D3112-67F2-4215-8F0E-4B6D232A95FA')
+	union all
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = '660326E3-1C67-4248-B82D-B72E29561699' -- Service Delivery Statement
+	and i.ID in ('9E6DF724-BA13-490C-90BC-D52747B703D7', 'D6159356-DC03-4FC2-999E-27695715722D', '5C7000D0-B695-4E7D-8F10-AE6C56C2D1B7', 'E9EFA4A3-50D2-4E54-A537-35B0121B132B', '13695A07-7B79-491A-AE35-C59BA9E3745E')
+	union all
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, ItemSequence = i.Sequence
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where SubmissionAreaID = '8C783B24-F2D3-4A2A-AE5D-1D7256D144A5' -- Recommended Placement in the LRE
+	and i.ID in ('FD1F2A83-81EF-4D12-9554-1E70CA6C0A55', 'F33C8DAF-A639-4B33-896E-0FA2079BD5CD', 'C18FF111-2453-4CC6-BE18-37B6E321DFE9', '5EFFB70D-D3F1-4E79-80F6-BC79D6748A8E')
+
+	union all
+
+	select AreaSequence = a.Sequence, a.Label, i.SubmissionAreaID, SectionID = i.ID, i.Label, 
+		ItemSequence = case when SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' then i.Sequence else i.Sequence+(a.Sequence*100) end
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where 1=1 
+	--and SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' -- Post-School Considerations
+	and i.ID in ('88C21C21-4A9A-46F4-A39A-2AE6D5C0B67D', '0C549036-57CC-4338-80D6-5CCF81FA7A0E', '392C7565-2134-4E9D-A05D-B78F3CC7B9A3', 'C5A55DB8-0A8E-409E-980B-8E641E54AC6A', 'B20741E1-018E-4D99-B742-F02A5DA59FBC', '4AC1D3F2-A398-4EA2-8795-6519B41C48AF', 'B3D8142C-DA30-4EDE-9AED-FF38897360E8', '618E4F8E-217D-40B2-9B51-92AA7F906520', 'E530E8B0-C427-411E-A71C-10EC6652EE37')
+	union all
+-- adding this goal section as if it were part of the post-school consideration sections. IMPORTANT : This "SubmissionAreaID" used below
+	select AreaSequence = 6, Label = 'Post-School Considerations', SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B', 
+		SectionID = i.ID, i.Label, 
+		ItemSequence = case when SubmissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' then i.Sequence else i.Sequence+(a.Sequence*100) end
+	from MonSubmissionArea a
+	join MonSubmissionItem i on a.ID = i.SubmissionAreaID
+	where i.ID = 'C18AB906-2987-4D1F-AFB1-3541553AA073' -- this one is from Goals section
+)
+, attributesCTE as (
+	select 
+		c.TemplateID
+		, c.LocationID
+		, c.SubmissionTypeID
+		, c.SubmissionModeID
+		, c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName
+		, c.InputAreaID
+		, AttributeID = ii.ID
+		, c.ParentId
+		, c.LayoutID
+		, SubmissionAreaID = msa2.ID
+		, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
+		, AttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
+-- the reverseAttributeSequence allows us to distinguish the comments field from other text fields
+		, reverseAttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName, msa2.Label order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc)
+		, c.ControlType
+		, InputItemType = iit.Name
+		, SubmissionAreaLabel = msa2.Label
+		, SubmissionAreaSequence = msa2.Sequence
+		, ii.ReportLabel
+		, ii.Code
+		, Attribute = isnull(ii.reportlabel, ii.code)
+		, InputItemLabel = ii.Label
+		, SectionID = mii.ID
+		, SectionLabel = mii.Label
+		, SectionSequence = mii.Sequence
+	from iiCTE c
+	join iiCTE c2 on c.SubmissionModeID = c2.SubmissionModeID and c.ParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.InputAreaID = ii.InputAreaId 
+	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
+	left join MonSubmissionItem mii on ii.id = mii.FormTemplateInputItemID
+	left join MonSubmissionArea msa2 on c2.InputAreaID = msa2.FormTemplateControlID
+	where 1=1 -- msa2.ID = @submissionAreaID 
+	and iit.Name = 'SingleSelect'
+	and mii.ID in (select SectionID from sectionsCTE where SubmissionAreaID = @submissionAreaID)
+) 
+, areaSectionCount as (
+	select a.SubmissionAreaID, a.SubmissionAreaLabel, SectionCount = count(*) 
+	from attributesCTE a
+	group by a.SubmissionAreaID, a.SubmissionAreaLabel
+)
+, formDataDetail as (
+	select [Administrative Unit] = ou.Name
+		, a.SubmissionAreaID
+		, a.SubmissionAreaLabel
+		, a.SectionLabel
+		, a.InputItemLabel
+		, a.ReportLabel
+		, a.AttributeID
+		, SectionSequence = case when SectionID = 'C18AB906-2987-4D1F-AFB1-3541553AA073' then 700+a.SectionSequence else a.SectionSequence end -- setting the sequence again here..
+		, InstanceID = fi.ID
+		, Yes = case when sfo.ReportLabel = 'Met' then 1 else 0 end
+		--, ac.SectionCount
+	from FormInstance fi
+	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
+	left join FormInputValue fiv on fii.ID = fiv.IntervalID
+	join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
+	-- mon
+	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
+	left join MonSubmissionRecord r on rf.SubmissionRecordID = r.ID
+	left join MonSubmissions sub on r.SubmissionsID = sub.ID
+	left join OrgUnit ou on sub.OrgUnitID = ou.ID
+	left join RosterYear ry on sub.RosterYearID = ry.ID
+
+	-- single select
+	join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
+	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
+
+	---- areaSectionCount
+	--left join areaSectionCount ac on a.SubmissionAreaID = ac.SubmissionAreaID
+
+	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
+	and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and RosterYearID = @rosterYearID 
+
+	---- TESTING
+ 		-- and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
+	---- TESTING
+)
+, AUSampleSize as (
+	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
+		, SortBit = grouping([Administrative Unit])
+		, IEPCount = count(distinct InstanceID) 
+	from formDataDetail
+	group by rollup([Administrative Unit])
+)
+, InstanceCounts as (
+	select fdd.[Administrative Unit]
+		, fdd.InstanceID
+		, InstanceYesCount = sum(fdd.Yes) 
+		, SectionCount = max(ac.SectionCount)
+	from formDataDetail fdd
+	left join areaSectionCount ac on fdd.SubmissionAreaID = ac.SubmissionAreaID
+	group by fdd.[Administrative Unit], fdd.InstanceID
+)
+, AUCounts as (
+	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
+		, SubmissionAreaLabel
+		, SectionLabel
+		, InputItemLabel
+		, ReportLabel
+		, AttributeID
+		, SectionSequence
+		, ItemYesCount = sum(fdd.Yes)
+		, SortBit = grouping([Administrative Unit])
+	from formDataDetail fdd
+	group by rollup([Administrative Unit]), SubmissionAreaLabel, SectionLabel, InputItemLabel, SectionSequence, ReportLabel, AttributeID
+)
+
+
+select *
+from (
+select 
+	SubmissionAreaLabel = case when @submissionAreaID = '97075423-230C-4D80-99C5-C8053D08615B' then 'Post-School Considerations' else ac.SubmissionAreaLabel end
+	, ac.[Administrative Unit]
+	, ac.SectionLabel
+	, ReportLabel
+	, InputItemLabel
+	, ac.SectionSequence
+	, PerItemPct = cast(round((ac.ItemYesCount/cast(ss.IEPCount as float))*100, 2) as decimal(5,1))
+	, ac.SortBit
+from AUCounts ac
+left join AUSampleSize ss on ac.[Administrative Unit] = ss.[Administrative Unit]
+) t
+order by SortBit, [Administrative Unit], SectionSequence</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="SubmissionAreaLabel">
+          <DataField>SubmissionAreaLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Administrative_Unit">
+          <DataField>Administrative Unit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SectionLabel">
+          <DataField>SectionLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ReportLabel">
+          <DataField>ReportLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InputItemLabel">
+          <DataField>InputItemLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SectionSequence">
+          <DataField>SectionSequence</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PerItemPct">
+          <DataField>PerItemPct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SortBit">
+          <DataField>SortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SubmissionAreas">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>	select a.ID, Name = a.Label
+	from MonSubmissionArea a 
+	where a.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A' -- Compliance Checklist
+	and a.ID in (
+	  'AB755A6C-83D3-4594-9DFE-83CD52FE7CFD' -- (4) -- Present Levels of Academic Achievement and Functional Performance
+	, '3FDCF6FB-8270-400B-BB6D-3A241FCD675A' -- (5) -- Annual Goals/Objectives
+	, '660326E3-1C67-4248-B82D-B72E29561699' -- (6) -- Service Delivery Statement
+	, '8C783B24-F2D3-4A2A-AE5D-1D7256D144A5' -- (7) -- Recommended Placement in the LRE
+	, '97075423-230C-4D80-99C5-C8053D08615B' -- (1) -- Post-School Considerations (ALONG WITH THE ITEM IN THE GOAL AREA SPECIFIC TO TRANSITION IEPS)
+	)
+	order by sequence
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="userID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>user ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rosterYearID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>83EEB57A-4E8C-449C-9543-7BDC3FE056C0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>roster Year ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="submissionAreaID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>AB755A6C-83D3-4594-9DFE-83CD52FE7CFD'</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Select a Submission Area</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SubmissionAreas</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>eb748503-c613-47ea-ad08-ec665779145b</rd:ReportID>
+</Report>
