@@ -189,7 +189,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Parameters!rosterYearID.Label</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -342,7 +342,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -482,7 +481,7 @@
     <Height>2.05083in</Height>
     <Style />
   </Body>
-  <Width>6.53126in</Width>
+  <Width>6.52084in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -670,6 +669,25 @@ order by ou.name, SubmissionAreaSequence</CommandText>
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="RosterYears">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>select distinct ID = RosterYearID, Name = RosterYear
+from x_DATATEAM.MonRecord_Key_Attribute_Value 
+where SubmissionModeID = '79F0BE6F-FB97-4087-BD56-568027C9487D'
+order by RosterYear</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportParameters>
     <ReportParameter Name="userID">
@@ -689,6 +707,13 @@ order by ou.name, SubmissionAreaSequence</CommandText>
         </Values>
       </DefaultValue>
       <Prompt>roster Year ID</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RosterYears</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
   </ReportParameters>
   <Language>en-US</Language>

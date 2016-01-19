@@ -7,15 +7,32 @@
       <FullPath>SSRS_Compliance_Reports_Datasource.rds</FullPath>
     </ProjectItem>
   </DataSources>
-  <DataSets />
-  <Reports>
+  <DataSets>
     <ProjectItem>
-      <Name>TestReportToStartProject.rdl</Name>
-      <FullPath>TestReportToStartProject.rdl</FullPath>
+      <Name>SubmissionAreas.rsd</Name>
+      <FullPath>SubmissionAreas.rsd</FullPath>
     </ProjectItem>
+  </DataSets>
+  <Reports>
     <ProjectItem>
       <Name>Compliance Report 3.rdl</Name>
       <FullPath>Compliance Report 3.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Compliance Report 4 - Backup.rdl</Name>
+      <FullPath>Compliance Report 4 - Backup.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Compliance Report 4.rdl</Name>
+      <FullPath>Compliance Report 4.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Report1 - Backup.rdl</Name>
+      <FullPath>Report1 - Backup.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Report1.rdl</Name>
+      <FullPath>Report1.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
