@@ -2149,8 +2149,13 @@
           <QueryParameter Name="@groupByAttribute">
             <Value>D</Value>
           </QueryParameter>
+          <QueryParameter Name="@reportType">
+            <Value>=Parameters!reportType.Value</Value>
+          </QueryParameter>
         </QueryParameters>
-        <CommandText>;with rData as (
+        <CommandText>IF @reportType = 'All' OR @reportType = 'Disability'
+begin
+;with rData as (
 	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
 	from x_DATATEAM.MonRecord_Key_Attribute_Value r
 	where 1=1
@@ -2229,6 +2234,7 @@ from (Values
 	group by f.InstanceID
 )
 
+
 select 
 	AdminUnit = case when grouping(r.AU) = 0 then r.AU else 'State Total' end
 	, District = case when grouping(r.DISTRICT_OF_ATTENDANCE) = 0 then r.DISTRICT_OF_ATTENDANCE else 'Admin Unit Total' end
@@ -2253,7 +2259,8 @@ group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE),
 		when 'G' then r.GENDER_STUDENT
 		when 'R' then r.FEDERAL_RACE_STUDENT
 	end
-order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+order by AUSortBit, AU, DistrictSortBit, District
+end</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -2370,6 +2377,9 @@ order by RosterYear
           <QueryParameter Name="@userID">
             <Value>=Parameters!userID.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@reportType">
+            <Value>=Parameters!reportType.Value</Value>
+          </QueryParameter>
           <QueryParameter Name="@rosterYearID">
             <Value>=Parameters!rosterYearID.Value</Value>
           </QueryParameter>
@@ -2383,7 +2393,9 @@ order by RosterYear
             <Value>E</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>;with rData as (
+        <CommandText>IF @reportType = 'All' OR @reportType = 'ExitReason'
+begin
+;with rData as (
 	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
 	from x_DATATEAM.MonRecord_Key_Attribute_Value r
 	where 1=1
@@ -2486,7 +2498,8 @@ group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE),
 		when 'G' then r.GENDER_STUDENT
 		when 'R' then r.FEDERAL_RACE_STUDENT
 	end
-order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+order by AUSortBit, AU, DistrictSortBit, District
+end</CommandText>
       </Query>
       <Fields>
         <Field Name="AdminUnit">
@@ -2530,6 +2543,9 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
           <QueryParameter Name="@userID">
             <Value>=Parameters!userID.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@reportType">
+            <Value>=Parameters!reportType.Value</Value>
+          </QueryParameter>
           <QueryParameter Name="@rosterYearID">
             <Value>=Parameters!rosterYearID.Value</Value>
           </QueryParameter>
@@ -2543,7 +2559,9 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
             <Value>G</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>;with rData as (
+        <CommandText>IF @reportType = 'All' OR @reportType = 'Gender'
+begin
+;with rData as (
 	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
 	from x_DATATEAM.MonRecord_Key_Attribute_Value r
 	where 1=1
@@ -2646,7 +2664,8 @@ group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE),
 		when 'G' then r.GENDER_STUDENT
 		when 'R' then r.FEDERAL_RACE_STUDENT
 	end
-order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+order by AUSortBit, AU, DistrictSortBit, District
+end</CommandText>
       </Query>
       <Fields>
         <Field Name="AdminUnit">
@@ -2690,6 +2709,9 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
           <QueryParameter Name="@userID">
             <Value>=Parameters!userID.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@reportType">
+            <Value>=Parameters!reportType.Value</Value>
+          </QueryParameter>
           <QueryParameter Name="@rosterYearID">
             <Value>=Parameters!rosterYearID.Value</Value>
           </QueryParameter>
@@ -2703,7 +2725,9 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
             <Value>R</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>;with rData as (
+        <CommandText>IF @reportType = 'All' OR @reportType = 'Race'
+begin
+;with rData as (
 	select TemplateID, InstanceID, RecordSet, AU, AUCode, RosterYear, AttributeID, AttributeSequence, Attribute, Value, SubmissionSequence, RecordSetID
 	from x_DATATEAM.MonRecord_Key_Attribute_Value r
 	where 1=1
@@ -2806,7 +2830,8 @@ group by rollup(r.AU, r.DISTRICT_OF_ATTENDANCE),
 		when 'G' then r.GENDER_STUDENT
 		when 'R' then r.FEDERAL_RACE_STUDENT
 	end
-order by AUSortBit, AU, DistrictSortBit, District</CommandText>
+order by AUSortBit, AU, DistrictSortBit, District
+end</CommandText>
       </Query>
       <Fields>
         <Field Name="AdminUnit">
@@ -2847,11 +2872,6 @@ order by AUSortBit, AU, DistrictSortBit, District</CommandText>
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
