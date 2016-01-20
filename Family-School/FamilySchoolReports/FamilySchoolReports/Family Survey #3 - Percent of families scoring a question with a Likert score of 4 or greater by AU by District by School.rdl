@@ -79,6 +79,7 @@ select AdminUnit
 	, Q15 = cast([115] as varchar(10))
 	, Q16 = cast([116] as varchar(10))
 	--, [Total] = cast([Total] as varchar(10))
+	,SortBit
 from (
 	select x.AdminUnit, x.District, x.School, x.QuestionSequenceChar, LikertScore = cast(cast(x.LikertScore as int) as varchar(10))+'%', SortBit
 	from x
@@ -172,6 +173,10 @@ order by Sortbit, AdminUnit, District, School</CommandText>
         <Field Name="Q16">
           <DataField>Q16</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SortBit">
+          <DataField>SortBit</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -3593,6 +3598,9 @@ from (values ('All', 'All'), ('AUs only', 'AUs only')) t (ID, Name)</CommandText
                   </Group>
                   <SortExpressions>
                     <SortExpression>
+                      <Value>=Fields!SortBit.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
                       <Value>=Fields!AdminUnit.Value</Value>
                     </SortExpression>
                   </SortExpressions>
@@ -3663,6 +3671,9 @@ from (values ('All', 'All'), ('AUs only', 'AUs only')) t (ID, Name)</CommandText
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!SortBit.Value</Value>
+              </SortExpression>
               <SortExpression>
                 <Value>=Fields!AdminUnit.Value</Value>
               </SortExpression>
