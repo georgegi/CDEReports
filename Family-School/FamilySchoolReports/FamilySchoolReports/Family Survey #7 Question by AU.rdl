@@ -29,9 +29,6 @@
                               <TablixColumn>
                                 <Width>1in</Width>
                               </TablixColumn>
-                              <TablixColumn>
-                                <Width>1in</Width>
-                              </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
@@ -82,7 +79,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Score</Value>
+                                                <Value>Avg Score</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>11pt</FontSize>
@@ -113,44 +110,6 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="textbox4">
-                                        <CanGrow>true</CanGrow>
-                                        <KeepTogether>true</KeepTogether>
-                                        <Paragraphs>
-                                          <Paragraph>
-                                            <TextRuns>
-                                              <TextRun>
-                                                <Value>Weight</Value>
-                                                <Style>
-                                                  <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>11pt</FontSize>
-                                                  <FontWeight>Bold</FontWeight>
-                                                  <Color>White</Color>
-                                                </Style>
-                                              </TextRun>
-                                            </TextRuns>
-                                            <Style>
-                                              <TextAlign>Right</TextAlign>
-                                            </Style>
-                                          </Paragraph>
-                                        </Paragraphs>
-                                        <rd:DefaultName>textbox4</rd:DefaultName>
-                                        <Style>
-                                          <Border>
-                                            <Color>LightGrey</Color>
-                                            <Style>Solid</Style>
-                                          </Border>
-                                          <BackgroundColor>CornflowerBlue</BackgroundColor>
-                                          <PaddingLeft>2pt</PaddingLeft>
-                                          <PaddingRight>2pt</PaddingRight>
-                                          <PaddingTop>2pt</PaddingTop>
-                                          <PaddingBottom>2pt</PaddingBottom>
-                                        </Style>
-                                      </Textbox>
-                                    </CellContents>
-                                  </TablixCell>
-                                  <TablixCell>
-                                    <CellContents>
                                       <Textbox Name="textbox5">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
@@ -158,7 +117,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Weighted Score</Value>
+                                                <Value>% 4 or 5</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>11pt</FontSize>
@@ -227,24 +186,25 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Score">
+                                      <Textbox Name="AvgScore">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!Score.Value</Value>
+                                                <Value>=Fields!AvgScore.Value</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>9pt</FontSize>
+                                                  <Format>0.00;(0.00)</Format>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Score</rd:DefaultName>
+                                        <rd:DefaultName>AvgScore</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -260,24 +220,25 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Weight">
+                                      <Textbox Name="AvgScore45">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!Weight.Value</Value>
+                                                <Value>=Fields!AvgScore45.Value</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>9pt</FontSize>
+                                                  <Format>0%</Format>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Weight</rd:DefaultName>
+                                        <rd:DefaultName>AvgScore45</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -289,39 +250,7 @@
                                           <PaddingBottom>2pt</PaddingBottom>
                                         </Style>
                                       </Textbox>
-                                    </CellContents>
-                                  </TablixCell>
-                                  <TablixCell>
-                                    <CellContents>
-                                      <Textbox Name="WeightedScore">
-                                        <CanGrow>true</CanGrow>
-                                        <KeepTogether>true</KeepTogether>
-                                        <Paragraphs>
-                                          <Paragraph>
-                                            <TextRuns>
-                                              <TextRun>
-                                                <Value>=Fields!WeightedScore.Value</Value>
-                                                <Style>
-                                                  <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>9pt</FontSize>
-                                                </Style>
-                                              </TextRun>
-                                            </TextRuns>
-                                            <Style />
-                                          </Paragraph>
-                                        </Paragraphs>
-                                        <rd:DefaultName>WeightedScore</rd:DefaultName>
-                                        <Style>
-                                          <Border>
-                                            <Color>LightGrey</Color>
-                                            <Style>Solid</Style>
-                                          </Border>
-                                          <PaddingLeft>2pt</PaddingLeft>
-                                          <PaddingRight>2pt</PaddingRight>
-                                          <PaddingTop>2pt</PaddingTop>
-                                          <PaddingBottom>2pt</PaddingBottom>
-                                        </Style>
-                                      </Textbox>
+                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                   </TablixCell>
                                 </TablixCells>
@@ -330,7 +259,6 @@
                           </TablixBody>
                           <TablixColumnHierarchy>
                             <TablixMembers>
-                              <TablixMember />
                               <TablixMember />
                               <TablixMember />
                               <TablixMember />
@@ -359,7 +287,7 @@
                           <DataSetName>DataSet1</DataSetName>
                           <Top>0.5in</Top>
                           <Height>0.41in</Height>
-                          <Width>8in</Width>
+                          <Width>7in</Width>
                           <Style />
                         </Tablix>
                         <Textbox Name="Question">
@@ -395,7 +323,6 @@
                       <KeepTogether>true</KeepTogether>
                       <Style />
                     </Rectangle>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -519,6 +446,7 @@ select
 	, Score = m.LikertScore 
 	, Weight = m.ResponseWeight
 	, m.WeightedScore 
+	, CASE WHEN m.LikertScore &gt; 3 THEN 1 ELSE 0 END Score45
 -- declare @userID uniqueidentifier, @language varchar(10), @disabMatch varchar(10), @rosterYearID uniqueidentifier ; select @userID = ID, @language = 'All', @disabMatch = 'All' from UserProfile where UserName = 'Enrich:julielott' ; select @rosterYearID = (select ID from RosterYear where StartYear = 2014) ; select *
 from x_DATATEAM.FamilySurveyMaster m
 where 
@@ -532,8 +460,8 @@ select Question
 	, QuestionSequence
 	, AdminUnit
 	, Score = sum(Score)
-	, Weight = max(Weight)
-	, WeightedScore = sum(WeightedScore)
+	, AvgScore = avg(1. * Score)
+	, AvgScore45 = avg(1. * Score45)
 from xCTE
 group by Question, QuestionSequence, AdminUnit
 order by QuestionSequence, AdminUnit</CommandText>
@@ -556,13 +484,13 @@ order by QuestionSequence, AdminUnit</CommandText>
           <DataField>Score</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Weight">
-          <DataField>Weight</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="AvgScore">
+          <DataField>AvgScore</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="WeightedScore">
-          <DataField>WeightedScore</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="AvgScore45">
+          <DataField>AvgScore45</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -644,6 +572,11 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">

@@ -21,7 +21,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>12.75in</Width>
+        <Width>8.32208in</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -39,7 +39,7 @@
               <Width>3.46834in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.5725in</Width>
+              <Width>0.6666in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.1875in</Width>
@@ -441,43 +441,12 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
+                  <Value>=Fields!SortBit.Value</Value>
+                </SortExpression>
+                <SortExpression>
                   <Value>=Fields!AdminUnit.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <TablixHeader>
-                <Size>0.11458in</Size>
-                <CellContents>
-                  <Textbox Name="AdminUnit1">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>AdminUnit1</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>true</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
               <TablixMembers>
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
@@ -495,7 +464,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.69667in</Top>
         <Height>0.75in</Height>
-        <Width>8.43667in</Width>
+        <Width>8.41618in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -507,7 +476,7 @@
     <Height>1.67584in</Height>
     <Style />
   </Body>
-  <Width>14.95833in</Width>
+  <Width>8.46875in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -702,7 +671,7 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
           <Value>All</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Select a language for wich to view data:</Prompt>
+      <Prompt>Select a language for which to view data:</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>language</DataSetName>
