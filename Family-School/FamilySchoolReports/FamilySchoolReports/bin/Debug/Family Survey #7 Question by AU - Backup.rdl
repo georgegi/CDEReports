@@ -356,7 +356,7 @@
                               </TablixMember>
                             </TablixMembers>
                           </TablixRowHierarchy>
-                          <DataSetName>DataSet1</DataSetName>
+                          <DataSetName>DS_AU</DataSetName>
                           <Top>0.5in</Top>
                           <Height>0.41in</Height>
                           <Width>4in</Width>
@@ -426,7 +426,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
+        <DataSetName>DS_AU</DataSetName>
         <PageBreak>
           <BreakLocation>End</BreakLocation>
         </PageBreak>
@@ -485,28 +485,14 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString>Data Source=10.86.23.151;Initial Catalog=CDE_Prodreal</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>c82d7a70-7413-477f-a70a-703963a6957c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="DS_AU">
       <Query>
         <DataSourceName>SSRSdatasource</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@userID">
-            <Value>=Parameters!userID.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@language">
-            <Value>=Parameters!language.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@disabMatch">
-            <Value>=Parameters!disabMatch.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@rosterYearID">
-            <Value>=Parameters!rosterYearID.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
         <CommandText>; with xCTE as (
 select 
 	Question
@@ -527,7 +513,6 @@ where
 select Question
 	, QuestionSequence
 	, AdminUnit
-	, Score = sum(Score)
 	, Weight = max(Weight)
 	, WeightedScore = sum(WeightedScore)
 from xCTE
@@ -535,32 +520,37 @@ group by Question, QuestionSequence, AdminUnit
 order by QuestionSequence, AdminUnit</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
-      <Fields>
-        <Field Name="Question">
-          <DataField>Question</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="QuestionSequence">
-          <DataField>QuestionSequence</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="AdminUnit">
-          <DataField>AdminUnit</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Score">
-          <DataField>Score</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Weight">
-          <DataField>Weight</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="WeightedScore">
-          <DataField>WeightedScore</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
+    </DataSet>
+    <DataSet Name="DS_District">
+      <Query>
+        <DataSourceName>SSRSdatasource</DataSourceName>
+        <CommandText>; with xCTE as (
+select 
+	Question
+	, QuestionSequence
+	, AdminUnit
+	, District
+	, Score = m.LikertScore 
+	, Weight = m.ResponseWeight
+	, m.WeightedScore 
+	, CASE WHEN m.LikertScore &gt; 3 THEN 1 ELSE 0 END Score45
+from x_DATATEAM.FamilySurveyMaster m
+where 
+	OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID) AND
+	(@language = 'All' or cast(Language as varchar(10)) = @language) AND
+	(@disabMatch = 'All' or cast(DisabilityMatch as varchar(10)) = @disabMatch) AND
+	m.RosterYearID = @rosterYearID
+)
+
+select Question
+	, QuestionSequence
+	, AdminUnit
+	, District
+	, AvgScore = avg(1. * Score)
+	, AvgScore45 = avg(1. * Score45) 
+from xCTE
+group by Question, QuestionSequence, AdminUnit, District</CommandText>
+      </Query>
     </DataSet>
   </DataSets>
   <ReportParameters>
