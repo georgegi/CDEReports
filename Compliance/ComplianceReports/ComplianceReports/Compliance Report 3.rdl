@@ -697,7 +697,7 @@ order by RosterYear</CommandText>
           <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
         </Values>
       </DefaultValue>
-      <Prompt>user ID</Prompt>
+      <Prompt>User ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
       <DataType>String</DataType>
@@ -706,7 +706,7 @@ order by RosterYear</CommandText>
           <Value>83EEB57A-4E8C-449C-9543-7BDC3FE056C0</Value>
         </Values>
       </DefaultValue>
-      <Prompt>roster Year ID</Prompt>
+      <Prompt>Roster Year</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>RosterYears</DataSetName>

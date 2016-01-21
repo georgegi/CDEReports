@@ -9,6 +9,14 @@
   </DataSources>
   <DataSets>
     <ProjectItem>
+      <Name>disabMatch.rsd</Name>
+      <FullPath>disabMatch.rsd</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>language.rsd</Name>
+      <FullPath>language.rsd</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>RosterYears.rsd</Name>
       <FullPath>RosterYears.rsd</FullPath>
     </ProjectItem>
@@ -16,16 +24,16 @@
       <Name>RosterYearTop1.rsd</Name>
       <FullPath>RosterYearTop1.rsd</FullPath>
     </ProjectItem>
-    <ProjectItem>
-      <Name>language.rsd</Name>
-      <FullPath>language.rsd</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>disabMatch.rsd</Name>
-      <FullPath>disabMatch.rsd</FullPath>
-    </ProjectItem>
   </DataSets>
   <Reports>
+    <ProjectItem>
+      <Name>Family Survey #2 - Parent Survey Average Likert Responses by AU by Question (also by District by School).rdl</Name>
+      <FullPath>Family Survey #2 - Parent Survey Average Likert Responses by AU by Question (also by District by School).rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Family Survey #3 - Percent of families scoring a question with a Likert score of 4 or greater by AU by District by School.rdl</Name>
+      <FullPath>Family Survey #3 - Percent of families scoring a question with a Likert score of 4 or greater by AU by District by School.rdl</FullPath>
+    </ProjectItem>
     <ProjectItem>
       <Name>Family Survey #7 Question by AU - Backup.rdl</Name>
       <FullPath>Family Survey #7 Question by AU - Backup.rdl</FullPath>
@@ -43,8 +51,8 @@
       <FullPath>Family Survey 9 Top and Bottom 3 by AU and State.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Family Survey #2 - Parent Survey Average Likert Responses by AU by Question (also by District by School).rdl</Name>
-      <FullPath>Family Survey #2 - Parent Survey Average Likert Responses by AU by Question (also by District by School).rdl</FullPath>
+      <Name>Family Survey #6 Parent Survey Responses by AU.rdl</Name>
+      <FullPath>Family Survey #6 Parent Survey Responses by AU.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

@@ -282,9 +282,20 @@ order by SortBit, [Administrative Unit], SectionSequence</CommandText>
       </Fields>
     </DataSet>
     <DataSet Name="SubmissionAreas">
-      <SharedDataSet>
-        <SharedDataSetReference>SubmissionAreas</SharedDataSetReference>
-      </SharedDataSet>
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>select a.ID, Name = a.Label
+	from MonSubmissionArea a 
+	where a.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A' -- Compliance Checklist
+	and a.ID in (
+	  '4C3B3BAA-C7CA-4DF7-BC41-586C0F992076' -- (4) -- Present Levels of Academic Achievement and Functional Performance
+	, '641C25B9-801A-4163-B538-A6E6F9FE477A' -- (5) -- Annual Goals/Objectives
+	, 'E2DB1BF3-7C44-4EC5-AA83-977FA99EB2CC' -- (6) -- Service Delivery Statement
+	, 'D2F282C6-86C7-4271-8566-3E7719E79C7A' -- (7) -- Recommended Placement in the LRE
+	, '01FBC96D-C6B2-429E-9B8B-B35B6355CABB' -- (1) -- Post-School Considerations (ALONG WITH THE ITEM IN THE GOAL AREA SPECIFIC TO TRANSITION IEPS)
+	)
+	order by sequence</CommandText>
+      </Query>
       <Fields>
         <Field Name="ID">
           <DataField>ID</DataField>

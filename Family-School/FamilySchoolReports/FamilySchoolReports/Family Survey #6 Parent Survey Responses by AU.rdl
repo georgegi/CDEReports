@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Family Survey Report #8 Top and Bottom 3 by AU and State </Value>
+                <Value>	Family Survey Report #6 - Parent Survey Responses by AU</Value>
                 <Style>
                   <FontFamily>Tahoma</FontFamily>
                   <FontSize>18pt</FontSize>
@@ -21,7 +21,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>12.75in</Width>
+        <Width>7.38938in</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -33,19 +33,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.42708in</Width>
+              <Width>3.9575in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.46834in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.5725in</Width>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.1875in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>0.66666in</Width>
+              <Width>1in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -85,10 +82,9 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>5</ColSpan>
+                    <ColSpan>4</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell />
                 <TablixCell />
                 <TablixCell />
                 <TablixCell />
@@ -99,26 +95,31 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox13">
+                    <Textbox Name="RosterYear">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>Question</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <rd:DefaultName>RosterYear</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -129,28 +130,31 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox28">
+                    <Textbox Name="Textbox57">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Top 3</Value>
+                              <Value>Score</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox28</rd:DefaultName>
+                      <rd:DefaultName>Textbox57</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -161,28 +165,31 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox29">
+                    <Textbox Name="Textbox48">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Avg Likert</Value>
+                              <Value>Weight</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox29</rd:DefaultName>
+                      <rd:DefaultName>Textbox48</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -193,60 +200,31 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox6">
+                    <Textbox Name="Textbox52">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Bottom 3</Value>
+                              <Value>Weighted Score</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox6</rd:DefaultName>
+                      <rd:DefaultName>Textbox52</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox9">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Avg Likert</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox9</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
+                        <BackgroundColor>LightBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -262,26 +240,27 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox14">
+                    <Textbox Name="Question">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!Question.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox14</rd:DefaultName>
+                      <rd:DefaultName>Question</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!Question.Value = "Total", "Yellow", "#FFFFFF")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -292,60 +271,29 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TopQuestion">
+                    <Textbox Name="Score">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TopQuestion.Value</Value>
+                              <Value>=Fields!Score.Value</Value>
                               <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>TopQuestion</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="TopLikert">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!TopLikert.Value</Value>
-                              <Style>
-                                <Format>0.00;(0.00)</Format>
-                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TopLikert</rd:DefaultName>
+                      <rd:DefaultName>Score</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!Question.Value = "Total", "Yellow", "#FFFFFF")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -356,26 +304,29 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="BottomQuestion">
+                    <Textbox Name="Weight">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!BottomQuestion.Value</Value>
+                              <Value>=Fields!Weight.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>BottomQuestion</rd:DefaultName>
+                      <rd:DefaultName>Weight</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!Question.Value = "Total", "Yellow", "#FFFFFF")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -386,30 +337,29 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="BottomLikert">
+                    <Textbox Name="WeightedScore">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!BottomLikert.Value</Value>
-                              <Style>
-                                <Format>0.00;(0.00)</Format>
-                              </Style>
+                              <Value>=Fields!WeightedScore.Value</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>BottomLikert</rd:DefaultName>
+                      <rd:DefaultName>WeightedScore</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>=IIF(Fields!Question.Value = "Total", "Yellow", "#FFFFFF")</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -428,7 +378,6 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -438,64 +387,46 @@
                 <GroupExpressions>
                   <GroupExpression>=Fields!AdminUnit.Value</GroupExpression>
                 </GroupExpressions>
+                <PageBreak>
+                  <BreakLocation>Between</BreakLocation>
+                </PageBreak>
               </Group>
               <SortExpressions>
                 <SortExpression>
                   <Value>=Fields!AdminUnit.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <TablixHeader>
-                <Size>0.11458in</Size>
-                <CellContents>
-                  <Textbox Name="AdminUnit1">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>AdminUnit1</rd:DefaultName>
-                    <Visibility>
-                      <Hidden>true</Hidden>
-                    </Visibility>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <Group Name="Details" />
+                  <Group Name="Header">
+                    <GroupExpressions>
+                      <GroupExpression>=1</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Question.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember>
+                      <Group Name="Details" />
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.69667in</Top>
+        <Top>0.60417in</Top>
         <Height>0.75in</Height>
-        <Width>8.43667in</Width>
+        <Width>6.9575in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -504,29 +435,29 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.67584in</Height>
+    <Height>1.45833in</Height>
     <Style />
   </Body>
-  <Width>14.95833in</Width>
+  <Width>7.38938in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
     <TopMargin>1in</TopMargin>
     <BottomMargin>1in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="SSRSdatasource">
+    <DataSource Name="DataSourceSSRS">
       <DataSourceReference>SSRS datasource</DataSourceReference>
-      <rd:SecurityType>Integrated</rd:SecurityType>
-      <rd:DataSourceID>c82d7a70-7413-477f-a70a-703963a6957c</rd:DataSourceID>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>f05833c6-026d-4bdb-a959-73ae3af638d7</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>SSRSdatasource</DataSourceName>
+        <DataSourceName>DataSourceSSRS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@userID">
             <Value>=Parameters!userID.Value</Value>
@@ -537,74 +468,73 @@
           <QueryParameter Name="@disabMatch">
             <Value>=Parameters!disabMatch.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
         </QueryParameters>
-        <CommandText>;with x as (
+        <CommandText>; with xCTE as (
 	select 
-		AdminUnit = case when grouping(AdminUnit) = 0 then AdminUnit else 'STATE' end -- set to STATE for group by rollup AdminUnit
-		, Question = case when grouping(Question) = 0 then Question else 'Total' end 
-		, LikertScore = avg(cast(LikertScore as float)) -- float for precise division
-		, SortBit = grouping(AdminUnit) -- who needs a case statement??? !!!
-	from x_DATATEAM.FamilySurveyMaster 
+		AdminUnit 
+		, Question = right(' '+cast(m.QuestionSequence as varchar(2)), 2)+' - '+m.Question
+		, m.LikertScore 
+		, Weight = m.ResponseWeight
+		, m.WeightedScore 
+	from x_DATATEAM.FamilySurveyMaster m
 	where 
 		OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID) AND
 		(@language = 'All' or cast(Language as varchar(10)) = @language) AND
-		(@disabMatch = 'All' or cast(DisabilityMatch as varchar(10)) = @disabMatch) 
-	group by rollup (AdminUnit), Question -- Add 100 so we can sort alpha
+		(@disabMatch = 'All' or cast(DisabilityMatch as varchar(10)) = @disabMatch) AND
+		m.RosterYearID = @rosterYearID
 )
 
-select t.AdminUnit, TopQuestion = t.Question, TopLikert = t.LikertScore, BottomQuestion = t2.Question, BottomLikert = t2.LikertScore,  t.SortBit, t.Sequence
+select 
+	AdminUnit
+	, Question
+	, Score = sum(Score)
+	, Weight
+	, WeightedScore = sum(WeightedScore)
 from (
-	select x.AdminUnit, x.Question, LikertScore = cast(round(cast(x.LikertScore as float), 2) as money), SortBit, Sequence = row_number() over (partition by AdminUnit order by LikertScore desc)
-	from x
-) t
-join  (
-	select x.AdminUnit, x.Question, LikertScore = cast(round(cast(x.LikertScore as float), 2) as money), SortBit, Sequence = row_number() over (partition by AdminUnit order by LikertScore)
-	from x
-) t2 ON t.AdminUnit = t2.AdminUnit
-where t.Sequence in (1,2,3) and t.Sequence = t2.Sequence
-order by SortBit, AdminUnit, Sequence
-
-</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+select 
+	AdminUnit = case when grouping(x.AdminUnit) = 0 then x.AdminUnit else 'Total' end
+	, Question = case when grouping(x.Question) = 0 then x.Question else 'Total' end
+	, Score = sum(x.likertscore)
+	, Weight = case when grouping(x.Question) = 0 then x.Weight else NULL end -- case when grouping(x.Weight) = 0 then x.Weight else NULL end
+	, WeightedScore = sum(x.weightedscore)
+from xCTE x
+group by rollup (AdminUnit, Question), Weight
+) y
+group by AdminUnit, Question, Weight
+order by AdminUnit, Question</CommandText>
       </Query>
       <Fields>
-        <Field Name="TopQuestion">
-          <DataField>TopQuestion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TopLikert">
-          <DataField>TopLikert</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="AdminUnit">
           <DataField>AdminUnit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="SortBit">
-          <DataField>SortBit</DataField>
-          <rd:TypeName>System.Byte</rd:TypeName>
-        </Field>
-        <Field Name="BottomQuestion">
-          <DataField>BottomQuestion</DataField>
+        <Field Name="Question">
+          <DataField>Question</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Sequence">
-          <DataField>Sequence</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
+        <Field Name="Score">
+          <DataField>Score</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="BottomLikert">
-          <DataField>BottomLikert</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="Weight">
+          <DataField>Weight</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="WeightedScore">
+          <DataField>WeightedScore</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
     <DataSet Name="RosterYears">
       <Query>
-        <DataSourceName>SSRSdatasource</DataSourceName>
+        <DataSourceName>DataSourceSSRS</DataSourceName>
         <CommandText>select distinct ID = RosterYearID, RosterYear
 from x_DATATEAM.FamilySurveyMaster
-order by 2
-</CommandText>
+order by 2</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
@@ -617,31 +547,11 @@ order by 2
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="RosterYearTop1">
+    <DataSet Name="Language">
       <Query>
-        <DataSourceName>SSRSdatasource</DataSourceName>
-        <CommandText>select top 1 ID = RosterYearID, RosterYear
-from x_DATATEAM.FamilySurveyMaster
-order by 2
-</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="RosterYear">
-          <DataField>RosterYear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="language">
-      <Query>
-        <DataSourceName>SSRSdatasource</DataSourceName>
+        <DataSourceName>DataSourceSSRS</DataSourceName>
         <CommandText>select ID, Name 
-from (Values ('All', 'All'), ('English', 'English'), ('Spanish', 'Spanish'), ('Blank', 'Blank')) t (ID, Name)
-</CommandText>
+from (Values ('All', 'All'), ('English', 'English'), ('Spanish', 'Spanish'), ('Blank', 'Blank')) t (ID, Name)</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
@@ -654,12 +564,11 @@ from (Values ('All', 'All'), ('English', 'English'), ('Spanish', 'Spanish'), ('B
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="disabMatch">
+    <DataSet Name="DisabilityMatch">
       <Query>
-        <DataSourceName>SSRSdatasource</DataSourceName>
+        <DataSourceName>DataSourceSSRS</DataSourceName>
         <CommandText>select ID, Name
-from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t (ID, Name)
-</CommandText>
+from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t (ID, Name)</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
@@ -678,23 +587,6 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
       <DataType>String</DataType>
       <Prompt>user ID</Prompt>
     </ReportParameter>
-    <ReportParameter Name="rosterYearID">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>RosterYearTop1</DataSetName>
-          <ValueField>ID</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <Prompt>Select a roster year to run the report for:</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>RosterYears</DataSetName>
-          <ValueField>ID</ValueField>
-          <LabelField>RosterYear</LabelField>
-        </DataSetReference>
-      </ValidValues>
-    </ReportParameter>
     <ReportParameter Name="language">
       <DataType>String</DataType>
       <DefaultValue>
@@ -702,10 +594,10 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
           <Value>All</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Select a language for wich to view data:</Prompt>
+      <Prompt>language</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>language</DataSetName>
+          <DataSetName>Language</DataSetName>
           <ValueField>ID</ValueField>
           <LabelField>Name</LabelField>
         </DataSetReference>
@@ -718,18 +610,27 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
           <Value>All</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Show surveys where reported disability matched the IEP disability?</Prompt>
+      <Prompt>disab Match</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>disabMatch</DataSetName>
+          <DataSetName>DisabilityMatch</DataSetName>
           <ValueField>ID</ValueField>
           <LabelField>Name</LabelField>
         </DataSetReference>
       </ValidValues>
     </ReportParameter>
+    <ReportParameter Name="rosterYearID">
+      <DataType>String</DataType>
+      <Prompt>roster Year ID</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RosterYears</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>RosterYear</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
   </ReportParameters>
-  <Language>en-US</Language>
-  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>de72d9f0-be0f-4aa3-a610-f88a11249e7d</rd:ReportID>
+  <rd:ReportID>03722acd-e282-4809-bbff-a2ea1519108b</rd:ReportID>
 </Report>
