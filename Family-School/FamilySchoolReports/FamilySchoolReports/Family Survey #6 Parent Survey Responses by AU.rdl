@@ -21,7 +21,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>7.38938in</Width>
+        <Width>7.19146in</Width>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -438,7 +438,7 @@
     <Height>1.45833in</Height>
     <Style />
   </Body>
-  <Width>7.38938in</Width>
+  <Width>7.23313in</Width>
   <Page>
     <LeftMargin>0.5in</LeftMargin>
     <RightMargin>0.5in</RightMargin>
@@ -594,7 +594,7 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
           <Value>All</Value>
         </Values>
       </DefaultValue>
-      <Prompt>language</Prompt>
+      <Prompt>Select a language for which to view data:</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>Language</DataSetName>
@@ -610,7 +610,7 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
           <Value>All</Value>
         </Values>
       </DefaultValue>
-      <Prompt>disab Match</Prompt>
+      <Prompt>Show surveys where reported disability matched the IEP disability?</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>DisabilityMatch</DataSetName>
@@ -621,7 +621,7 @@ from (values ('All', 'All'), ('Yes', 'Yes'), ('No', 'No'), ('Blank', 'Blank')) t
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
       <DataType>String</DataType>
-      <Prompt>roster Year ID</Prompt>
+      <Prompt>Select a roster year to run the report for:</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>RosterYears</DataSetName>
