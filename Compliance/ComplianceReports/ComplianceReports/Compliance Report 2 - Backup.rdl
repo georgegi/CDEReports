@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="SSRS_Compliance_Reports_Datasource">
+      <rd:DataSourceID>3c897ac6-ae9c-419d-be3a-f9ca76115ff9</rd:DataSourceID>
+      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <rd:ReportID>17f2536c-34fd-423d-9693-1315447e4628</rd:ReportID>
+  <Width>5in</Width>
+  <Body>
+    <Height>1.24in</Height>
+    <ColumnSpacing>0.5in</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>18pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Value>Compliance Report 2</Value>
+        <CanGrow>true</CanGrow>
+        <Height>0.33in</Height>
+      </Textbox>
+      <List Name="List1">
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>12pt</FontSize>
+        </Style>
+        <ReportItems>
+          <Textbox Name="SASID">
+            <Style>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>12pt</FontSize>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <rd:DefaultName>SASID</rd:DefaultName>
+            <Value>=Fields!SASID.Value</Value>
+            <CanGrow>true</CanGrow>
+            <Height>0.24in</Height>
+          </Textbox>
+          <Table Name="table1">
+            <Top>0.5in</Top>
+            <Style />
+            <Header>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <Style>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>11pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <Color>White</Color>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>textbox2</rd:DefaultName>
+                          <Value>Section</Value>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.22in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <Style>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>11pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <Color>White</Color>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <Value>Is Note</Value>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.22in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <Style>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>11pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <Color>White</Color>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>textbox4</rd:DefaultName>
+                          <Value>Statement</Value>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.22in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <Style>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>11pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <Color>White</Color>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <Value>Value</Value>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.22in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.22in</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Details>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Section">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>Section</rd:DefaultName>
+                          <Value>=Fields!Section.Value</Value>
+                          <HideDuplicates>DataSet1</HideDuplicates>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.19in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="IsNote">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>IsNote</rd:DefaultName>
+                          <Value>=Fields!IsNote.Value</Value>
+                          <HideDuplicates>DataSet1</HideDuplicates>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.19in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Statement">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>Statement</rd:DefaultName>
+                          <Value>=Fields!Statement.Value</Value>
+                          <HideDuplicates>DataSet1</HideDuplicates>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.19in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Value">
+                          <Style>
+                            <FontFamily>Tahoma</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <BorderStyle>
+                              <Default>Solid</Default>
+                            </BorderStyle>
+                            <BorderColor>
+                              <Default>LightGrey</Default>
+                            </BorderColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                          <rd:DefaultName>Value</rd:DefaultName>
+                          <Value>=Fields!Value.Value</Value>
+                          <CanGrow>true</CanGrow>
+                          <Height>0.19in</Height>
+                          <Width>1in</Width>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.19in</Height>
+                </TableRow>
+              </TableRows>
+            </Details>
+            <TableColumns>
+              <TableColumn>
+                <Width>1in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1in</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>1in</Width>
+              </TableColumn>
+            </TableColumns>
+            <DataSetName>DataSet1</DataSetName>
+            <TableGroups>
+              <TableGroup>
+                <Grouping Name="table1_Section">
+                  <GroupExpressions>
+                    <GroupExpression>=Fields!Section.Value</GroupExpression>
+                  </GroupExpressions>
+                </Grouping>
+                <Sorting>
+                  <SortBy>
+                    <SortExpression>=Fields!Section.Value</SortExpression>
+                  </SortBy>
+                </Sorting>
+              </TableGroup>
+              <TableGroup>
+                <Grouping Name="table1_IsNote">
+                  <GroupExpressions>
+                    <GroupExpression>=Fields!IsNote.Value</GroupExpression>
+                  </GroupExpressions>
+                </Grouping>
+                <Sorting>
+                  <SortBy>
+                    <SortExpression>=Fields!IsNote.Value</SortExpression>
+                  </SortBy>
+                </Sorting>
+              </TableGroup>
+              <TableGroup>
+                <Grouping Name="table1_Statement">
+                  <GroupExpressions>
+                    <GroupExpression>=Fields!Statement.Value</GroupExpression>
+                  </GroupExpressions>
+                </Grouping>
+                <Sorting>
+                  <SortBy>
+                    <SortExpression>=Fields!Statement.Value</SortExpression>
+                  </SortBy>
+                </Sorting>
+              </TableGroup>
+            </TableGroups>
+          </Table>
+        </ReportItems>
+        <Grouping Name="list1_SASID">
+          <GroupExpressions>
+            <GroupExpression>=Fields!SASID.Value</GroupExpression>
+          </GroupExpressions>
+          <PageBreakAtEnd>true</PageBreakAtEnd>
+        </Grouping>
+        <Sorting>
+          <SortBy>
+            <SortExpression>=Fields!SASID.Value</SortExpression>
+          </SortBy>
+        </Sorting>
+        <Top>0.33in</Top>
+        <DataSetName>DataSet1</DataSetName>
+      </List>
+    </ReportItems>
+  </Body>
+  <Language>en-US</Language>
+  <LeftMargin>1in</LeftMargin>
+  <RightMargin>1in</RightMargin>
+  <TopMargin>1in</TopMargin>
+  <BottomMargin>1in</BottomMargin>
+  <PageWidth>8.5in</PageWidth>
+  <PageHeight>11in</PageHeight>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="Administrative_Unit">
+          <DataField>Administrative Unit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SASID">
+          <DataField>SASID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Section">
+          <DataField>Section</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StatementSequence">
+          <DataField>StatementSequence</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="ShortName">
+          <DataField>ShortName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Statement">
+          <DataField>Statement</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsNote">
+          <DataField>IsNote</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Value">
+          <DataField>Value</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandType>Text</CommandType>
+        <CommandText>; with iiCTE as (
+	select TemplateID = t.ID
+		, TemplateName = t.Name
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence --- will always be zero in the anchor
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+	from FormTemplate t 
+	left join FormTemplateLayout tl on t.ID = tl.TemplateID
+	left join FormTemplateControl tc on tl.ControlID = tc.Id
+	where t.ID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C'
+	and tl.ParentId is null
+	
+	union all 
+
+	select c.TemplateID
+		, c.TemplateName
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence 
+		, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = c.CTELevel+1 
+	from iiCTE c 
+	join FormTemplateLayout tl on c.LayoutID = tl.ParentID
+	join FormTemplateControl tc on tl.ControlID = tc.Id
+)
+, attributesCTE as (
+	select 
+		c.TemplateID
+		, SectionID = c2.LayoutControlID
+		, Section = msa.Label -- SubmissionArea
+		, SectionSequence = msa.Sequence -- AreaSequence
+		, AttributeID = ii.ID
+		, ShortName = isnull(ii.reportlabel, ii.code) -- Attribute
+		, Sequence = row_number() over (partition by c.TemplateID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
+		, AttributeType = iit.Name -- InputItemType
+		, IsNote = case when row_number() over (partition by c2.TemplateID, c2.LayoutControlID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc) = 1 then 1 else 0 end
+		, Statement = ii.Label -- InputItemLabel
+		, ii.Code
+		, ii.ReportLabel
+		--, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
+		--	, '	, '''+convert(varchar(36), a.LayoutControlID)+''' -- '+msa.Label -- use this to get the list of ControlIDs to filter by (paste into this query and delete the rows that are nto required).
+	from iiCTE c
+	join iiCTE c2 on c.LayoutParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.LayoutControlID = ii.InputAreaId 
+	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
+	left join MonSubmissionArea msa on c2.LayoutControlID = msa.FormTemplateControlID
+)
+
+, formDataDetail as (
+	select [Administrative Unit] = ou.Name
+		, SASID = rav.Value
+		--, InstanceID = fi.ID
+		--, RecordID = r.ID
+		--, a.SectionID
+		, a.Section
+		, StatementSequence = a.Sequence 
+		, a.ShortName
+		, a.Statement
+		--, a.ReportLabel
+		--, a.AttributeID
+		, a.IsNote
+		, Value =
+			case 
+				when AttributeType = 'SingleSelect' then convert(varchar(max), sfo.Label) -- note: We can use Label instead of ReportLabel -- ReportLabel = Met, Label = Yes
+				when AttributeType = 'Text' then convert(varchar(max), tv.Value)
+			end
+	from FormInstance fi
+	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
+	left join FormInputValue fiv on fii.ID = fiv.IntervalID
+	left join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
+	-- mon
+	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
+	left join MonSubmissionRecord sr on rf.SubmissionRecordID = sr.ID
+	left join MonRecordSelection rs on sr.RecordSelectionID = rs.ID
+	left join MonRecord r on rs.RecordID = r.ID -- note the difference between Submission Record and Record
+	left join MonSubmissions sub on sr.SubmissionsID = sub.ID
+	left join OrgUnit ou on sub.OrgUnitID = ou.ID
+	left join RosterYear ry on sub.RosterYearID = ry.ID
+
+	-- single select
+	left join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
+	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
+
+	-- text
+	left join FormInputTextValue tv on fiv.Id = tv.Id
+
+	-- SASID
+	left join MonRecordAttributeValue rav on r.ID = rav.RecordID and rav.AttributeID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57'
+-- 	left join MonRecordAttribute ra on rav.AttributeID = ra.ID
+
+	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
+	and rs.ExcludedDate is null
+	--and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	--and RosterYearID = @rosterYearID 
+
+	---- TESTING
+ 		and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
+	---- TESTING
+)
+
+select * 
+from formDataDetail 
+where SASID = '3759523282'
+order by StatementSequence</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <Timeout>0</Timeout>
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

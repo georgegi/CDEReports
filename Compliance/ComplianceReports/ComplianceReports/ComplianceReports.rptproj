@@ -34,6 +34,10 @@
       <Name>Report8.rdl</Name>
       <FullPath>Report8.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Compliance Report 2.rdl</Name>
+      <FullPath>Compliance Report 2.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>

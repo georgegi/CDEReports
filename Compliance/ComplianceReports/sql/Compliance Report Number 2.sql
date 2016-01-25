@@ -69,14 +69,16 @@ declare
 
 , formDataDetail as (
 	select [Administrative Unit] = ou.Name
-		, InstanceID = fi.ID
+		, SASID = rav.Value
+		--, InstanceID = fi.ID
+		--, RecordID = r.ID
 		--, a.SectionID
 		, a.Section
+		, StatementSequence = a.Sequence 
 		, a.ShortName
 		, a.Statement
 		--, a.ReportLabel
 		--, a.AttributeID
-		, StatementSequence = a.Sequence 
 		, a.IsNote
 		, Value =
 			case 
@@ -89,9 +91,10 @@ declare
 	left join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
 	-- mon
 	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
-	left join MonSubmissionRecord r on rf.SubmissionRecordID = r.ID
-	left join MonRecordSelection rs on r.RecordSelectionID = rs.ID
-	left join MonSubmissions sub on r.SubmissionsID = sub.ID
+	left join MonSubmissionRecord sr on rf.SubmissionRecordID = sr.ID
+	left join MonRecordSelection rs on sr.RecordSelectionID = rs.ID
+	left join MonRecord r on rs.RecordID = r.ID -- note the difference between Submission Record and Record
+	left join MonSubmissions sub on sr.SubmissionsID = sub.ID
 	left join OrgUnit ou on sub.OrgUnitID = ou.ID
 	left join RosterYear ry on sub.RosterYearID = ry.ID
 
@@ -102,10 +105,14 @@ declare
 	-- text
 	left join FormInputTextValue tv on fiv.Id = tv.Id
 
+	-- SASID
+	left join MonRecordAttributeValue rav on r.ID = rav.RecordID and rav.AttributeID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57'
+-- 	left join MonRecordAttribute ra on rav.AttributeID = ra.ID
+
 	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
-	and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
-	and RosterYearID = @rosterYearID 
 	and rs.ExcludedDate is null
+	--and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	--and RosterYearID = @rosterYearID 
 
 	---- TESTING
  		and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
@@ -113,9 +120,29 @@ declare
 )
 
 
-select * from formDataDetail 
-where InstanceID = '2B3B183D-FB68-423D-89E7-071F0BB3533D' 
---where AttributeID = '2096F365-933D-4EE3-80EC-5C29EC0311CD' and Value is not null
-order by InstanceID, StatementSequence
+--select SASID, count(*) tot 
+select * 
+from formDataDetail 
+where SASID = '3759523282'
+--group by SASID
+order by SASID, StatementSequence
+
+
+
+--select * from MonRecord where ID = '441A3DF8-E865-45CB-B0E2-48D5E88BA48E'
+
+--exec x_DATATEAM.FindGuid '441A3DF8-E865-45CB-B0E2-48D5E88BA48E'
+
+--select * from dbo.MonSubmissionRecord where ID = '441A3DF8-E865-45CB-B0E2-48D5E88BA48E' -- as opposed to MonRecord
+--	select * from MonRecordSelection rs where ID = 'E7DF2A99-040E-4D44-9FA0-6DDBBC83979F'
+--select * from dbo.MonSubmissionRecordForm where SubmissionRecordID = '441A3DF8-E865-45CB-B0E2-48D5E88BA48E'
+
+
+--select * from MonRecord where ID = '308195AB-760A-4CC1-A8ED-2067B2B505D3'
+
+--select * from MOnRecordAttribute
+
+--select * from MonRecordAttributeValue where RecordID = '308195AB-760A-4CC1-A8ED-2067B2B505D3'
+
 
 
