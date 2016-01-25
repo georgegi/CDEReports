@@ -6,12 +6,12 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>9.63542in</Width>
+              <Width>8in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.91in</Height>
+              <Height>0.62528in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -21,32 +21,26 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1in</Width>
+                                <Width>6.39583in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1in</Width>
-                              </TablixColumn>
-                              <TablixColumn>
-                                <Width>4.38542in</Width>
-                              </TablixColumn>
-                              <TablixColumn>
-                                <Width>3.25in</Width>
+                                <Width>1.46875in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.22in</Height>
+                                <Height>0.25in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="textbox2">
+                                      <Textbox Name="Section1">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Section</Value>
+                                                <Value>=Fields!Section.Value</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>11pt</FontSize>
@@ -58,7 +52,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>textbox2</rd:DefaultName>
+                                        <rd:DefaultName>Section1</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -75,52 +69,14 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="textbox3">
+                                      <Textbox Name="Textbox34">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Is Note</Value>
-                                                <Style>
-                                                  <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>11pt</FontSize>
-                                                  <FontWeight>Bold</FontWeight>
-                                                  <Color>White</Color>
-                                                </Style>
-                                              </TextRun>
-                                            </TextRuns>
-                                            <Style>
-                                              <TextAlign>Right</TextAlign>
-                                            </Style>
-                                          </Paragraph>
-                                        </Paragraphs>
-                                        <rd:DefaultName>textbox3</rd:DefaultName>
-                                        <Style>
-                                          <Border>
-                                            <Color>LightGrey</Color>
-                                            <Style>Solid</Style>
-                                          </Border>
-                                          <BackgroundColor>CornflowerBlue</BackgroundColor>
-                                          <PaddingLeft>2pt</PaddingLeft>
-                                          <PaddingRight>2pt</PaddingRight>
-                                          <PaddingTop>2pt</PaddingTop>
-                                          <PaddingBottom>2pt</PaddingBottom>
-                                        </Style>
-                                      </Textbox>
-                                    </CellContents>
-                                  </TablixCell>
-                                  <TablixCell>
-                                    <CellContents>
-                                      <Textbox Name="textbox4">
-                                        <CanGrow>true</CanGrow>
-                                        <KeepTogether>true</KeepTogether>
-                                        <Paragraphs>
-                                          <Paragraph>
-                                            <TextRuns>
-                                              <TextRun>
-                                                <Value>Statement</Value>
+                                                <Value />
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>11pt</FontSize>
@@ -132,43 +88,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>textbox4</rd:DefaultName>
-                                        <Style>
-                                          <Border>
-                                            <Color>LightGrey</Color>
-                                            <Style>Solid</Style>
-                                          </Border>
-                                          <BackgroundColor>CornflowerBlue</BackgroundColor>
-                                          <PaddingLeft>2pt</PaddingLeft>
-                                          <PaddingRight>2pt</PaddingRight>
-                                          <PaddingTop>2pt</PaddingTop>
-                                          <PaddingBottom>2pt</PaddingBottom>
-                                        </Style>
-                                      </Textbox>
-                                    </CellContents>
-                                  </TablixCell>
-                                  <TablixCell>
-                                    <CellContents>
-                                      <Textbox Name="textbox5">
-                                        <CanGrow>true</CanGrow>
-                                        <KeepTogether>true</KeepTogether>
-                                        <Paragraphs>
-                                          <Paragraph>
-                                            <TextRuns>
-                                              <TextRun>
-                                                <Value>Value</Value>
-                                                <Style>
-                                                  <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>11pt</FontSize>
-                                                  <FontWeight>Bold</FontWeight>
-                                                  <Color>White</Color>
-                                                </Style>
-                                              </TextRun>
-                                            </TextRuns>
-                                            <Style />
-                                          </Paragraph>
-                                        </Paragraphs>
-                                        <rd:DefaultName>textbox5</rd:DefaultName>
+                                        <rd:DefaultName>Textbox34</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -186,90 +106,20 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.19in</Height>
+                                <Height>0.25in</Height>
                                 <TablixCells>
-                                  <TablixCell>
-                                    <CellContents>
-                                      <Textbox Name="Section">
-                                        <CanGrow>true</CanGrow>
-                                        <HideDuplicates>DataSet1</HideDuplicates>
-                                        <KeepTogether>true</KeepTogether>
-                                        <Paragraphs>
-                                          <Paragraph>
-                                            <TextRuns>
-                                              <TextRun>
-                                                <Value>=Fields!Section.Value</Value>
-                                                <Style>
-                                                  <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>9pt</FontSize>
-                                                </Style>
-                                              </TextRun>
-                                            </TextRuns>
-                                            <Style />
-                                          </Paragraph>
-                                        </Paragraphs>
-                                        <rd:DefaultName>Section</rd:DefaultName>
-                                        <Style>
-                                          <Border>
-                                            <Color>LightGrey</Color>
-                                            <Style>Solid</Style>
-                                          </Border>
-                                          <PaddingLeft>2pt</PaddingLeft>
-                                          <PaddingRight>2pt</PaddingRight>
-                                          <PaddingTop>2pt</PaddingTop>
-                                          <PaddingBottom>2pt</PaddingBottom>
-                                        </Style>
-                                      </Textbox>
-                                    </CellContents>
-                                  </TablixCell>
-                                  <TablixCell>
-                                    <CellContents>
-                                      <Textbox Name="IsNote">
-                                        <CanGrow>true</CanGrow>
-                                        <HideDuplicates>DataSet1</HideDuplicates>
-                                        <KeepTogether>true</KeepTogether>
-                                        <Paragraphs>
-                                          <Paragraph>
-                                            <TextRuns>
-                                              <TextRun>
-                                                <Value>=Fields!IsNote.Value</Value>
-                                                <Style>
-                                                  <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>9pt</FontSize>
-                                                </Style>
-                                              </TextRun>
-                                            </TextRuns>
-                                            <Style />
-                                          </Paragraph>
-                                        </Paragraphs>
-                                        <rd:DefaultName>IsNote</rd:DefaultName>
-                                        <Style>
-                                          <Border>
-                                            <Color>LightGrey</Color>
-                                            <Style>Solid</Style>
-                                          </Border>
-                                          <PaddingLeft>2pt</PaddingLeft>
-                                          <PaddingRight>2pt</PaddingRight>
-                                          <PaddingTop>2pt</PaddingTop>
-                                          <PaddingBottom>2pt</PaddingBottom>
-                                        </Style>
-                                      </Textbox>
-                                    </CellContents>
-                                  </TablixCell>
                                   <TablixCell>
                                     <CellContents>
                                       <Textbox Name="Statement">
                                         <CanGrow>true</CanGrow>
-                                        <HideDuplicates>DataSet1</HideDuplicates>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!Statement.Value</Value>
+                                                <Value>=IIF(Fields!IsNote.Value = 1, Fields!Value.Value , Fields!Statement.Value)</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>9pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -282,6 +132,7 @@
                                             <Color>LightGrey</Color>
                                             <Style>Solid</Style>
                                           </Border>
+                                          <BackgroundColor>=IIF(Fields!IsNote.Value = 1, "AntiqueWhite", "#FFFFFF")</BackgroundColor>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -292,29 +143,29 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Value">
+                                      <Textbox Name="Value1">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!Value.Value</Value>
+                                                <Value>=IIF(Fields!IsNote.Value = 0, Fields!Value.Value, "")</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
-                                                  <FontSize>9pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Value</rd:DefaultName>
+                                        <rd:DefaultName>Value1</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
                                             <Style>Solid</Style>
                                           </Border>
+                                          <BackgroundColor>=IIF(Fields!IsNote.Value = 1, "AntiqueWhite", "#FFFFFF")</BackgroundColor>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -331,19 +182,12 @@
                             <TablixMembers>
                               <TablixMember />
                               <TablixMember />
-                              <TablixMember />
-                              <TablixMember />
                             </TablixMembers>
                           </TablixColumnHierarchy>
                           <TablixRowHierarchy>
                             <TablixMembers>
                               <TablixMember>
-                                <KeepWithGroup>After</KeepWithGroup>
-                                <RepeatOnNewPage>true</RepeatOnNewPage>
-                                <KeepTogether>true</KeepTogether>
-                              </TablixMember>
-                              <TablixMember>
-                                <Group Name="table1_Section">
+                                <Group Name="Section">
                                   <GroupExpressions>
                                     <GroupExpression>=Fields!Section.Value</GroupExpression>
                                   </GroupExpressions>
@@ -352,44 +196,28 @@
                                   <SortExpression>
                                     <Value>=Fields!Section.Value</Value>
                                   </SortExpression>
+                                  <SortExpression>
+                                    <Value>=Fields!StatementSequence.Value</Value>
+                                  </SortExpression>
                                 </SortExpressions>
                                 <TablixMembers>
+                                  <TablixMember />
                                   <TablixMember>
-                                    <Group Name="table1_IsNote">
-                                      <GroupExpressions>
-                                        <GroupExpression>=Fields!IsNote.Value</GroupExpression>
-                                      </GroupExpressions>
-                                    </Group>
-                                    <SortExpressions>
-                                      <SortExpression>
-                                        <Value>=Fields!IsNote.Value</Value>
-                                      </SortExpression>
-                                    </SortExpressions>
                                     <TablixMembers>
                                       <TablixMember>
-                                        <Group Name="table1_Statement">
+                                        <Group Name="Statement">
                                           <GroupExpressions>
                                             <GroupExpression>=Fields!Statement.Value</GroupExpression>
                                           </GroupExpressions>
                                         </Group>
                                         <SortExpressions>
                                           <SortExpression>
-                                            <Value>=Fields!Statement.Value</Value>
+                                            <Value>=Fields!IsNote.Value</Value>
+                                          </SortExpression>
+                                          <SortExpression>
+                                            <Value>=Fields!StatementSequence.Value</Value>
                                           </SortExpression>
                                         </SortExpressions>
-                                        <TablixMembers>
-                                          <TablixMember>
-                                            <Group Name="table1_Details_Group">
-                                              <DataElementName>Detail</DataElementName>
-                                            </Group>
-                                            <TablixMembers>
-                                              <TablixMember />
-                                            </TablixMembers>
-                                            <DataElementName>Detail_Collection</DataElementName>
-                                            <DataElementOutput>Output</DataElementOutput>
-                                            <KeepTogether>true</KeepTogether>
-                                          </TablixMember>
-                                        </TablixMembers>
                                       </TablixMember>
                                     </TablixMembers>
                                   </TablixMember>
@@ -399,8 +227,8 @@
                           </TablixRowHierarchy>
                           <DataSetName>DataSet1</DataSetName>
                           <Top>0.02778in</Top>
-                          <Height>0.41in</Height>
-                          <Width>9.63542in</Width>
+                          <Height>0.5in</Height>
+                          <Width>7.86458in</Width>
                           <Style />
                         </Tablix>
                       </ReportItems>
@@ -444,8 +272,8 @@
           <BreakLocation>End</BreakLocation>
         </PageBreak>
         <Top>0.33in</Top>
-        <Height>0.91in</Height>
-        <Width>9.63542in</Width>
+        <Height>0.62528in</Height>
+        <Width>8in</Width>
         <Style>
           <FontFamily>Tahoma</FontFamily>
           <FontSize>12pt</FontSize>
@@ -480,13 +308,13 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>1.24in</Height>
+    <Height>1.11153in</Height>
     <Style />
   </Body>
-  <Width>9.63542in</Width>
+  <Width>8in</Width>
   <Page>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
     <TopMargin>1in</TopMargin>
     <BottomMargin>1in</BottomMargin>
     <Style />
