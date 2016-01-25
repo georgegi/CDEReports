@@ -126,7 +126,7 @@ declare
 	and rs.ExcludedDate is null
 
 	---- TESTING
- 		and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
+ 		--and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
 	---- TESTING
 )
 , AUSampleSize as (
