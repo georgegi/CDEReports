@@ -53,11 +53,11 @@
 	from iiCTE c 
 	join FormTemplateLayout tl on c.LayoutID = tl.ParentID
 	join FormTemplateControl tc on tl.ControlID = tc.Id
-)
+) -- select * from iiCTE
 , attributesCTE as (
 	select 
 		c.TemplateID
-		, SectionID = c2.LayoutControlID
+		, SectionID = msa.ID
 		, Section = msa.Label -- SubmissionArea
 		, SectionSequence = msa.Sequence -- AreaSequence
 		, AttributeID = ii.ID
@@ -75,19 +75,18 @@
 	join FormTemplateInputItem ii on c.LayoutControlID = ii.InputAreaId 
 	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
 	left join MonSubmissionArea msa on c2.LayoutControlID = msa.FormTemplateControlID
-	where c2.LayoutControlID = @sectionID
-)
-
+	where msa.ID = @sectionID
+) -- select * from attributesCTE
 , sectionStatementCount as (
 	select a.SectionID, a.Section, a.SectionSequence, Total = count(*) 
 	from attributesCTE a
 	where a.AttributeType = 'SingleSelect'
 	group by a.SectionID, a.Section, a.SectionSequence
 )
-
 , formDataDetail as (
 	select [Administrative Unit] = ou.Name
 		, a.SectionID
+		, a.SectionSequence
 		, a.Section
 		, a.ShortName
 		, a.Statement
@@ -146,6 +145,7 @@
 , AUCounts as (
 	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
 		, SectionID
+		, SectionSequence
 		, Section
 		, ShortName -- SectionLabel
 		, Statement -- InputItemLabel
@@ -155,13 +155,14 @@
 		, ItemYesCount = sum(fdd.Yes)
 		, SortBit = grouping([Administrative Unit])
 	from formDataDetail fdd
-	group by rollup([Administrative Unit]), SectionID, Section, ShortName, Statement, StatementSequence, ReportLabel, AttributeID
+	group by rollup([Administrative Unit]), SectionID, SectionSequence, Section, ShortName, Statement, StatementSequence, ReportLabel, AttributeID
 )
 
 select *
 from (
 select 
 	Section = case when @sectionID = '97075423-230C-4D80-99C5-C8053D08615B' then 'Post-School Considerations' else ac.Section end
+	, ac.SectionSequence
 	, ac.[Administrative Unit]
 	, ac.ShortName
 	--, ReportLabel
@@ -174,7 +175,8 @@ select
 from AUCounts ac
 left join AUSampleSize ss on ac.[Administrative Unit] = ss.[Administrative Unit]
 ) t
-order by SortBit, [Administrative Unit], StatementSequence</CommandText>
+order by SortBit, [Administrative Unit], StatementSequence
+</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -185,6 +187,10 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
         <Field Name="Administrative_Unit">
           <DataField>Administrative Unit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SectionSequence">
+          <DataField>SectionSequence</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="StatementSequence">
           <DataField>StatementSequence</DataField>
@@ -204,6 +210,31 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
         </Field>
         <Field Name="Statement">
           <DataField>Statement</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Sections">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>select a.ID, Name = a.Label
+from MonSubmissionArea a 
+where a.FormTemplateControlID in (
+'C4404A98-12EB-4791-8341-8E21FAF7E553' -- (1) -- Post-School Considerations
+, '4249765D-446C-4199-9A4A-1961C6CD81C2' -- (4) -- Present Levels of Academic Achievement and Functional Performance
+, 'B66A23BC-4292-4F42-A73B-1025C6A0A8C7' -- (5) -- Annual Goals/Objectives
+, 'AEFB23A3-4DAE-4B7E-8C2F-1D620584D814' -- (6) -- Service Delivery Statement
+, '367FBEB2-DC15-4E78-B2ED-9CF12D05F59E' -- (7) -- Recommended Placement in the LRE
+)
+order by a.Sequence</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -309,6 +340,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=IIf(Fields!SortBit.Value=1,"Bold","Normal")</FontWeight>
                                     <Format>0%</Format>
                                   </Style>
                                 </TextRun>
@@ -322,6 +354,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>=IIf(Fields!SortBit.Value=1,"#8fb3f3","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -349,7 +382,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>0.25in</Size>
+                    <Size>0.48861in</Size>
                     <CellContents>
                       <Textbox Name="Section">
                         <KeepTogether>true</KeepTogether>
@@ -360,7 +393,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                                 <Value>=Fields!Section.Value</Value>
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
-                                  <FontSize>12pt</FontSize>
+                                  <FontSize>14pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Color>White</Color>
                                 </Style>
@@ -390,7 +423,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                     <TablixMember>
                       <Group Name="matrix1_Statement">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!Statement.Value</GroupExpression>
+                          <GroupExpression>=Fields!ShortName.Value</GroupExpression>
                         </GroupExpressions>
                         <Parent>=Fields!Section.Value</Parent>
                       </Group>
@@ -405,14 +438,14 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                       <TablixHeader>
                         <Size>0.21in</Size>
                         <CellContents>
-                          <Textbox Name="Statement">
+                          <Textbox Name="ShortName">
                             <CanGrow>true</CanGrow>
                             <KeepTogether>true</KeepTogether>
                             <Paragraphs>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=Fields!Statement.Value</Value>
+                                    <Value>=Fields!ShortName.Value</Value>
                                     <Style>
                                       <FontFamily>Tahoma</FontFamily>
                                       <FontWeight>Bold</FontWeight>
@@ -422,7 +455,8 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                                 <Style />
                               </Paragraph>
                             </Paragraphs>
-                            <rd:DefaultName>Statement</rd:DefaultName>
+                            <rd:DefaultName>ShortName</rd:DefaultName>
+                            <ToolTip>=Fields!Statement.Value</ToolTip>
                             <Style>
                               <Border>
                                 <Color>LightGrey</Color>
@@ -473,6 +507,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                                 <Value>=Fields!Administrative_Unit.Value</Value>
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
+                                  <FontWeight>=IIf(Fields!SortBit.Value=1,"Bold","Normal")</FontWeight>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -485,7 +520,7 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>#c7d9f9</BackgroundColor>
+                          <BackgroundColor>=IIf(Fields!SortBit.Value=1,"#8fb3f3","#c7d9f9")</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -502,48 +537,61 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.33in</Top>
-            <Height>0.65in</Height>
+            <Top>0.01056in</Top>
+            <Height>0.88861in</Height>
             <Width>4.41667in</Width>
             <Style />
           </Tablix>
-          <Textbox Name="textbox1">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Present Levels of Performance: By AU with State summaries</Value>
-                    <Style>
-                      <FontFamily>Tahoma</FontFamily>
-                      <FontSize>18pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>textbox1</rd:DefaultName>
-            <Height>0.33in</Height>
-            <Width>6.96875in</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
-        <Height>0.98in</Height>
+        <Height>0.89917in</Height>
         <Style />
       </Body>
       <Width>6.96875in</Width>
       <Page>
+        <PageHeader>
+          <Height>0.375in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!Section.Value, "DataSet1")+": by AU with State Summaries"</Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>18pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>textbox1</rd:DefaultName>
+              <Height>0.33in</Height>
+              <Width>6.96875in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
         <TopMargin>1in</TopMargin>
@@ -573,54 +621,13 @@ order by SortBit, [Administrative Unit], StatementSequence</CommandText>
     </ReportParameter>
     <ReportParameter Name="sectionID">
       <DataType>String</DataType>
-      <Prompt>section ID</Prompt>
+      <Prompt>Select the section for which to view data:</Prompt>
       <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>7AA6797C-9F89-462A-B667-34F821F8D325</Value>
-            <Label>Dates of Meeting</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>4249765D-446C-4199-9A4A-1961C6CD81C2</Value>
-            <Label>Present Levels of Academic Achievement and Functional Performance</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>C4404A98-12EB-4791-8341-8E21FAF7E553</Value>
-            <Label>Post-School Considerations</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>B66A23BC-4292-4F42-A73B-1025C6A0A8C7</Value>
-            <Label>Annual Goals/Objectives</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>0574F0D4-2A51-41E2-BC1D-DFCFF34CE0A0</Value>
-            <Label>Accommodations and Modifications</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>67373EE2-C726-4E60-864B-AA66EDF9D71F</Value>
-            <Label>State/District Assessments</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>AEFB23A3-4DAE-4B7E-8C2F-1D620584D814</Value>
-            <Label>Service Delivery Statement</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>367FBEB2-DC15-4E78-B2ED-9CF12D05F59E</Value>
-            <Label>Recommended Placement in the LRE</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>98DA711A-5190-474E-8636-8CD8330C63BC</Value>
-            <Label>Prior Written Notice</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>2498D42E-85DE-484B-B609-E9823B6C99B1</Value>
-            <Label>Appendix A: Early Childhood IEP</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>500F3BAE-FFE7-4876-A2D8-B79DF0D3B300</Value>
-            <Label>Appendix B: Evaluation/Reevaluation</Label>
-          </ParameterValue>
-        </ParameterValues>
+        <DataSetReference>
+          <DataSetName>Sections</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
       </ValidValues>
     </ReportParameter>
   </ReportParameters>
