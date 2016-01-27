@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>8in</Width>
+              <Width>8.86458in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -117,7 +117,8 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=IIF(Fields!IsNote.Value = 1, Fields!Value.Value , Fields!Statement.Value)</Value>
+                                                <Value>=IIF(Fields!IsNote.Value = 1, Fields!Value.Value, Fields!Statement.Value)</Value>
+                                                <MarkupType>HTML</MarkupType>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                 </Style>
@@ -194,10 +195,7 @@
                                 </Group>
                                 <SortExpressions>
                                   <SortExpression>
-                                    <Value>=Fields!Section.Value</Value>
-                                  </SortExpression>
-                                  <SortExpression>
-                                    <Value>=Fields!StatementSequence.Value</Value>
+                                    <Value>=Fields!SectionSequence.Value</Value>
                                   </SortExpression>
                                 </SortExpressions>
                                 <TablixMembers>
@@ -218,6 +216,9 @@
                                             <Value>=Fields!StatementSequence.Value</Value>
                                           </SortExpression>
                                         </SortExpressions>
+                                        <Visibility>
+                                          <Hidden>=IIF(Fields!IsNote.Value = 1 And IsNothing(Fields!Value.Value), true, false)</Hidden>
+                                        </Visibility>
                                       </TablixMember>
                                     </TablixMembers>
                                   </TablixMember>
@@ -273,7 +274,7 @@
         </PageBreak>
         <Top>0.33in</Top>
         <Height>0.62528in</Height>
-        <Width>8in</Width>
+        <Width>8.86458in</Width>
         <Style>
           <FontFamily>Tahoma</FontFamily>
           <FontSize>12pt</FontSize>
@@ -308,10 +309,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>1.11153in</Height>
+    <Height>1.06125in</Height>
     <Style />
   </Body>
-  <Width>8in</Width>
+  <Width>9.5925in</Width>
   <Page>
     <LeftMargin>0.5in</LeftMargin>
     <RightMargin>0.5in</RightMargin>
@@ -331,6 +332,14 @@
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@SASID">
+            <Value>=Parameters!SASID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>; with iiCTE as (
 	select TemplateID = t.ID
 		, TemplateName = t.Name
@@ -364,57 +373,79 @@
 )
 , attributesCTE as (
 	select 
-		c.TemplateID
-		, SectionID = c2.LayoutControlID
+		--c.TemplateID
+		--, 
+		SectionID = c2.LayoutControlID
 		, Section = msa.Label -- SubmissionArea
 		, SectionSequence = msa.Sequence -- AreaSequence
 		, AttributeID = ii.ID
 		, ShortName = isnull(ii.reportlabel, ii.code) -- Attribute
-		, Sequence = row_number() over (partition by c.TemplateID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
+		, Sequence = row_number() over (partition by c.TemplateID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(100)),''))
 		, AttributeType = iit.Name -- InputItemType
-		, IsNote = case when row_number() over (partition by c2.TemplateID, c2.LayoutControlID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc) = 1 then 1 else 0 end
+-- this won't always work, but in this case the last field in the section is a notes field
+		, IsNote = case when row_number() over (partition by /* c2.TemplateID, */ c2.LayoutControlID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc) = 1 then 1 else 0 end
 		, Statement = ii.Label -- InputItemLabel
 		, ii.Code
 		, ii.ReportLabel
-		--, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
-		--	, '	, '''+convert(varchar(36), a.LayoutControlID)+''' -- '+msa.Label -- use this to get the list of ControlIDs to filter by (paste into this query and delete the rows that are nto required).
 	from iiCTE c
 	join iiCTE c2 on c.LayoutParentID = c2.LayoutID 
 	join FormTemplateInputItem ii on c.LayoutControlID = ii.InputAreaId 
 	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
 	left join MonSubmissionArea msa on c2.LayoutControlID = msa.FormTemplateControlID
 )
+, notesCTE as (
+	select *
+	from attributesCTE a
+	where a.IsNote = 1
+)
 
 , formDataDetail as (
-	select [Administrative Unit] = ou.Name
-		, SASID = rav.Value
-		--, InstanceID = fi.ID
-		--, RecordID = r.ID
-		--, a.SectionID
+	select 
+		mon.InstanceID
+		, mon.RecordID
+		, mon.SASID
+		, a.SectionID
+		, a.SectionSequence
 		, a.Section
+		, fiv.InputFieldId
 		, StatementSequence = a.Sequence 
 		, a.ShortName
 		, a.Statement
-		--, a.ReportLabel
-		--, a.AttributeID
 		, a.IsNote
 		, Value =
 			case 
-				when AttributeType = 'SingleSelect' then convert(varchar(max), sfo.Label) -- note: We can use Label instead of ReportLabel -- ReportLabel = Met, Label = Yes
-				when AttributeType = 'Text' then convert(varchar(max), tv.Value)
+				when a.AttributeType = 'SingleSelect' then convert(varchar(1000), sfo.Label) -- note: We can use Label instead of ReportLabel -- ReportLabel = Met, Label = Yes
+				when a.AttributeType = 'Text' then convert(varchar(1000), tv.Value)
 			end
-	from FormInstance fi
+	from (
+-- mon
+		select 
+			InstanceID = rf.ID
+			, rs.RecordID
+			, subs.OrgUnitID
+			, subs.RosterYearID
+			, SASID = v.Value
+		from MonSubmissionRecordForm rf
+		join MonSubmissionRecord sr on rf.SubmissionRecordID = sr.id
+		join MonRecordSelection rs on sr.RecordSelectionID = rs.ID
+		join MonRecordAttributeValue v on rs.RecordID = v.RecordID
+		join MonRecordAttribute a on v.attributeId = a.ID
+		join MonSubmissions subs on sr.SubmissionsID = subs.ID
+		where subs.DeletedDate is null -- this is necessary
+		and rs.ExcludedDate is null
+		and v.AttributeID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57' -- SASID
+		and isnull(v.Value,'xyz123abc') = @SASID
+		and subs.OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID) -- any MonSubmissions record with a NULL OrgUnitID will be excluded.
+	) mon
+-- mon
+	join FormInstance fi on fi.ID = mon.InstanceID
 	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
 	left join FormInputValue fiv on fii.ID = fiv.IntervalID
-	left join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
-	-- mon
-	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
-	left join MonSubmissionRecord sr on rf.SubmissionRecordID = sr.ID
-	left join MonRecordSelection rs on sr.RecordSelectionID = rs.ID
-	left join MonRecord r on rs.RecordID = r.ID -- note the difference between Submission Record and Record
-	left join MonSubmissions sub on sr.SubmissionsID = sub.ID
-	left join OrgUnit ou on sub.OrgUnitID = ou.ID
-	left join RosterYear ry on sub.RosterYearID = ry.ID
+	--left join attributesCTE a on fiv.InputFieldId = a.AttributeID  -- inner join or else null attribute (text)
+	left join attributesCTE a on fiv.InputFieldId = a.AttributeID 
+
+	left join OrgUnit ou on mon.OrgUnitID = ou.ID
+	left join RosterYear ry on mon.RosterYearID = ry.ID
 
 	-- single select
 	left join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
@@ -423,30 +454,34 @@
 	-- text
 	left join FormInputTextValue tv on fiv.Id = tv.Id
 
-	-- SASID
-	left join MonRecordAttributeValue rav on r.ID = rav.RecordID and rav.AttributeID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57'
--- 	left join MonRecordAttribute ra on rav.AttributeID = ra.ID
-
 	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
-	and rs.ExcludedDate is null
-	--and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
-	--and RosterYearID = @rosterYearID 
-
-	---- TESTING
- 		and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
-	---- TESTING
 )
 
-select * 
-from formDataDetail 
-where SASID = '3759523282'
-order by StatementSequence</CommandText>
+select d.SASID
+	, d.SectionSequence
+	, d.Section
+	, d.StatementSequence
+	, d.Statement
+	, d.Value
+	, IsNote = 0
+from formDataDetail d
+where d.InputFieldId not in (select AttributeID from notesCTE) -- this was faster than other methods tried
+union 
+select dn.SASID
+	, dn.SectionSequence
+	, dn.Section
+	, dn.StatementSequence
+	, dn.Statement
+	, dn.Value
+	, IsNote = 1
+from formDataDetail dn
+where dn.InputFieldId in (select AttributeID from notesCTE) -- this was faster than other methods tried</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
-        <Field Name="Administrative_Unit">
-          <DataField>Administrative Unit</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="SectionSequence">
+          <DataField>SectionSequence</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="SASID">
           <DataField>SASID</DataField>
@@ -460,25 +495,41 @@ order by StatementSequence</CommandText>
           <DataField>StatementSequence</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
-        <Field Name="ShortName">
-          <DataField>ShortName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Statement">
           <DataField>Statement</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Value">
+          <DataField>Value</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="IsNote">
           <DataField>IsNote</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Value">
-          <DataField>Value</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="SASID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>8590706502</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>SASID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="userID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>user ID</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <Language>en-US</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
