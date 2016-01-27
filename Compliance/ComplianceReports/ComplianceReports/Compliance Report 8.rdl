@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSRS_Compliance_Reports_Datasource">
+      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>b6e36270-5cbf-4822-9adc-b92131911243</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>; with iiCTE as (
+	select TemplateID = t.ID
+		, TemplateName = t.Name
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence --- will always be zero in the anchor
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+	from FormTemplate t 
+	left join FormTemplateLayout tl on t.ID = tl.TemplateID
+	left join FormTemplateControl tc on tl.ControlID = tc.Id
+	where t.ID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C'
+	and tl.ParentId is null
+	
+	union all 
+
+	select c.TemplateID
+		, c.TemplateName
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence 
+		, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = c.CTELevel+1 
+	from iiCTE c 
+	join FormTemplateLayout tl on c.LayoutID = tl.ParentID
+	join FormTemplateControl tc on tl.ControlID = tc.Id
+) -- select * from iiCTE
+, attributesCTE as (
+	select 
+		AttributeID = ii.ID
+		, ShortName = isnull(ii.reportlabel, ii.code) -- Attribute
+		, Statement = ii.Label -- InputItemLabel
+	from iiCTE c
+	join iiCTE c2 on c.LayoutParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.LayoutControlID = ii.InputAreaId 
+) -- select * from attributesCTE
+
+, formDataDetail as (
+	select InstanceID = fi.ID
+		, a.AttributeID
+		, a.ShortName
+		, a.Statement
+		, Yes = case when convert(varchar(100), sfo.Label) = 'Yes' then 1 else 0 end
+		, No = case when convert(varchar(100), sfo.Label) = 'No' then 1 else 0 end
+		, NA = case when convert(varchar(100), sfo.ReportLabel) = 'Not Applicable' then 1 else 0 end
+		, Blank = case when convert(varchar(100), sfo.Label) is null then 1 else 0 end
+		, sfoLabel = convert(varchar(500), sfo.Label)
+		, sfoReportLabel = convert(varchar(500), sfo.ReportLabel)
+	from FormInstance fi
+	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
+	left join FormInputValue fiv on fii.ID = fiv.IntervalID
+	join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
+	-- mon
+	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
+	left join MonSubmissionRecord r on rf.SubmissionRecordID = r.ID
+	left join MonRecordSelection rs on r.RecordSelectionID = rs.ID
+	left join MonSubmissions sub on r.SubmissionsID = sub.ID 
+
+	-- single select
+	join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
+	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
+
+	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
+	and sub.OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and sub.RosterYearID = @rosterYearID 
+	and rs.ExcludedDate is null
+
+	---- TESTING
+ 		--and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
+	---- TESTING
+)
+, calc as (
+	select 
+		--bogus = 'ggg'
+			--[Administrative Unit] = case when grouping(fdd.[Administrative Unit]) = 1 then 'State' else fdd.[Administrative Unit] end
+		fdd.Statement
+		--, fdd.StatementSequence
+		--, PerItemPct = cast(round((fdd.ItemYesCount/cast(ss.IEPCount as float))*100, 2) as decimal(5,1))
+		--, Pct = cast(case when sum(fdd.Yes)+sum(fdd.No) &gt; 0 then sum(fdd.Yes)/cast(sum(fdd.Yes)+sum(fdd.No) as float)*100 end as decimal(5,1))
+		--, SortBit = grouping([Administrative Unit])
+		, yesCount = sum(fdd.Yes)
+		, Total = sum(fdd.Yes)+sum(fdd.No)
+		, pct = cast(round(case when sum(fdd.Yes)+sum(fdd.No) = 0 then NULL else sum(fdd.Yes)/cast(sum(fdd.Yes)+sum(fdd.No) as float)*100 end, 2) as decimal(5,1))
+	from formDataDetail fdd
+	group by fdd.Statement
+--order by SortBit, [Administrative Unit], Pct	
+)
+, TopAndBottom as (
+select 
+	Statement
+	, pct
+	, TopSort = row_number() over (partition by 1 order by pct desc, YesCount desc) -- include the yes count as a tie breaker
+	, BottomSort = row_number() over (partition by 1 order by pct asc, YesCount asc)
+from calc
+where Total &gt; 0 -- no need to look at them if they were not considered in the interviews?
+)
+
+select Position, Sort = TopSort, Statement, pct
+from (select top 5 Position = 'Top', * from TopAndBottom order by TopSort asc) t
+union all
+select Position, Sort = TopSort, Statement, pct
+from (select top 5 Position = 'Bottom', * from TopAndBottom order by BottomSort asc) b </CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Position">
+          <DataField>Position</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Sort">
+          <DataField>Sort</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="pct">
+          <DataField>pct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Statement">
+          <DataField>Statement</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="RosterYears">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>select distinct ry.ID, Name = convert(varchar(4), ry.StartYear)+'-'+right(convert(varchar(4), ry.StartYear+1), 2)
+from RosterYear ry
+join MonSubmissions subs on ry.ID = subs.RosterYearID
+where subs.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A'
+order by 2</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>5.62216in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.79451in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Position.Value+" 5 Questions"</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox16">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Percentage across all AUs</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox16</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Statement">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Statement.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Statement</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="pct">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!pct.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>pct</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Position">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Position.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Position.Value</Value>
+                      <Direction>Descending</Direction>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="Details" />
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!Sort.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>0in</Top>
+            <Height>0.5in</Height>
+            <Width>7.41667in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>0.78419in</Height>
+        <Style />
+      </Body>
+      <Width>7.66667in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.35904in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Top 5 and Bottom 5 Questions across Compliance Reviews</Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>18pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>textbox1</rd:DefaultName>
+              <Height>0.35904in</Height>
+              <Width>7.41667in</Width>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="userID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>user ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rosterYearID">
+      <DataType>String</DataType>
+      <Prompt>Select a roster year for which to view top and bottom 5 questions: </Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RosterYears</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>2df75dce-01f3-4898-b1c7-b54cbad4a613</rd:ReportID>
+</Report>
