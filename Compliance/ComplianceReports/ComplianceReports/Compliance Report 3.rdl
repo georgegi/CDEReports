@@ -2,33 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Compliance Report 3</Value>
-                <Style>
-                  <FontFamily>Tahoma</FontFamily>
-                  <FontSize>18pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>textbox1</rd:DefaultName>
-        <Height>0.33in</Height>
-        <Width>5.32167in</Width>
-        <Style>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
@@ -467,10 +440,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.55083in</Top>
+        <Top>0.01389in</Top>
         <Height>1.5in</Height>
         <Width>6.10416in</Width>
-        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -478,11 +450,50 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.05083in</Height>
+    <Height>1.51389in</Height>
     <Style />
   </Body>
-  <Width>6.52084in</Width>
+  <Width>6.10416in</Width>
   <Page>
+    <PageHeader>
+      <Height>0.33in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Compliance Report 3</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>18pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>textbox1</rd:DefaultName>
+          <Height>0.33in</Height>
+          <Width>6.10416in</Width>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
@@ -568,6 +579,7 @@
 	join iiCTE c on tl.ParentID = c.LayoutID
 
 )
+
 , attributesCTE as (
 	select 
 		c.TemplateID
@@ -579,26 +591,28 @@
 		, AttributeID = ii.ID
 		, c.ParentId
 		, c.LayoutID
-		, SubmissionAreaID = msa2.ID
+		, SubmissionAreaID = msa.ID
+		, msa.FormTemplateControlID
 		, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
 		, AttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
 -- the reverseAttributeSequence allows us to distinguish the comments field from other text fields
-		, reverseAttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName, msa2.Label order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc)
+		, reverseAttributeSequence = row_number() over (partition by c.Location, c.SubmissionType, c.SubmissionMode, c.TemplateName, msa.Label order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc)
 		, c.ControlType
 		, InputItemType = iit.Name
-		, SubmissionAreaLabel = msa2.Label
-		, SubmissionAreaSequence = msa2.Sequence
+		, SubmissionAreaLabel = msa.Label
+		, SubmissionAreaSequence = msa.Sequence
 		, ii.ReportLabel
 		, ii.Code
 		, Attribute = isnull(ii.reportlabel, ii.code)
 		, ii.Label
+		--, ColumnStuff = '	, '''+convert(varchar(36), msa.FormTemplateControlID)+''' -- '+msa.Label -- use this to get the list of ControlIDs to filter by (paste into this query and delete the rows that are nto required).
 	from iiCTE c
 	join iiCTE c2 on c.SubmissionModeID = c2.SubmissionModeID and c.ParentID = c2.LayoutID 
 	join FormTemplateInputItem ii on c.InputAreaID = ii.InputAreaId 
 	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
 	left join MonSubmissionItem mii on ii.id = mii.FormTemplateInputItemID
-	left join MonSubmissionArea msa2 on c2.InputAreaID = msa2.FormTemplateControlID
-) 
+	left join MonSubmissionArea msa on c2.InputAreaID = msa.FormTemplateControlID
+) -- select distinct ColumnStuff , SubmissionAreaSequence from attributesCTE order by SubmissionAreaSequence
 
 select [Administrative Unit] = ou.Name
 	, Item = 'Example'
@@ -623,19 +637,21 @@ join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 
 left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
 
 where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
-and SubmissionAreaID in (
-	'FD836CC5-ECE7-475D-8F4B-70B4E5A3E235'	-- Dates of Meeting (Confirm dates with evidence in the file)
-	, 'AB755A6C-83D3-4594-9DFE-83CD52FE7CFD' -- Present Levels of Academic Achievement and Functional Performance
-	, '97075423-230C-4D80-99C5-C8053D08615B' -- Post-School Considerations
-	, '3FDCF6FB-8270-400B-BB6D-3A241FCD675A' -- Annual Goals/Objectives
-	, '4E87012B-8E77-46DA-A1ED-728E4E2E8C71' -- Accommodations and Modifications
-	, 'CE9CF93B-7EF0-417C-BE5D-CE97BF5A7E67' -- State/District Assessments
-	, '660326E3-1C67-4248-B82D-B72E29561699' -- Service Delivery Statement
-	, '8C783B24-F2D3-4A2A-AE5D-1D7256D144A5' -- Recommended Placement in the LRE
-	, 'CDCBDA88-1D38-4EA4-A7E7-875046A21BC0' -- Prior Written Notice
-	, '14D8D04C-191F-429D-98C8-9FB1B8B7DF33' -- Appendix A: Early Childhood IEP
-	, 'EA0784B9-9712-4291-962B-15147DCD3775' -- Appendix B: Evaluation/Reevaluation
+and FormTemplateControlID in 
+	(
+	  '7AA6797C-9F89-462A-B667-34F821F8D325' -- Dates of Meeting (Confirm dates with evidence in the file)
+	, '4249765D-446C-4199-9A4A-1961C6CD81C2' -- Present Levels of Academic Achievement and Functional Performance
+	, 'C4404A98-12EB-4791-8341-8E21FAF7E553' -- Post-School Considerations
+	, 'B66A23BC-4292-4F42-A73B-1025C6A0A8C7' -- Annual Goals/Objectives
+	, '0574F0D4-2A51-41E2-BC1D-DFCFF34CE0A0' -- Accommodations and Modifications
+	, '67373EE2-C726-4E60-864B-AA66EDF9D71F' -- State/District Assessments
+	, 'AEFB23A3-4DAE-4B7E-8C2F-1D620584D814' -- Service Delivery Statement
+	, '367FBEB2-DC15-4E78-B2ED-9CF12D05F59E' -- Recommended Placement in the LRE
+	, '98DA711A-5190-474E-8636-8CD8330C63BC' -- Prior Written Notice
+	, '2498D42E-85DE-484B-B609-E9823B6C99B1' -- Appendix A: Early Childhood IEP
+	, '500F3BAE-FFE7-4876-A2D8-B79DF0D3B300' -- Appendix B: Evaluation/Reevaluation
 	)
+
 and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
 and RosterYearID = @rosterYearID 
 group by ou.Name, a.SubmissionMode, a.SubmissionAreaSequence, a.SubmissionAreaID, a.SubmissionAreaLabel
