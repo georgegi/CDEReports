@@ -239,6 +239,26 @@ order by a.Sequence</CommandText>
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="RosterYears">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>select distinct ry.ID, Name = convert(varchar(4), ry.StartYear)+'-'+right(convert(varchar(4), ry.StartYear+1), 2)
+from RosterYear ry
+join MonSubmissions subs on ry.ID = subs.RosterYearID
+where subs.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A'
+order by 2</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -603,21 +623,18 @@ order by a.Sequence</CommandText>
   <ReportParameters>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>user ID</Prompt>
     </ReportParameter>
     <ReportParameter Name="rosterYearID">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>83EEB57A-4E8C-449C-9543-7BDC3FE056C0</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>roster Year ID</Prompt>
+      <Prompt>Select a roster year for which to view data</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RosterYears</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="sectionID">
       <DataType>String</DataType>

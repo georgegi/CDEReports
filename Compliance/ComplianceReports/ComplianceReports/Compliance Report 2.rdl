@@ -522,23 +522,13 @@ where dn.InputFieldId in (select AttributeID from notesCTE) -- this was faster t
     </DataSet>
   </DataSets>
   <ReportParameters>
-    <ReportParameter Name="SASID">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>8590706502</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>SASID</Prompt>
-    </ReportParameter>
     <ReportParameter Name="userID">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>user ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SASID">
+      <DataType>String</DataType>
+      <Prompt>SASID</Prompt>
     </ReportParameter>
   </ReportParameters>
   <Language>en-US</Language>

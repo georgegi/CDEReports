@@ -35,20 +35,12 @@
       <FullPath>Compliance Report 4.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Report1 - Backup.rdl</Name>
-      <FullPath>Report1 - Backup.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Report8 - backup.rdl</Name>
-      <FullPath>Report8 - backup.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Compliance Report 8 - backup.rdl</Name>
-      <FullPath>Compliance Report 8 - backup.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Compliance Report 8.rdl</Name>
       <FullPath>Compliance Report 8.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Report1 - Backup.rdl</Name>
+      <FullPath>Report1 - Backup.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
