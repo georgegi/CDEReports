@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="List1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>5in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.92in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Rectangle Name="List1_Contents">
+                      <ReportItems>
+                        <Tablix Name="matrix1">
+                          <TablixCorner>
+                            <TablixCornerRows>
+                              <TablixCornerRow>
+                                <TablixCornerCell>
+                                  <CellContents>
+                                    <Textbox Name="Textbox4">
+                                      <CanGrow>true</CanGrow>
+                                      <KeepTogether>true</KeepTogether>
+                                      <Paragraphs>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value>SASID</Value>
+                                              <Style>
+                                                <FontFamily>Tahoma</FontFamily>
+                                                <FontSize>9pt</FontSize>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style />
+                                        </Paragraph>
+                                      </Paragraphs>
+                                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>Solid</Style>
+                                        </Border>
+                                        <PaddingLeft>2pt</PaddingLeft>
+                                        <PaddingRight>2pt</PaddingRight>
+                                        <PaddingTop>2pt</PaddingTop>
+                                        <PaddingBottom>2pt</PaddingBottom>
+                                      </Style>
+                                    </Textbox>
+                                  </CellContents>
+                                </TablixCornerCell>
+                              </TablixCornerRow>
+                            </TablixCornerRows>
+                          </TablixCorner>
+                          <TablixBody>
+                            <TablixColumns>
+                              <TablixColumn>
+                                <Width>1in</Width>
+                              </TablixColumn>
+                            </TablixColumns>
+                            <TablixRows>
+                              <TablixRow>
+                                <Height>0.19in</Height>
+                                <TablixCells>
+                                  <TablixCell>
+                                    <CellContents>
+                                      <Textbox Name="textbox2">
+                                        <CanGrow>true</CanGrow>
+                                        <KeepTogether>true</KeepTogether>
+                                        <Paragraphs>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>=First(Fields!Value.Value)</Value>
+                                                <Style>
+                                                  <FontFamily>Tahoma</FontFamily>
+                                                  <FontSize>9pt</FontSize>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style />
+                                          </Paragraph>
+                                        </Paragraphs>
+                                        <rd:DefaultName>textbox2</rd:DefaultName>
+                                        <Style>
+                                          <Border>
+                                            <Color>LightGrey</Color>
+                                            <Style>Solid</Style>
+                                          </Border>
+                                          <PaddingLeft>2pt</PaddingLeft>
+                                          <PaddingRight>2pt</PaddingRight>
+                                          <PaddingTop>2pt</PaddingTop>
+                                          <PaddingBottom>2pt</PaddingBottom>
+                                        </Style>
+                                      </Textbox>
+                                    </CellContents>
+                                    <DataElementOutput>Output</DataElementOutput>
+                                  </TablixCell>
+                                </TablixCells>
+                              </TablixRow>
+                            </TablixRows>
+                          </TablixBody>
+                          <TablixColumnHierarchy>
+                            <TablixMembers>
+                              <TablixMember>
+                                <Group Name="matrix1_Attribute">
+                                  <GroupExpressions>
+                                    <GroupExpression>=Fields!Attribute.Value</GroupExpression>
+                                  </GroupExpressions>
+                                </Group>
+                                <SortExpressions>
+                                  <SortExpression>
+                                    <Value>=Fields!AttributeSequence.Value</Value>
+                                  </SortExpression>
+                                </SortExpressions>
+                                <TablixHeader>
+                                  <Size>0.21in</Size>
+                                  <CellContents>
+                                    <Textbox Name="Attribute">
+                                      <CanGrow>true</CanGrow>
+                                      <KeepTogether>true</KeepTogether>
+                                      <Paragraphs>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value>=Fields!Attribute.Value</Value>
+                                              <Style>
+                                                <FontFamily>Tahoma</FontFamily>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style />
+                                        </Paragraph>
+                                      </Paragraphs>
+                                      <rd:DefaultName>Attribute</rd:DefaultName>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>Solid</Style>
+                                        </Border>
+                                        <BackgroundColor>#8fb3f3</BackgroundColor>
+                                        <PaddingLeft>2pt</PaddingLeft>
+                                        <PaddingRight>2pt</PaddingRight>
+                                        <PaddingTop>2pt</PaddingTop>
+                                        <PaddingBottom>2pt</PaddingBottom>
+                                      </Style>
+                                    </Textbox>
+                                  </CellContents>
+                                </TablixHeader>
+                                <DataElementOutput>Output</DataElementOutput>
+                                <KeepTogether>true</KeepTogether>
+                              </TablixMember>
+                            </TablixMembers>
+                          </TablixColumnHierarchy>
+                          <TablixRowHierarchy>
+                            <TablixMembers>
+                              <TablixMember>
+                                <Group Name="SASID">
+                                  <GroupExpressions>
+                                    <GroupExpression>=Fields!SASID.Value</GroupExpression>
+                                  </GroupExpressions>
+                                </Group>
+                                <SortExpressions>
+                                  <SortExpression>
+                                    <Value>=Fields!RecordSelectionSequence.Value</Value>
+                                  </SortExpression>
+                                </SortExpressions>
+                                <TablixHeader>
+                                  <Size>1in</Size>
+                                  <CellContents>
+                                    <Textbox Name="SASID">
+                                      <CanGrow>true</CanGrow>
+                                      <KeepTogether>true</KeepTogether>
+                                      <Paragraphs>
+                                        <Paragraph>
+                                          <TextRuns>
+                                            <TextRun>
+                                              <Value>=Fields!SASID.Value</Value>
+                                              <Style>
+                                                <FontFamily>Tahoma</FontFamily>
+                                              </Style>
+                                            </TextRun>
+                                          </TextRuns>
+                                          <Style />
+                                        </Paragraph>
+                                      </Paragraphs>
+                                      <rd:DefaultName>SASID</rd:DefaultName>
+                                      <Style>
+                                        <Border>
+                                          <Color>LightGrey</Color>
+                                          <Style>Solid</Style>
+                                        </Border>
+                                        <BackgroundColor>#8fb3f3</BackgroundColor>
+                                        <PaddingLeft>2pt</PaddingLeft>
+                                        <PaddingRight>2pt</PaddingRight>
+                                        <PaddingTop>2pt</PaddingTop>
+                                        <PaddingBottom>2pt</PaddingBottom>
+                                      </Style>
+                                    </Textbox>
+                                    <rd:Selected>true</rd:Selected>
+                                  </CellContents>
+                                </TablixHeader>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <DataElementOutput>Output</DataElementOutput>
+                                    <KeepTogether>true</KeepTogether>
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixMember>
+                            </TablixMembers>
+                          </TablixRowHierarchy>
+                          <RepeatColumnHeaders>true</RepeatColumnHeaders>
+                          <RepeatRowHeaders>true</RepeatRowHeaders>
+                          <DataSetName>DataSet1</DataSetName>
+                          <Top>0.5in</Top>
+                          <Height>0.4in</Height>
+                          <Width>2in</Width>
+                          <Style />
+                        </Tablix>
+                        <Textbox Name="AU">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AU.Value</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>AU</rd:DefaultName>
+                          <Height>0.24in</Height>
+                          <Width>5in</Width>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                      <KeepTogether>true</KeepTogether>
+                      <Style />
+                    </Rectangle>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="list1_AU">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!AU.Value</GroupExpression>
+                </GroupExpressions>
+                <PageBreak>
+                  <BreakLocation>Between</BreakLocation>
+                </PageBreak>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AU.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <PageBreak>
+          <BreakLocation>End</BreakLocation>
+        </PageBreak>
+        <Top>0.33in</Top>
+        <Height>0.92in</Height>
+        <Width>5in</Width>
+        <Style>
+          <FontFamily>Tahoma</FontFamily>
+          <FontSize>12pt</FontSize>
+        </Style>
+      </Tablix>
+      <Textbox Name="textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>RawDataReport</Value>
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>18pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Height>0.33in</Height>
+        <Width>5in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>1.25in</Height>
+    <Style />
+  </Body>
+  <Width>5in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SSRS_Compliance_Reports_Datasource">
+      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>a97cd9ed-6379-4494-a26d-52c456213718</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <CommandText>
+; with recCTE as (
+select
+	 p.AU
+	, p.SubmissionModeID
+	, IsExcluded = case when sel.ExcludedDate is null then 0 else 1 end
+	, AttributeID = a.ID
+	, Attribute = a.Name
+	, AttributeSequence = a.SequenceNumber
+	, Value = convert(varchar(max), v.Value)
+	, InstanceID = rf.ID
+	, RecordID = r.ID
+	, RecordSelectionSequence = sel.SequenceNumber
+	, SASID = convert(varchar(20), SAS.Value)
+from x_DATATEAM.RawDataParameters p -- select * from x_DATATEAM.RawDataParameters 
+join dbo.MonRecordSelection sel on p.RecordSetID = sel.RecordSetID
+left join dbo.MonSubmissionRecord subrec on sel.ID = subrec.RecordSelectionID and p.SubmissionsID = subrec.SubmissionsID
+left join dbo.MonSubmissionRecordForm rf on subrec.ID = rf.SubmissionRecordID
+join dbo.MonRecord r on sel.RecordID = r.ID
+join dbo.MonRecordAttributeValue v on r.ID = v.RecordID
+join dbo.MonRecordAttribute a on v.AttributeID = a.ID
+join dbo.MonRecordAttributeValue SAS on r.ID = SAS.RecordID and SAS.AttributeID = '817E95B3-A6D5-4561-8652-6E27FA3C7A5F' -- SASID
+where p.RecordSetSampledFrom = 'RDA_Ind8_Parent_Survey_Samples_01_16_2015' -- 58 districts
+and p.RecordSetId = '4F2044F2-0FFF-4883-A60E-349490327BD6'
+-- and a.ID = '817E95B3-A6D5-4561-8652-6E27FA3C7A5F' -- SASID
+) 
+
+--select Type = 'MonRecord', r.AU, r.IsExcluded, r.AttributeID, r.Attribute, r.AttributeSequence, r.Value, r.InstanceID, r.RecordID, r.RecordSelectionSequence, SASID = r2.Value
+--from recCTE r
+--join recCTE r2 on r.RecordID = r2.RecordID and r2.AttributeID = '817E95B3-A6D5-4561-8652-6E27FA3C7A5F' 
+
+select *
+from (
+select Type = 'MonRecord', r.AU, r.IsExcluded, r.AttributeID, r.Attribute, r.AttributeSequence, r.Value, r.InstanceID, r.RecordID, r.RecordSelectionSequence, r.SASID
+from recCTE r
+	union all
+select 'MonForm', r.AU, r.IsExcluded, a.AttributeID, a.Attribute, a.AttributeSequence, f.Value, r.InstanceID, r.RecordID, r.RecordSelectionSequence, r.SASID
+from recCTE r
+join x_DATATEAM.MonForm_Attribute a on r.SubmissionModeID = a.SubmissionModeID
+left join x_datateam.monformlet_key_attribute_value f on isnull(r.InstanceID,'00000000-0000-0000-0000-000000000000') = f.InstanceID 
+	and a.AttributeID = f.AttributeID -- there are some NULLs from r
+where a.SubmissionModeID = '1A4C0468-C2F1-442A-85DA-F9F13E6CE435'
+and r.AttributeID = 'BA4E2A1C-9A70-4D87-B61B-87132CA9BF56' -- limit to one r record to avoid cartesian
+) x
+--where x.InstanceID = 'C00BF05C-4828-4DBC-8F94-C86028267EC6'
+order by x.RecordSelectionSequence, x.type desc, x.AttributeSequence
+
+
+</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AU">
+          <DataField>AU</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsExcluded">
+          <DataField>IsExcluded</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AttributeID">
+          <DataField>AttributeID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Attribute">
+          <DataField>Attribute</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AttributeSequence">
+          <DataField>AttributeSequence</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Value">
+          <DataField>Value</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InstanceID">
+          <DataField>InstanceID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="RecordID">
+          <DataField>RecordID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="RecordSelectionSequence">
+          <DataField>RecordSelectionSequence</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SASID">
+          <DataField>SASID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>1b06124d-49cc-4dce-a2a8-f7456282ad76</rd:ReportID>
+</Report>
