@@ -143,13 +143,14 @@
                                           <Color>LightGrey</Color>
                                           <Style>Solid</Style>
                                         </Border>
-                                        <BackgroundColor>#8fb3f3</BackgroundColor>
+                                        <BackgroundColor>=IIF(Fields!Type.Value="MonForm", "LightGreen" , "Aqua")</BackgroundColor>
                                         <PaddingLeft>2pt</PaddingLeft>
                                         <PaddingRight>2pt</PaddingRight>
                                         <PaddingTop>2pt</PaddingTop>
                                         <PaddingBottom>2pt</PaddingBottom>
                                       </Style>
                                     </Textbox>
+                                    <rd:Selected>true</rd:Selected>
                                   </CellContents>
                                 </TablixHeader>
                                 <DataElementOutput>Output</DataElementOutput>
@@ -202,7 +203,6 @@
                                         <PaddingBottom>2pt</PaddingBottom>
                                       </Style>
                                     </Textbox>
-                                    <rd:Selected>true</rd:Selected>
                                   </CellContents>
                                 </TablixHeader>
                                 <TablixMembers>
