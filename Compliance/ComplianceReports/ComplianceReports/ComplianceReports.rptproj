@@ -15,8 +15,8 @@
   </DataSets>
   <Reports>
     <ProjectItem>
-      <Name>Compliance Report 2.rdl</Name>
-      <FullPath>Compliance Report 2.rdl</FullPath>
+      <Name>Compliance Report 2 new notes.rdl</Name>
+      <FullPath>Compliance Report 2 new notes.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Compliance Report 2b.rdl</Name>
@@ -31,6 +31,10 @@
       <FullPath>Compliance Report 4 - Backup.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
+      <Name>Compliance Report 4 Backup.rdl</Name>
+      <FullPath>Compliance Report 4 Backup.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Compliance Report 4.rdl</Name>
       <FullPath>Compliance Report 4.rdl</FullPath>
     </ProjectItem>
@@ -41,6 +45,10 @@
     <ProjectItem>
       <Name>Report1 - Backup.rdl</Name>
       <FullPath>Report1 - Backup.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Compliance Report 2.rdl</Name>
+      <FullPath>Compliance Report 2.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
