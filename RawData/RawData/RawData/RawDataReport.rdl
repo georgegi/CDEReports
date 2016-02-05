@@ -101,20 +101,19 @@
                                           <PaddingBottom>2pt</PaddingBottom>
                                         </Style>
                                       </Textbox>
-                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                     <DataElementOutput>Output</DataElementOutput>
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="textbox2">
+                                      <Textbox Name="Value">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=First(Fields!Value.Value)</Value>
+                                                <Value>=Fields!Value.Value</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>9pt</FontSize>
@@ -124,7 +123,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>textbox2</rd:DefaultName>
+                                        <rd:DefaultName>Value</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -241,7 +240,7 @@
                                 </Group>
                                 <SortExpressions>
                                   <SortExpression>
-                                    <Value>=Fields!RecordSelectionSequence.Value</Value>
+                                    <Value>=Fields!ChildSetSequence.Value</Value>
                                   </SortExpression>
                                 </SortExpressions>
                                 <TablixHeader>
@@ -363,7 +362,7 @@
         <PageBreak>
           <BreakLocation>End</BreakLocation>
         </PageBreak>
-        <Top>0.33in</Top>
+        <Top>0.34389in</Top>
         <Height>0.92in</Height>
         <Width>5in</Width>
         <Style>
@@ -390,7 +389,7 @@
         </Paragraphs>
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Height>0.33in</Height>
-        <Width>5in</Width>
+        <Width>3.27083in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <PaddingLeft>2pt</PaddingLeft>
@@ -400,7 +399,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>1.25in</Height>
+    <Height>1.26389in</Height>
     <Style />
   </Body>
   <Width>5in</Width>
@@ -413,65 +412,92 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="SSRS_Compliance_Reports_Datasource">
-      <DataSourceReference>SSRS_Compliance_Reports_Datasource</DataSourceReference>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>a97cd9ed-6379-4494-a26d-52c456213718</rd:DataSourceID>
+    <DataSource Name="DS_RawDataREports">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=10.86.23.151;Initial Catalog=CDE_Prodreal;Connect Timeout=30</ConnectString>
+      </ConnectionProperties>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>27c8b6ab-72c6-45f1-a063-eea2df7ad1d5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
-        <CommandText>
-; with recCTE as (
-select
-	 p.AU
-	, p.SubmissionModeID
+        <DataSourceName>DS_RawDataREports</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@recordSetID">
+            <Value>=Parameters!recordSetID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SET ANSI_WARNINGS OFF;
+;with recCTE as (
+select	
+	AU = ou.Name
+	, subs.SubmissionModeID
+	, RecordSetID = parentSet.ID
 	, IsExcluded = case when sel.ExcludedDate is null then 0 else 1 end
+	, IsSelected = case when sr.ID is null then 0 else 1 end
 	, AttributeID = a.ID
 	, Attribute = a.Name
 	, AttributeSequence = a.SequenceNumber
 	, Value = convert(varchar(max), v.Value)
-	, InstanceID = rf.ID
+	, ChildSetSequence = sel.SequenceNumber
 	, RecordID = r.ID
-	, RecordSelectionSequence = sel.SequenceNumber
-	, SASID = convert(varchar(20), SAS.Value)
-from x_DATATEAM.RawDataParameters p -- select * from x_DATATEAM.RawDataParameters 
-join dbo.MonRecordSelection sel on p.RecordSetID = sel.RecordSetID
-left join dbo.MonSubmissionRecord subrec on sel.ID = subrec.RecordSelectionID and p.SubmissionsID = subrec.SubmissionsID
-left join dbo.MonSubmissionRecordForm rf on subrec.ID = rf.SubmissionRecordID
-join dbo.MonRecord r on sel.RecordID = r.ID
-join dbo.MonRecordAttributeValue v on r.ID = v.RecordID
-join dbo.MonRecordAttribute a on v.AttributeID = a.ID
-join dbo.MonRecordAttributeValue SAS on r.ID = SAS.RecordID and SAS.AttributeID = '817E95B3-A6D5-4561-8652-6E27FA3C7A5F' -- SASID
-where p.RecordSetSampledFrom = 'RDA_Ind8_Parent_Survey_Samples_01_16_2015' -- 58 districts
-and p.RecordSetId = '4F2044F2-0FFF-4883-A60E-349490327BD6'
--- and a.ID = '817E95B3-A6D5-4561-8652-6E27FA3C7A5F' -- SASID
-) 
+	, InstanceID = rf.ID
+	, SASID = isnull(convert(varchar(100), sasv.SASID), convert(varchar(36), r.ID)+' - No SASID in this RecordSet') --- THIS IS OUR PIVOT VALUE
+	, SASIDattributeID = sasv.AttributeID
+from MonRecord r 
+left join MonRecordSelection sel on r.ID = sel.RecordID 
+left join MonRecordSet parentSet on r.RecordSetID = parentSet.ID  -- 6721  ---------------------------------- RecordSet parameter can go here
+left join MonRecordSet childSet on parentSet.ID = childset.SampledFromID
+	and (childSet.ID = sel.RecordSetID) -- see if we can find recordset id somewhere else
+join MonSubmissions subs on 
+	childset.ID = subs.RecordSetID -- 6576 INNER JOIN (necessary INNER)
+	and subs.DeletedDate is null 
+	and subs.ReliabilityCheckOfSubmissionsID is null
+left join OrgUnit ou on subs.OrgUnitID = ou.ID
+left join MonSubmissionRecord sr on subs.ID = sr.SubmissionsID -- 1162 selected, but that's ok
+	and sel.ID = sr.RecordSelectionID
+left join dbo.MonSubmissionRecordForm rf on sr.ID = rf.SubmissionRecordID
+left join MonRecordAttribute a on r.RecordSetID = a.RecordSetID -- 92064 even with inner join
+left join MonRecordAttributeValue v on r.ID = v.RecordID -- 92064 even with inner join
+	and a.ID = v.AttributeID
+left join ( -- get the SASID GUID for any record set
+	select SAS.RecordID, sas.AttributeID, SASID = isnull(convert(varchar(100), SAS.Value), 'Not provided')
+	from MonRecordAttributeValue SAS -- on r.ID = SAS.RecordID -- 92064 even with inner join
+	join MonRecordAttribute sasa on sas.AttributeID = sasa.ID
+	and sasa.Name = 'SASID'
+) sasv on r.ID = sasv.RecordID -- 324067
+where r.OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+and parentSet.ID = @recordSetID
+)
+, oneRecRow as (
+	select r.SubmissionModeID, SASIDattributeID
+	from recCTE r
+	--where RecordSetID = @recordSetID
+	group by r.SubmissionModeID, SASIDattributeID
+)
 
---select Type = 'MonRecord', r.AU, r.IsExcluded, r.AttributeID, r.Attribute, r.AttributeSequence, r.Value, r.InstanceID, r.RecordID, r.RecordSelectionSequence, SASID = r2.Value
---from recCTE r
---join recCTE r2 on r.RecordID = r2.RecordID and r2.AttributeID = '817E95B3-A6D5-4561-8652-6E27FA3C7A5F' 
 
 select *
 from (
-select Type = 'MonRecord', r.AU, r.IsExcluded, r.AttributeID, r.Attribute, r.AttributeSequence, r.Value, r.InstanceID, r.RecordID, r.RecordSelectionSequence, r.SASID
+select Type = 'MonRecord', r.AU, r.IsExcluded, r.IsSelected, r.AttributeID, r.Attribute, r.AttributeSequence, r.Value, /* r.InstanceID, r.RecordID, */ r.ChildSetSequence, r.SASID
 from recCTE r
 	union all
-select 'MonForm', r.AU, r.IsExcluded, a.AttributeID, a.Attribute, a.AttributeSequence, f.Value, r.InstanceID, r.RecordID, r.RecordSelectionSequence, r.SASID
+select 'MonForm', r.AU, r.IsExcluded, r.IsSelected, a.AttributeID, a.Attribute, a.AttributeSequence, f.Value, /* r.InstanceID, r.RecordID, */ r.ChildSetSequence, r.SASID
 from recCTE r
 join x_DATATEAM.MonForm_Attribute a on r.SubmissionModeID = a.SubmissionModeID
 left join x_datateam.monformlet_key_attribute_value f on isnull(r.InstanceID,'00000000-0000-0000-0000-000000000000') = f.InstanceID 
 	and a.AttributeID = f.AttributeID -- there are some NULLs from r
-where a.SubmissionModeID = '1A4C0468-C2F1-442A-85DA-F9F13E6CE435'
-and r.AttributeID = 'BA4E2A1C-9A70-4D87-B61B-87132CA9BF56' -- limit to one r record to avoid cartesian
-) x
---where x.InstanceID = 'C00BF05C-4828-4DBC-8F94-C86028267EC6'
-order by x.RecordSelectionSequence, x.type desc, x.AttributeSequence
-
-
-</CommandText>
+	and f.InputItemType &lt;&gt; 'Derived'
+join oneRecRow orr on a.SubmissionModeID = orr.SubmissionModeID
+	and r.AttributeID = orr.SASIDattributeID -- limit to one r record to avoid cartesian
+) x</CommandText>
+        <Timeout>120</Timeout>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -491,6 +517,10 @@ order by x.RecordSelectionSequence, x.type desc, x.AttributeSequence
           <DataField>AttributeID</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
+        <Field Name="IsSelected">
+          <DataField>IsSelected</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="Attribute">
           <DataField>Attribute</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -503,16 +533,8 @@ order by x.RecordSelectionSequence, x.type desc, x.AttributeSequence
           <DataField>Value</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="InstanceID">
-          <DataField>InstanceID</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="RecordID">
-          <DataField>RecordID</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="RecordSelectionSequence">
-          <DataField>RecordSelectionSequence</DataField>
+        <Field Name="ChildSetSequence">
+          <DataField>ChildSetSequence</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="SASID">
@@ -521,7 +543,168 @@ order by x.RecordSelectionSequence, x.type desc, x.AttributeSequence
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="RecordSet">
+      <Query>
+        <DataSourceName>DS_RawDataREports</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@locationID">
+            <Value>=Parameters!locationID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@submissionModeID">
+            <Value>=Parameters!submissionModeID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>select distinct ID = p.RecordSetSampledFromID, Name = p.RecordSetSampledFrom
+from x_DATATEAM.RawDataParameters p
+where LocationID = @locationID
+and RosterYearID = @rosterYearID
+and SubmissionModeID = @submissionModeID
+order by 2
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Location">
+      <Query>
+        <DataSourceName>DS_RawDataREports</DataSourceName>
+        <CommandText>select distinct ID = LocationID, Name = Location
+from x_DATATEAM.RawDataParameters p
+order by 2
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="RosterYear">
+      <Query>
+        <DataSourceName>DS_RawDataREports</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@locationID">
+            <Value>=Parameters!locationID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>select distinct ID = RosterYearID, Name = RosterYear
+from x_DATATEAM.RawDataParameters p
+where LocationID = @locationID
+order by 2
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SubmissionMode">
+      <Query>
+        <DataSourceName>DS_RawDataREports</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@locationID">
+            <Value>=Parameters!locationID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>select distinct ID = SubmissionModeID, Name = SubmissionMode
+from x_DATATEAM.RawDataParameters p
+where LocationID = @locationID
+and RosterYearID = @rosterYearID
+order by 2
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="userID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>546F8D65-330B-4EA2-B4D9-0992A8DA8384</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>User</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="locationID">
+      <DataType>String</DataType>
+      <Prompt>Location</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Location</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="rosterYearID">
+      <DataType>String</DataType>
+      <Prompt>Roster Year</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RosterYear</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="submissionModeID">
+      <DataType>String</DataType>
+      <Prompt>Submission Mode</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SubmissionMode</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="recordSetID">
+      <DataType>String</DataType>
+      <Prompt>Record Set</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>RecordSet</DataSetName>
+          <ValueField>ID</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
   <Language>en-US</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
