@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>8.86458in</Width>
+              <Width>8.01981in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -21,10 +21,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>6.39583in</Width>
+                                <Width>6.2942in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.46875in</Width>
+                                <Width>1.72561in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -76,7 +76,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value />
+                                                <Value>Rating by Reviewer</Value>
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>11pt</FontSize>
@@ -205,13 +205,10 @@
                                       <TablixMember>
                                         <Group Name="Statement">
                                           <GroupExpressions>
-                                            <GroupExpression>=Fields!StatementSequence.Value</GroupExpression>
+                                            <GroupExpression>=Fields!Statement.Value</GroupExpression>
                                           </GroupExpressions>
                                         </Group>
                                         <SortExpressions>
-                                          <SortExpression>
-                                            <Value>=Fields!SectionSequence.Value</Value>
-                                          </SortExpression>
                                           <SortExpression>
                                             <Value>=Fields!StatementSequence.Value</Value>
                                           </SortExpression>
@@ -226,7 +223,7 @@
                           <DataSetName>DataSet1</DataSetName>
                           <Top>0.02778in</Top>
                           <Height>0.5in</Height>
-                          <Width>7.86458in</Width>
+                          <Width>8.01981in</Width>
                           <Style />
                         </Tablix>
                       </ReportItems>
@@ -271,7 +268,7 @@
         </PageBreak>
         <Top>0.33in</Top>
         <Height>0.62528in</Height>
-        <Width>8.86458in</Width>
+        <Width>8.01981in</Width>
         <Style>
           <FontFamily>Tahoma</FontFamily>
           <FontSize>12pt</FontSize>
@@ -299,9 +296,6 @@
         <Width>2in</Width>
         <ZIndex>1</ZIndex>
         <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -309,10 +303,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>1.06125in</Height>
+    <Height>0.95528in</Height>
     <Style />
   </Body>
-  <Width>9.5925in</Width>
+  <Width>8.01981in</Width>
   <Page>
     <LeftMargin>0.5in</LeftMargin>
     <RightMargin>0.5in</RightMargin>
@@ -336,6 +330,9 @@
           <QueryParameter Name="@SASID">
             <Value>=Parameters!SASID.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
           <QueryParameter Name="@userID">
             <Value>=Parameters!userID.Value</Value>
           </QueryParameter>
@@ -343,29 +340,65 @@
             <Value>=Parameters!submissionModeID.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>; with sections as (
-	select a.SectionID, a.Section
-	from x_DATATEAM.Compliance_Formlet_Attributes a
-	where a.AttributeID in 
- (
-	  '6137FF68-2734-424D-9211-781C65CA5CC0'	-- Dates of Meeting (Confirm dates with evidence in the file) (Annual IEP)
-	, 'C3691975-B896-4129-9E16-C313059AADC5'	-- Present Levels of Academic Achievement and Functional Performance (Child's Strengths)
-	, 'E20F00B1-E4D6-4C17-95E1-88071DD17278'	-- Post-School Considerations (Post Goals - Education)
-	, '775BCA18-5502-4B40-878F-EB0C4EDC6244'	-- Annual Goals/Objectives (Goals Link to Postsecondary Goals)
-	, 'D1153967-ED9A-4B51-8131-8F48823EDFB2'	-- Accommodations and Modifications (Instruction)
-	, 'F6765124-6348-4AA2-9EB9-7F70F1102775'	-- State/District Assessments (District Assessments)
-	, 'AD1683EE-3E5F-479A-A2FE-2769E59D9947'	-- Service Delivery Statement (Purpose of Services)
-	, '25FAB41E-3EFD-46B2-9AB1-8C37580134D8'	-- Recommended Placement in the LRE (Placement Decision)
-	, 'EAE4F6A9-4DC6-4914-8420-1841625662E9'	-- Prior Written Notice (PWN Provided)
-	, '9EE53BD8-8D5C-4791-8ACB-7FD7EAD174DE'	-- Appendix A: Early Childhood IEP (ECApp)
-	, '1392C5CD-5F42-4433-8CCA-D237EC2D820F'	-- Appendix B: Evaluation/Reevaluation (ERApp)
- )
+        <CommandText>; with iiCTE as (
+	select TemplateID = t.ID
+		, TemplateName = t.Name
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence --- will always be zero in the anchor
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+	from FormTemplate t 
+	left join FormTemplateLayout tl on t.ID = tl.TemplateID
+	left join FormTemplateControl tc on tl.ControlID = tc.Id
+	where t.ID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C'
+	and tl.ParentId is null
+	
+	union all 
+
+	select c.TemplateID
+		, c.TemplateName
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence 
+		, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = c.CTELevel+1 
+	from iiCTE c 
+	join FormTemplateLayout tl on c.LayoutID = tl.ParentID
+	join FormTemplateControl tc on tl.ControlID = tc.Id
 )
-,  attributesCTE as (
-	select a.*
-	from x_DATATEAM.Compliance_Formlet_Attributes a
-	join sections s on a.SectionID = s.SectionID
+, attributesCTE as (
+	select 
+		--c.TemplateID
+		--, 
+		SectionID = c2.LayoutControlID
+		, Section = msa.Label -- SubmissionArea
+		, SectionSequence = msa.Sequence -- AreaSequence
+		, AttributeID = ii.ID
+		, ShortName = isnull(ii.reportlabel, ii.code) -- Attribute
+		, Sequence = row_number() over (partition by c.TemplateID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(100)),''))
+		, AttributeType = iit.Name -- InputItemType
+-- this won't always work, but in this case the last field in the section is a notes field
+		, IsText = case when iit.name = 'Text' then 1 else 0 end
+		, Statement = ii.Label -- InputItemLabel
+		, ii.Code
+		, ii.ReportLabel
+	from iiCTE c
+	join iiCTE c2 on c.LayoutParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.LayoutControlID = ii.InputAreaId 
+	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
+	left join MonSubmissionArea msa on c2.LayoutControlID = msa.FormTemplateControlID
 )
+--, notesCTE as (
+--	select *
+--	from attributesCTE a
+--	where a.IsText = 1
+--)
+
 , formDataDetail as (
 	select 
 		mon.InstanceID
@@ -381,8 +414,8 @@
 		, a.IsText
 		, Value =
 			case 
-				when a.AttributeType = 'SingleSelect' then convert(varchar(1000), sfo.Label) -- note: We can use Label instead of ReportLabel -- ReportLabel = Met, Label = Yes
-				when a.AttributeType = 'Text' then convert(varchar(1000), tv.Value)
+				when a.AttributeType = 'SingleSelect' then convert(varchar(100), sfo.Label) -- note: We can use Label instead of ReportLabel -- ReportLabel = Met, Label = Yes
+				when a.AttributeType = 'Text' then convert(varchar(max), tv.Value)
 			end
 	from (
 -- mon
@@ -397,23 +430,23 @@
 		join MonRecordSelection rs on sr.RecordSelectionID = rs.ID
 		join MonRecordAttributeValue v on rs.RecordID = v.RecordID
 		join MonRecordAttribute a on v.attributeId = a.ID
-		join MonSubmissions subs on sr.SubmissionsID = subs.ID and subs.ReliabilityCheckOfSubmissionsID is null
+		join MonSubmissions subs on sr.SubmissionsID = subs.ID 
+			and subs.RosterYearID = @rosterYearID ---------------------------------- PARAM
+			and subs.SubmissionModeID = @submissionModeID -------------------------- PARAM
 		where subs.DeletedDate is null -- this is necessary
 		and rs.ExcludedDate is null
-		and a.Name = 'SASID' --   v.AttributeID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57' -- SASID -- select * from MonRecordAttribute where ID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57'
+		and v.AttributeID = '1BDFF8C6-44FE-477B-8C82-2439C5355C57' -- SASID
 		and isnull(v.Value,'xyz123abc') = @SASID
 		and subs.OrgUnitID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID) -- any MonSubmissions record with a NULL OrgUnitID will be excluded.
-		--and RosterYearID = @rosterYearID
-		and subs.SubmissionModeID = @submissionModeID
 	) mon
 -- mon
 	join FormInstance fi on fi.ID = mon.InstanceID
 	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
 	left join FormInputValue fiv on fii.ID = fiv.IntervalID
-	join attributesCTE a on fiv.InputFieldId = a.AttributeID 
+	left join attributesCTE a on fiv.InputFieldId = a.AttributeID 
 
 	left join OrgUnit ou on mon.OrgUnitID = ou.ID
-	--left join RosterYear ry on mon.RosterYearID = ry.ID
+	left join RosterYear ry on mon.RosterYearID = ry.ID
 
 	-- single select
 	left join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
@@ -423,7 +456,6 @@
 	left join FormInputTextValue tv on fiv.Id = tv.Id
 
 	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
-
 )
 
 select d.SASID
@@ -431,10 +463,9 @@ select d.SASID
 	, d.Section
 	, d.StatementSequence
 	, d.Statement
-	, d.Value
 	, d.IsText
+	, d.Value
 from formDataDetail d
-order by InstanceID, RecordID, SectionSequence, StatementSequence
 </CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
@@ -497,12 +528,40 @@ order by 2</CommandText>
             <Value>=Parameters!rosterYearID.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>select distinct m.ID, m.Name
+        <CommandText>select distinct subm.ID, subm.Name -- default to standard review: 61C193FE-4781-4071-A68F-124A151DDA17
 from MonSubmissions subs
-join MonSubmissionMode m on subs.SubmissionModeID = m.ID
-join RosterYear ry on subs.RosterYearID = ry.ID
+join MonSubmissionMode subm on subs.SubmissionModeID = subm.ID
 where subs.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A'
-and subs.RosterYearID = @rosterYearID</CommandText>
+and subs.RosterYearID = @rosterYearID
+order by 2
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="StandardReviewMode">
+      <Query>
+        <DataSourceName>SSRS_Compliance_Reports_Datasource</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@rosterYearID">
+            <Value>=Parameters!rosterYearID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>select top 1 subm.ID, subm.Name 
+from MonSubmissions subs
+join MonSubmissionMode subm on subs.SubmissionModeID = subm.ID
+where subs.SubmissionTypeID = 'A9C8993A-26B1-4E20-9E0A-2EDA6B8F844A'
+and subs.RosterYearID = @rosterYearID
+and subm.ID = '61C193FE-4781-4071-A68F-124A151DDA17' -- default to standard review: 
+</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
@@ -521,6 +580,10 @@ and subs.RosterYearID = @rosterYearID</CommandText>
       <DataType>String</DataType>
       <Prompt>user ID</Prompt>
     </ReportParameter>
+    <ReportParameter Name="SASID">
+      <DataType>String</DataType>
+      <Prompt>SASID</Prompt>
+    </ReportParameter>
     <ReportParameter Name="rosterYearID">
       <DataType>String</DataType>
       <Prompt>Select a roster year:</Prompt>
@@ -534,6 +597,12 @@ and subs.RosterYearID = @rosterYearID</CommandText>
     </ReportParameter>
     <ReportParameter Name="submissionModeID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>StandardReviewMode</DataSetName>
+          <ValueField>ID</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Select a submission mode:</Prompt>
       <ValidValues>
         <DataSetReference>
@@ -542,10 +611,6 @@ and subs.RosterYearID = @rosterYearID</CommandText>
           <LabelField>Name</LabelField>
         </DataSetReference>
       </ValidValues>
-    </ReportParameter>
-    <ReportParameter Name="SASID">
-      <DataType>String</DataType>
-      <Prompt>SASID</Prompt>
     </ReportParameter>
   </ReportParameters>
   <Language>en-US</Language>

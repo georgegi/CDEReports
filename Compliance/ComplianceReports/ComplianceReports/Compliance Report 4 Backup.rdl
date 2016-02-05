@@ -23,85 +23,66 @@
             <Value>=Parameters!sectionID.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>; with attributesCTE as (
+        <CommandText>; with iiCTE as (
+	select TemplateID = t.ID
+		, TemplateName = t.Name
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence --- will always be zero in the anchor
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+	from FormTemplate t 
+	left join FormTemplateLayout tl on t.ID = tl.TemplateID
+	left join FormTemplateControl tc on tl.ControlID = tc.Id
+	where t.ID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C'
+	and tl.ParentId is null
+	
+	union all 
+
+	select c.TemplateID
+		, c.TemplateName
+		, LayoutID = tl.ID 
+		, LayoutControlID = tl.ControlId -- aka InputAreaID
+		, ControlIsRepeatable = tc.IsRepeatable
+		, LayoutParentID = tl.ParentId 
+		, LayoutSequence = tl.Sequence 
+		, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		, CTELevel = c.CTELevel+1 
+	from iiCTE c 
+	join FormTemplateLayout tl on c.LayoutID = tl.ParentID
+	join FormTemplateControl tc on tl.ControlID = tc.Id
+) -- select * from iiCTE
+, attributesCTE as (
 	select 
-		a.TemplateID
-		, a.SectionID
-		, a.FormTemplateControlID ---- When hard-coding IDs, we need to use the FormTemplateControlID, which does not change, instead of MonSubmissionAreaID, which does change.
-		, a.Section -- SubmissionArea
-		, a.SectionSequence -- AreaSequence
-		, a.AttributeID 
-		, a.ShortName -- Attribute
-		, a.Sequence 
-		, a.AttributeType 
-		, a.IsText 
-		, a.Statement -- InputItemLabel
-		, a.Code
-		, a.ReportLabel
-	from x_DATATEAM.Compliance_Formlet_Attributes a
-	where a.AttributeID in ( -- here we are showing all statements within a section so we can show in the code which ones are purposely excluded
-
-	-- Present Levels of Academic Achievement and Functional Performance
-	  'C3691975-B896-4129-9E16-C313059AADC5' -- Child's Strengths
-	, '54205774-186B-4EEA-B42B-468D2DBA5771' -- Evaluation Considered
-	, 'CC0CFC6B-3788-4D2C-863B-AD5D914CE8A4' -- Present Levels
-	, '7A16B8E2-20FA-4064-982E-7B35633CB379' -- Child's Needs
-	, 'F309C338-0E86-46DE-B634-FB2D701B2F4E' -- Child's Involvement
-	, '7D1D9C2F-3FB1-4D7C-8556-359E282AC9E5' -- Parental Input
-
-	-- Post-School Considerations
-	, 'E20F00B1-E4D6-4C17-95E1-88071DD17278' -- Post Goals - Education
-	, '843F84CE-874F-4163-8820-FC51EF1474AB' -- Post Goals - Career
-	, '3A53B5CD-5726-41D2-9A57-A109402A69CA' -- Post Goals - Living
-	-- CUSTOMER REQUESTS A SUMMARY COLUMN OF THE 3 POST GOALS STATEMENTS SCORES BE ADDED HERE (WILL ADD LATER IN CODE)
-	, '4FAAC473-B3A6-44DC-B2D5-A081DECB29F5' -- Post Goals Reviewed
-	, '7EB89600-C128-45CC-BE5C-CB893F144E97' -- Age App Assessments
-	--, '1B3AB83D-254F-4CE4-B97A-23753BEF56B2' -- Transfer of Right
-	--, '504F661C-A15E-49FA-9F3E-F45A8B29729F' -- Summary of Performance
-	, 'E99BE986-3E52-4E39-AAF3-65FFB819A5BC' -- Course of Study
-	, 'AECEFD5F-3AB5-4E7B-9A31-3BBD55D0BB89' -- Transition Services
-	, '42DEC924-0EEF-4DAA-98E2-4BD5ECFE3285' -- Postsecondary Meeting
-	, '8964EF63-06D1-4663-906A-74B26CEC8DC3' -- Student Invitation
-	, '53A0DF12-F3D4-4C09-8703-78C50E2D62B2' -- Outside Agency
-	-- CUSTOMER REQUESTS THAT THE ANNUAL GOAL COLUMN FOR GOALS THAT LINK TO POSTSECONDARY GOALS BE ADDED HERE IN THIS SECTION ALSO. DO THIS LATER IN THE CODE
-
-	-- Annual Goals/Objectives
-	, '775BCA18-5502-4B40-878F-EB0C4EDC6244' -- Goals Link to Postsecondary Goals
-	, '4B681296-9A6D-447D-9927-289D469CDECD' -- Measurable Goals
-	--, '991FCCBF-9780-42C0-A24A-0B77CBAAD9A0' -- Rigorous Goals
-	, '08D30E7D-C450-436F-95C5-10482224491C' -- Aligned with Targets
-	, '8002B83F-B8C9-4CDF-ACA9-70DCD0E121AA' -- Designed to Meet Needs
-	, '3AA849D3-83DA-4C37-9A9B-D734E51FC4F3' -- Gen Ed Progress
-	, '4CF1E93B-B34E-4DCC-944D-CBC05968E827' -- Short-Term Objectives
-	--, 'F49A7A10-0125-41C0-9B12-E211C8118A32' -- Progress Reports
-
-	-- Service Delivery Statement
-	, 'AD1683EE-3E5F-479A-A2FE-2769E59D9947' -- Purpose of Services
-	, '40F20CA4-6553-4F27-BBB2-5FDFCEC6A121' -- Progress in General Education
-	, '1EC3EB5A-214A-4CA7-92CC-A082FDED4EC0' -- Extracurricular and Nonacademic Activities
-	, '2FBCF7E6-B039-47D0-AEC8-C747DE74CAFC' -- Participate with Other Children
-	, '8E0E1FD0-6FB5-4C07-9051-F94688BA83BC' -- Aligned to Needs and Goals
-	--, '22E15F05-A094-4223-81EC-F7BE474A4537' -- Service Details
-	--, '13654E9F-2F4D-446A-84A2-56F0701B163D' -- Implemented After Meeting
-	--, 'BD3D1E43-5CFB-47A4-BA1D-1187A9C3BF04' -- ServBeg
-	--, 'CAA31E05-CB77-40D9-883F-9162ADE21A59' -- IEP in Effect
-	--, '6108E9EC-CEAC-4A04-948D-8C2D60335CE2' -- Services Begin Date
-	--, '37C31B55-095C-4E4C-B2D0-2123F8422E20' -- Services Aligned
-
-	-- Recommended Placement in the LRE
-	, '25FAB41E-3EFD-46B2-9AB1-8C37580134D8' -- Placement Decision
-	, 'DE924B15-1AAF-40DC-9E9A-664152554C2C' -- Potential Harmful Effect
-	, 'E8AF7B61-36C2-4FCE-8B60-E05E5D73A89D' -- Removed From Environment
-	, 'F18CD27D-0C31-4F94-8AB5-E79AAB44D261' -- Children w/o Disabilities
-	--, '948BD3C6-97DA-4AAF-9E38-2342A2E374DD' -- Placement Based On IEP
-	)
-) 
-, sections as ( -- we only use Annual Goals/Objectives, Post-School Considerations
-	select a.SectionID, a.Section, a.SectionSequence 
-	from x_datateam.Compliance_Formlet_Attributes a
-	where AttributeID in ('E20F00B1-E4D6-4C17-95E1-88071DD17278', '775BCA18-5502-4B40-878F-EB0C4EDC6244') -- attribute IDs don't change when the formlet is updated
+		c.TemplateID
+		, SectionID = msa.ID
+		, Section = msa.Label -- SubmissionArea
+		, SectionSequence = msa.Sequence -- AreaSequence
+		, AttributeID = ii.ID
+		, ShortName = isnull(ii.reportlabel, ii.code) -- Attribute
+		, Sequence = row_number() over (partition by c.TemplateID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
+		, AttributeType = iit.Name -- InputItemType
+		, IsNote = case when row_number() over (partition by c2.TemplateID, c2.LayoutControlID order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'') desc) = 1 then 1 else 0 end
+		, Statement = ii.Label -- InputItemLabel
+		, ii.Code
+		, ii.ReportLabel
+		--, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
+		--	, '	, '''+convert(varchar(36), a.LayoutControlID)+''' -- '+msa.Label -- use this to get the list of ControlIDs to filter by (paste into this query and delete the rows that are nto required).
+	from iiCTE c
+	join iiCTE c2 on c.LayoutParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.LayoutControlID = ii.InputAreaId 
+	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
+	left join MonSubmissionArea msa on c2.LayoutControlID = msa.FormTemplateControlID
+	where msa.ID = @sectionID
+) -- select * from attributesCTE
+, sectionStatementCount as (
+	select a.SectionID, a.Section, a.SectionSequence, Total = count(*) 
+	from attributesCTE a
+	where a.AttributeType = 'SingleSelect'
 	group by a.SectionID, a.Section, a.SectionSequence
-) 
+)
 , formDataDetail as (
 	select [Administrative Unit] = ou.Name
 		, a.SectionID
@@ -112,57 +93,11 @@
 		, a.ReportLabel
 		, a.AttributeID
 		-- One Annual Goals Statement is to be considered with the Post-Secondary data calculation. We are increasing the sequence number to differentiate it.
---		, StatementSequence = case when a.FormTemplateControlID = 'C4404A98-12EB-4791-8341-8E21FAF7E553' then 700+a.Sequence else a.Sequence end -- setting the sequence again here..
-		, StatementSequence = a.Sequence 
+		, StatementSequence = case when a.Section = '' then 700+a.Sequence else a.Sequence end -- setting the sequence again here..
 		, InstanceID = fi.ID
--- 		, Yes = case when sfo.ReportLabel = 'Met' then 1 when sfo.ReportLabel = 'Not Applicable' then 1 else 0 end
-		, Yes = case when convert(varchar(max), sfo.Label) = 'Yes' then 1 /* when sfo.ReportLabel = 'Not Applicable' then 1 */ else 0 end
-		, No = case when convert(varchar(max), sfo.Label) = 'No' then 1 else 0 end
-		, NA = case when convert(varchar(max), sfo.ReportLabel) = 'Not Applicable' then 1 else 0 end
-		, Blank = case when convert(varchar(max), sfo.Label) is null then 1 else 0 end
-	from FormInstance fi
-	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
-	left join FormInputValue fiv on fii.ID = fiv.IntervalID
-	join attributesCTE a on fiv.InputFieldId = a.AttributeID -- inner join or else null attribute (text)
-	-- mon
-	left join MonSubmissionRecordForm rf on fii.InstanceID = rf.ID  
-	left join MonSubmissionRecord r on rf.SubmissionRecordID = r.ID
-	left join MonRecordSelection rs on r.RecordSelectionID = rs.ID
-	left join MonSubmissions sub on r.SubmissionsID = sub.ID
-	left join OrgUnit ou on sub.OrgUnitID = ou.ID
-	--left join RosterYear ry on sub.RosterYearID = ry.ID
-
-	-- single select
-	join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
-	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
-
-	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
-	and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
-	and sub.RosterYearID = @rosterYearID 
-	and rs.ExcludedDate is null
-	and a.SectionID = @sectionID --- the query that produces the parameters to select from will produce valid SectionIDs
-
-	---- TESTING
-		----and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
-	---- TESTING
-
-	union all
--- One Annual Goals Statement is to be considered with the Post-Secondary data calculation. We are increasing the sequence number to differentiate it.
--- hard-code values for one record. This is the only one that is used in a different section
-	select [Administrative Unit] = ou.Name
-		, SectionID = (select SectionID from sections where Section = 'Post-School Considerations')
-		, SectionSequence = (select SectionSequence from sections where Section = 'Post-School Considerations')
-		, Section = (select Section from sections where Section = 'Post-School Considerations')
-		, ShortName = 'Goals Link to Postsecondary Goals'
-		, Statement = 'For transition IEPs, all annual goals are directly and genuinely link to transition services and/or postsecondary goals'
-		, ReportLabel = 'Goals Link to Postsecondary Goals'
-		, AttributeID = a.AttributeID -- consider changing to 0000000
-		, StatementSequence = 99
-		, InstanceID = fi.ID
-		, Yes = case when convert(varchar(max), sfo.Label) = 'Yes' then 1 /* when sfo.ReportLabel = 'Not Applicable' then 1 */ else 0 end
-		, No = case when convert(varchar(max), sfo.Label) = 'No' then 1 else 0 end
-		, NA = case when convert(varchar(max), sfo.ReportLabel) = 'Not Applicable' then 1 else 0 end
-		, Blank = case when convert(varchar(max), sfo.Label) is null then 1 else 0 end
+		, Yes = case when sfo.ReportLabel = 'Met' then 1 when sfo.ReportLabel = 'Not Applicable' then 1 else 0 end
+		--, ac.SectionCount
+		--, rs.ExcludedDate
 	from FormInstance fi
 	left join FormInstanceInterval fii on fi.ID = fii.InstanceID
 	left join FormInputValue fiv on fii.ID = fiv.IntervalID
@@ -178,88 +113,104 @@
 	-- single select
 	join FormInputSingleSelectValue ssv on fiv.ID = ssv.ID -- and a.InputItemType = 'SingleSelect' -- inner join, single select only - not nec to check a.inputitemtype
 	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
-	
+
+	---- areaSectionCount
+	--left join areaSectionCount ac on a.SubmissionAreaID = ac.SubmissionAreaID
+
 	where fi.TemplateID = 'F87DC304-78EB-49DC-AB61-16EBDCA2174C' -- Compliance Checklist
-	and a.SectionID = (select SectionID from sections where Section = 'Annual Goals/Objectives') -- Annual Goals/Objectives
-	and a.AttributeID = '775BCA18-5502-4B40-878F-EB0C4EDC6244' -- Goals Link to Postsecondary Goals
 	and ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
 	and RosterYearID = @rosterYearID 
 	and rs.ExcludedDate is null
-	and 'Post-School Considerations' = (select Section from sections where SectionID = @sectionID) -- don't return this data paramter is not Post-School Considerations
-	---- TESTING
-		----and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
-	---- TESTING
-) -- select * from formDataDetail
 
-select [Administrative Unit] = case when grouping([Administrative Unit])=1 then 'State' else d.[Administrative Unit] end
-	, Section = case when grouping(d.Section) = 1 then 'Section' else d.Section end
-	, d.ShortName 
-	, d.Statement
-	, d.StatementSequence
-	, Yes = cast(sum(d.Yes) as float)
-	, No = cast(sum(d.No) as float)
-	, NA = cast(sum(d.NA) as float)
-	, Blank = cast(sum(d.Blank) as float)
-	, SortBit = grouping([Administrative Unit])
-from formDataDetail d
-group by rollup([Administrative Unit]), Section, d.ShortName, d.Statement, d.StatementSequence -- grouping sets(rollup([Administrative Unit], (Section))), d.ShortName, d.StatementSequence
-union all
-select [Administrative Unit] = case when grouping([Administrative Unit])=1 then 'State' else d.[Administrative Unit] end
-	, d.Section 
-	, ShortName = 'Overall: Appropriate Measurable Post-Secondary Goals'
-	, Statement = 'Overall: Appropriate Measurable Post-Secondary Goals'
-	, StatementSequence = 3.5 -- We want this to show up in the 4th position
-	, Yes = cast(sum(d.Yes) as float)
-	, No = cast(sum(d.No) as float)
-	, NA = cast(sum(d.NA) as float)
-	, Blank = cast(sum(d.Blank) as float)
-	, SortBit = grouping([Administrative Unit])
-from formDataDetail d
-where 'Post-School Considerations' = (select Section from sections where SectionID = @sectionID) -- don't return this data paramter is not Post-School Considerations
-group by rollup([Administrative Unit]), d.Section -- grouping sets(rollup([Administrative Unit], (Section))), d.ShortName, d.StatementSequence
+	---- TESTING
+ 		--and ou.ID = '3B26E265-39EA-422D-A17C-B8C8D9E312D8'
+	---- TESTING
+)
+, AUSampleSize as (
+	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
+		, SortBit = grouping([Administrative Unit])
+		, IEPCount = count(distinct InstanceID) 
+	from formDataDetail
+	group by rollup([Administrative Unit])
+)
+, instanceCounts as (
+	select fdd.[Administrative Unit]
+		, fdd.InstanceID
+		, InstanceYesCount = sum(fdd.Yes) 
+		, SectionCount = max(ac.Total)
+	from formDataDetail fdd
+	left join sectionStatementCount ac on fdd.SectionID = ac.SectionID
+	group by fdd.[Administrative Unit], fdd.InstanceID
+)
+, AUCounts as (
+	select [Administrative Unit] = case when grouping([Administrative Unit]) = 0 then [Administrative Unit] else 'State' end
+		, SectionID
+		, SectionSequence
+		, Section
+		, ShortName -- SectionLabel
+		, Statement -- InputItemLabel
+		, ReportLabel
+		, AttributeID
+		, StatementSequence
+		, ItemYesCount = sum(fdd.Yes)
+		, SortBit = grouping([Administrative Unit])
+	from formDataDetail fdd
+	group by rollup([Administrative Unit]), SectionID, SectionSequence, Section, ShortName, Statement, StatementSequence, ReportLabel, AttributeID
+)
+
+select *
+from (
+select 
+	Section = case when @sectionID = '97075423-230C-4D80-99C5-C8053D08615B' then 'Post-School Considerations' else ac.Section end
+	, ac.SectionSequence
+	, ac.[Administrative Unit]
+	, ac.ShortName
+	--, ReportLabel
+	, Statement
+	, ac.StatementSequence
+	, PerItemPct = cast(round((ac.ItemYesCount/cast(ss.IEPCount as float))*100, 2) as decimal(5,1))
+		--, ss.IEPCount
+		--, ac.ItemYesCount
+	, ac.SortBit
+from AUCounts ac
+left join AUSampleSize ss on ac.[Administrative Unit] = ss.[Administrative Unit]
+) t
+order by SortBit, [Administrative Unit], StatementSequence
 </CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
+        <Field Name="Section">
+          <DataField>Section</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Administrative_Unit">
           <DataField>Administrative Unit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Section">
-          <DataField>Section</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="SectionSequence">
+          <DataField>SectionSequence</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="StatementSequence">
+          <DataField>StatementSequence</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="ShortName">
           <DataField>ShortName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Statement">
-          <DataField>Statement</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="StatementSequence">
-          <DataField>StatementSequence</DataField>
+        <Field Name="PerItemPct">
+          <DataField>PerItemPct</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="Yes">
-          <DataField>Yes</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="No">
-          <DataField>No</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="NA">
-          <DataField>NA</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="Blank">
-          <DataField>Blank</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="SortBit">
           <DataField>SortBit</DataField>
           <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="Statement">
+          <DataField>Statement</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -417,7 +368,7 @@ order by 2</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(Fields!Yes.Value+Fields!No.Value &gt; 0, Fields!Yes.Value/(Fields!Yes.Value+Fields!No.Value), 0)</Value>
+                                  <Value>=Fields!PerItemPct.Value / 100</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
                                     <FontSize>9pt</FontSize>
