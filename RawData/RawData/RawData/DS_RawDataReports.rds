@@ -3,6 +3,7 @@
   <ConnectionProperties>
     <Extension>SQL</Extension>
     <ConnectString>Data Source=10.86.23.151;Initial Catalog=CDE_Prodreal;Connect Timeout=30</ConnectString>
+    <IntegratedSecurity>true</IntegratedSecurity>
   </ConnectionProperties>
   <DataSourceID>11f143cd-af7a-43dc-be8e-762849b73d12</DataSourceID>
 </RptDataSource>
