@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DS_RawDataReports">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=10.86.23.151;Initial Catalog=CDE_Prodreal;Connect Timeout=30</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>11f143cd-af7a-43dc-be8e-762849b73d12</DataSourceID>
+</RptDataSource>
