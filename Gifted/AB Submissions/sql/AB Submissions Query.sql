@@ -168,12 +168,12 @@ declare @userID uniqueidentifier = '04E5044C-3FBE-42EE-9945-4E88BBD98B88'
 		(g.SubmissionModeID = '33F88AE5-682B-4EAF-BA73-8A3E14A036CE' and a.InputItemType = 'Date' and a.Code in ('Rev1', 'Rev2'))
 )
 
-select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = 'SubmissionDate', AttributeSequence = 0, Value = max(SubmissionDate)
+select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = 'SubmissionDate', AttributeSequence = 0, InputItemLabel = 'Date of Submission', Value = max(SubmissionDate)
 from results r
 group by AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence
 union all
-select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = Code, AttributeSequence = 1, Value = r.Label
+select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = Code, AttributeSequence = 1, InputItemLabel, Value = r.Label
 from results r
 --where AU = 'Eagle Re 50, Eagle' -- testing 
-order by AU, RosterYear, ModeSequence, AttributeSequence, Attribute
+order by AU, RosterYear, ModeSequence, AttributeSequence, Attribute, InputItemLabel
 
