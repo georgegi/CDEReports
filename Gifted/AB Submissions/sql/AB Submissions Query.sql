@@ -19,23 +19,6 @@ join MonSubmissionMode m on t.ID = m.SubmissionTypeID
 where loc.ProgramID = '58FFE83B-EA3A-4703-A505-023B8E306B64'
 order by LocationSequence, SubmissionMode
 
---Profile	Annual Profile Review
---Profile	Comprehensive Program Plan
---Profile	Early Access Addendum
---Profile	Programming Details
---Profile	Programming Details Worksheet
---Monitoring	ALP Review
---Monitoring	AU Self Evaluation
---Fiscal	Annual Budget Review
---Fiscal	AU Budget: i. Proposed Budget (due April 15)
---Fiscal	AU Budget: ii. Adjusted Budget (due September 30)
---Fiscal	AU Budget: iii. Expended Budget (due for prior year September 30)
---Fiscal	BOCES & Multi District AU Working Budgets
---Fiscal	Gifted Education Universal Screening and Qualified Personnel Grant
---Family E & C	Family Engagement & Communication Review
---Performance	Performance Review
---Improvement	Improvement Timeline
---Improvement	Improvement Timeline Results
 
 
 select * from UserProfile where UserName = 'enrich:georgegi'
@@ -47,18 +30,23 @@ declare @userID uniqueidentifier = '04E5044C-3FBE-42EE-9945-4E88BBD98B88'
 
 ;with giftedStuff as (
 	select t.LocationID
-		, Location = loc.DisplayName
 		, LocationSequence = loc.Sequence
+		, Location = loc.DisplayName
 		, m.SubmissionTypeID
 		, SubmissionType = t.Name
 		, SubmissionModeID = m.ID
 		, SubmissionMode = m.Name
 		, t.FormTemplateID
+		, ModeSequence = row_number() over (partition by 1 order by loc.Sequence, t.name, case m.Name when 'Annual Budget Review' then 'AU Budget: Review' else m.name end)
 	from MonLocation loc 
 	join MonSubmissionType t on loc.ID = t.LocationID
 	join MonSubmissionMode m on t.ID = m.SubmissionTypeID
 	where loc.ProgramID = '58FFE83B-EA3A-4703-A505-023B8E306B64' -- Gifted Education
-	--order by Location, SubmissionType, SubmissionMode
+	and m.id not in (
+		  '9BA63D26-C4E3-4ACF-AE78-8F9583CD4EE3'	-- Profile	Programming Details Worksheet
+		, '7A85EDD5-DB08-423C-B29A-EDA17D3F10D5'	-- Fiscal	BOCES & Multi District AU Working Budgets
+		)
+	--order by LocationSequence, SubmissionType, case m.Name when 'Annual Budget Review' then 'AU Budget: Review' else m.name end
 )
 , AUs as (
 	select distinct subs.OrgUnitID, AU = ou.Name
@@ -66,14 +54,18 @@ declare @userID uniqueidentifier = '04E5044C-3FBE-42EE-9945-4E88BBD98B88'
 	join OrgUnit ou on subs.OrgUnitID = ou.ID
 	join giftedStuff g on subs.SubmissionTypeID = g.SubmissionTypeID
 	where ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
-
+	and subs.DeletedDate is null -- 889
+	and subs.ReliabilityCheckOfSubmissionsID is null -- 889
+	and ou.name not in ('TEST', 'TEST AU', 'SAML TEST - Douglas RE-1 Castle Rock')
 )
 , rosterYears as (
 	select distinct subs.RosterYearID, RosterYear = convert(char(4), ry.StartYear)+'-'+right(convert(varchar(4), ry.StartYear+1), 2)
 	from MonSubmissions subs
 	join RosterYear ry on subs.RosterYearID = ry.ID
 	join giftedStuff g on subs.SubmissionTypeID = g.SubmissionTypeID
-	where ry.StartYear > 2013
+	where 1=1
+	and subs.DeletedDate is null -- 889
+	and subs.ReliabilityCheckOfSubmissionsID is null -- 889
 )
 , iiCTE as (
 	select 
@@ -139,69 +131,49 @@ declare @userID uniqueidentifier = '04E5044C-3FBE-42EE-9945-4E88BBD98B88'
 	join FormTemplateInputItem ii on c.InputAreaID = ii.InputAreaId 
 	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
 )
+, results as (
+	select aury.AU
+		, aury.RosterYear
+		, g.Location
+		, g.SubmissionModeID
+		, g.SubmissionMode
+		, SubmissionDate = convert(varchar, subs.StartedDate, 101) -- convert to text later
+		, a.Code
+		, a.InputItemLabel
+		, InstanceID = fi.Id
+		, sfo.Label
+		, g.ModeSequence
+	from frmAttributes a
+	left join giftedStuff g on a.TemplateID = g.FormTemplateID
+	cross join (select * from AUs cross join rosterYears) aury 
+	left join MonSubmissions subs on g.SubmissionModeID = subs.SubmissionModeID -- 970
+		and aury.OrgUnitID = subs.OrgUnitID
+		and aury.RosterYearID = subs.RosterYearID
+		and subs.DeletedDate is null -- 889
+		and subs.ReliabilityCheckOfSubmissionsID is null -- 889
+	left join OrgUnit ou on subs.OrgUnitID = ou.ID
+	left join RosterYear ry on subs.RosterYearID = ry.ID
+	left join MonSubmissionRecord sr on subs.ID = sr.SubmissionsID -- 889
+	left join MonSubmissionRecordForm rf on sr.ID = rf.SubmissionRecordID -- 889
+	left join FormInstance fi on rf.ID = fi.Id -- 889
+	left join FormInstanceInterval fii on fi.Id = fii.InstanceId -- 889
+	left join FormInputValue fiv on fii.Id = fiv.IntervalId -- note that fiv has an IntervalID column, but this is something different
+		and a.AttributeID = fiv.InputFieldId -- 889
+		-- when left joining, we get 890 records!
+	left join FormInputSingleSelectValue ssv on fiv.Id = ssv.Id
+	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
+	where 
+		a.InputItemLabel like '%assistance%' -------------------------------------------------- may change this later to specific list
+		or
+		(g.SubmissionModeID = '33F88AE5-682B-4EAF-BA73-8A3E14A036CE' and a.InputItemType = 'Date' and a.Code in ('Rev1', 'Rev2'))
+)
 
-select aury.AU
-	, aury.RosterYear
-	, g.Location
-	, g.SubmissionMode
-	, subs.StartedDate
-	, a.Code
-	, a.InputItemLabel
-	, sfo.Label
-	, sfo.ReportLabel
-from frmAttributes a
-left join giftedStuff g on a.TemplateID = g.FormTemplateID
-cross join (select * from AUs cross join rosterYears) aury 
-left join MonSubmissions subs on g.SubmissionModeID = subs.SubmissionModeID -- 970
-	and aury.OrgUnitID = subs.OrgUnitID
-	and aury.RosterYearID = subs.RosterYearID
-	and subs.DeletedDate is null -- 889
-	and subs.ReliabilityCheckOfSubmissionsID is null -- 889
-left join OrgUnit ou on subs.OrgUnitID = ou.ID
-left join RosterYear ry on subs.RosterYearID = ry.ID
-left join MonSubmissionRecord sr on subs.ID = sr.SubmissionsID -- 889
-left join MonSubmissionRecordForm rf on sr.ID = rf.SubmissionRecordID -- 889
-left join FormInstance fi on rf.ID = fi.Id -- 889
-left join FormInstanceInterval fii on fi.Id = fii.InstanceId -- 889
-left join FormInputValue fiv on fii.Id = fiv.IntervalId -- note that fiv has an IntervalID column, but this is something different
-	and a.AttributeID = fiv.InputFieldId -- 889
-	-- when left joining, we get 890 records!
-left join FormInputSingleSelectValue ssv on fiv.Id = ssv.Id
-left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
-where a.InputItemLabel like '%assistance%' -------------------------------------------------- may change this later to specific list
-		--and aury.OrgUnitID = 'BAC758EC-E6DA-4D10-A6DB-A6207862B084'
-		--and aury.RosterYearID = 'F9662967-A3BF-4677-819B-C809AB363CE9'
-order by AU, RosterYear, g.LocationSequence, g.SubmissionMode, a.InputItemLabel
-
-
-
-
-
-
-/*
-
-
--- select * from MonRecord where RecordSetID = 'E4E1CC93-ABC3-43C5-8D1E-0E45F7F4EB89' -- 1 record
-select * from MonSubmissionRecord where SubmissionsID = '56C10745-31CE-4084-8182-0A7CE2CDCA0E'
--- select * from MonRecordSelection where ID = '11EA8187-D34D-4E3E-AD02-8890A89E9412'
-select * from MonSubmissionRecordForm where SubmissionRecordID = '6A32EF35-0A33-4630-B1EE-B041E7A5F9B7' -- instance ID
-
-
-
--- select * from MonRecordSet where ID = 'E4E1CC93-ABC3-43C5-8D1E-0E45F7F4EB89'
--- select * from MonRecordSet where SampledFromID = 'E4E1CC93-ABC3-43C5-8D1E-0E45F7F4EB89'
-
-select * from MonRecord where RecordSetID = 'E4E1CC93-ABC3-43C5-8D1E-0E45F7F4EB89' -- 1 record
-
-select * from MonSubmissionRecord where SubmissionsID = '56C10745-31CE-4084-8182-0A7CE2CDCA0E'
-
---select * from MonRecordSelection where ID = '11EA8187-D34D-4E3E-AD02-8890A89E9412'
-
-
-select * from MonSubmissionRecordForm where SubmissionRecordID = '6A32EF35-0A33-4630-B1EE-B041E7A5F9B7' -- instance ID
-
-
-
-*/
-
+select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = 'SubmissionDate', AttributeSequence = 0, Value = max(SubmissionDate)
+from results r
+group by AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence
+union all
+select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = Code, AttributeSequence = 1, Value = r.Label
+from results r
+--where AU = 'Eagle Re 50, Eagle' -- testing 
+order by AU, RosterYear, ModeSequence, AttributeSequence, Attribute
 
