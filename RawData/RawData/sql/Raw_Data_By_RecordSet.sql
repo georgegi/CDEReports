@@ -42,6 +42,7 @@ as
 -- declare @recordSetID uniqueidentifier = 'A6D0DC62-A691-4598-AECB-F48643F752CF', @userID uniqueidentifier = '04E5044C-3FBE-42EE-9945-4E88BBD98B88'
 
 set nocount on;
+SET FMTONLY OFF;
 
 declare @qrec varchar(max)='' -- Query MonRecord data
 	, @qfrm varchar(max)=''  -- Query MonForm data
@@ -54,6 +55,9 @@ declare @qrec varchar(max)='' -- Query MonRecord data
 	, @sasidID varchar(36)='' -- varchar to use in dynamic SQL below
 	, @bigq varchar(max) = '' -- we combine @qsel, @qrec and @qfrm into one big query
 
+
+if(@recordSetID != '00000000-0000-0000-0000-000000000000')
+BEGIN
 ;with recAttributes as (
 select	-- Do we only need attributes from parent record sets? Some child sets exist without recordattributes (only formlet data?)
 	Program = p.DisplayName
@@ -265,7 +269,7 @@ group by r.ID',
 ,	@bigq = '
 	select 
 		qs.AU
-		, qs.SASID
+		, qs.SASID as SASID2
 		, qs.SubmissionSequence
 		, qs.IsExcluded
 		'+@rlist+'
@@ -314,7 +318,7 @@ LEFT JOIN (select RecordID = r.ID
 exec (@bigq)
 
 go
-
+END
 
 grant exec on x_DATATEAM.Raw_Data_By_RecordSet to public
 go
