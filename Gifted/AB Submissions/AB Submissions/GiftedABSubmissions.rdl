@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixCorner>
+          <TablixCornerRows>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox4">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox4</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <RightBorder>
+                        <Color>White</Color>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox7">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox7</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <LeftBorder>
+                        <Color>White</Color>
+                      </LeftBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox1">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>AU</Value>
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox1</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <TopBorder>
+                        <Color>White</Color>
+                      </TopBorder>
+                      <BottomBorder>
+                        <Color>White</Color>
+                      </BottomBorder>
+                      <LeftBorder>
+                        <Color>LightGrey</Color>
+                      </LeftBorder>
+                      <RightBorder>
+                        <Color>White</Color>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox3">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Roster Year</Value>
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox3</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <TopBorder>
+                        <Color>White</Color>
+                      </TopBorder>
+                      <BottomBorder>
+                        <Color>White</Color>
+                      </BottomBorder>
+                      <LeftBorder>
+                        <Color>White</Color>
+                      </LeftBorder>
+                      <RightBorder>
+                        <Color>LightGrey</Color>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+            <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox2">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox2</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <TopBorder>
+                        <Color>White</Color>
+                      </TopBorder>
+                      <RightBorder>
+                        <Color>White</Color>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox5">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox5</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <TopBorder>
+                        <Color>White</Color>
+                      </TopBorder>
+                      <LeftBorder>
+                        <Color>White</Color>
+                      </LeftBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+            </TablixCornerRow>
+          </TablixCornerRows>
+        </TablixCorner>
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.25in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Value">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Value.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Value</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="SubmissionMode">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!SubmissionMode.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!ModeSequence.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!AttributeSequence.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.09375in</Size>
+                <CellContents>
+                  <Textbox Name="Location">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Location</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>=switch(Fields!Location.Value="Profile","LightBlue",
+Fields!Location.Value="Fiscal","DarkSeaGreen",
+Fields!Location.Value="Family E &amp; C","Plum",
+Fields!Location.Value="Performance","Bisque",
+Fields!Location.Value="Monitoring","Salmon",
+Fields!Location.Value="Improvement","LightGrey")</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>=switch(Fields!Location.Value="Profile","LightBlue",
+Fields!Location.Value="Fiscal","DarkSeaGreen",
+Fields!Location.Value="Family E &amp; C","Plum",
+						  Fields!Location.Value="Performance","Bisque",
+						  Fields!Location.Value="Monitoring","Salmon",
+						  Fields!Location.Value="Improvement","LightGrey")</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Attribute">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Attribute.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!AttributeSequence.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.25in</Size>
+                    <CellContents>
+                      <Textbox Name="Location1">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!Location.Value</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Location1</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>=switch(Fields!Location.Value="Profile","LightBlue",
+Fields!Location.Value="Fiscal","DarkSeaGreen",
+Fields!Location.Value="Family E &amp; C","Plum",
+								Fields!Location.Value="Performance","Bisque",
+								Fields!Location.Value="Monitoring","Salmon",
+								Fields!Location.Value="Improvement","LightGrey")</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>=switch(Fields!Location.Value="Profile","LightBlue",
+Fields!Location.Value="Fiscal","DarkSeaGreen",
+Fields!Location.Value="Family E &amp; C","Plum",
+							  Fields!Location.Value="Performance","Bisque",
+							  Fields!Location.Value="Monitoring","Salmon",
+							  Fields!Location.Value="Improvement","LightGrey")</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.25in</Size>
+                        <CellContents>
+                          <Textbox Name="InputItemLabel">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=switch(Fields!Attribute.Value="SubmissionDate",Fields!SubmissionMode.Value,
+Fields!Attribute.Value="Rev1","4 Month",
+Fields!Attribute.Value="Rev2","8 Month",
+true,"Help? "+Fields!SubmissionMode.Value)</Value>
+                                    <Style />
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>InputItemLabel</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>=switch(Fields!Location.Value="Profile","LightBlue",
+Fields!Location.Value="Fiscal","DarkSeaGreen",
+Fields!Location.Value="Family E &amp; C","Plum",
+									Fields!Location.Value="Performance","Bisque",
+									Fields!Location.Value="Monitoring","Salmon",
+									Fields!Location.Value="Improvement","LightGrey")</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>=switch(Fields!Location.Value="Profile","LightBlue",
+Fields!Location.Value="Fiscal","DarkSeaGreen",
+Fields!Location.Value="Family E &amp; C","Plum",
+								  Fields!Location.Value="Performance","Bisque",
+								  Fields!Location.Value="Monitoring","Salmon",
+								  Fields!Location.Value="Improvement","LightGrey")</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="AU">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!AU.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AU.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>1in</Size>
+                <CellContents>
+                  <Textbox Name="AU">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!AU.Value</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>AU</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="RosterYear">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!RosterYear.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!RosterYear.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>1in</Size>
+                    <CellContents>
+                      <Textbox Name="RosterYear">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!RosterYear.Value</Value>
+                                <Style />
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>RosterYear</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <Top>0.33208in</Top>
+        <Left>0.35292in</Left>
+        <Height>0.84375in</Height>
+        <Width>3.25in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2in</Height>
+    <Style />
+  </Body>
+  <Width>6.5in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <DataSourceReference>DS_GiftedReports</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>a781c420-8070-4073-b5ef-ff9302ca91b4</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@userID">
+            <Value>=Parameters!userID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>;with giftedStuff as (
+	select t.LocationID
+		, LocationSequence = loc.Sequence
+		, Location = loc.DisplayName
+		, m.SubmissionTypeID
+		, SubmissionType = t.Name
+		, SubmissionModeID = m.ID
+		, SubmissionMode = m.Name
+		, t.FormTemplateID
+		, ModeSequence = row_number() over (partition by 1 order by loc.Sequence, t.name, case m.Name when 'Annual Budget Review' then 'AU Budget: Review' else m.name end)
+	from MonLocation loc 
+	join MonSubmissionType t on loc.ID = t.LocationID
+	join MonSubmissionMode m on t.ID = m.SubmissionTypeID
+	where loc.ProgramID = '58FFE83B-EA3A-4703-A505-023B8E306B64' -- Gifted Education
+	and m.id not in (
+		  '9BA63D26-C4E3-4ACF-AE78-8F9583CD4EE3'	-- Profile	Programming Details Worksheet
+		, '7A85EDD5-DB08-423C-B29A-EDA17D3F10D5'	-- Fiscal	BOCES &amp; Multi District AU Working Budgets
+		)
+	--order by LocationSequence, SubmissionType, case m.Name when 'Annual Budget Review' then 'AU Budget: Review' else m.name end
+)
+, AUs as (
+	select distinct subs.OrgUnitID, AU = ou.Name
+	from MonSubmissions subs
+	join OrgUnit ou on subs.OrgUnitID = ou.ID
+	join giftedStuff g on subs.SubmissionTypeID = g.SubmissionTypeID
+	where ou.ID in (select OrgUnitID from UserProfileOrgUnit where UserProfileID = @userID)
+	and subs.DeletedDate is null -- 889
+	and subs.ReliabilityCheckOfSubmissionsID is null -- 889
+	and ou.name not in ('TEST', 'TEST AU', 'SAML TEST - Douglas RE-1 Castle Rock')
+)
+, rosterYears as (
+	select distinct subs.RosterYearID, RosterYear = convert(char(4), ry.StartYear)+'-'+right(convert(varchar(4), ry.StartYear+1), 2)
+	from MonSubmissions subs
+	join RosterYear ry on subs.RosterYearID = ry.ID
+	join giftedStuff g on subs.SubmissionTypeID = g.SubmissionTypeID
+	where 1=1
+	and subs.DeletedDate is null -- 889
+	and subs.ReliabilityCheckOfSubmissionsID is null -- 889
+)
+, iiCTE as (
+	select 
+		  TemplateID = t.ID
+		, TemplateName = t.Name
+		, LayoutID = tl.ID 
+		, InputAreaID = tl.ControlId
+		, tl.ParentId 
+		, tlSequence = tl.Sequence --- will always be zero in the anchor
+		, CTELevel = 0 -- keep this consistent with other formlet sequences that start at 0
+		, ControlType = tct.Name
+		, ControlIsRepeatable = tc.IsRepeatable
+		, DisplaySequence = cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+	from (
+			select FormTemplateID
+			from giftedStuff
+			group by FormTemplateID
+		) x
+		left join FormTemplate t on x.FormTemplateID = t.Id
+		left join FormTemplateLayout tl on t.ID = tl.TemplateID
+		left join FormTemplateControl tc on tl.ControlID = tc.Id
+		left join FormTemplateControlType tct on tc.TypeID = tct.ID
+		where tl.ParentId is null
+
+		union all 
+
+		select 
+			  c.TemplateID
+			, TemplateName = t.Name
+			, LayoutID = tl.ID 
+			, InputAreaID = tl.ControlId
+			, tl.ParentId 
+			, tlSequence = tl.Sequence 
+			, CTELevel = c.CTELevel+1 
+			, ControlType = tct.Name
+			, ControlIsRepeatable = tc.IsRepeatable
+			, DisplaySequence = c.DisplaySequence+'_'+cast(100+tl.Sequence as varchar(max)) -- add 100 for sorting in alpha order 
+		from FormTemplate t 
+		join FormTemplateLayout tl on t.ID = tl.TemplateID and tl.ParentId is not null -- inner join
+		join FormTemplateControl tc on tl.ControlID = tc.Id
+		join FormTemplateControlType tct on tc.TypeID = tct.ID
+		join iiCTE c on tl.ParentID = c.LayoutID
+)
+, frmAttributes as (
+	select 
+		  c.TemplateID
+		, c.TemplateName
+		, c.InputAreaID
+		, c.ParentId
+		, c.LayoutID
+		, c.ControlType
+		, InputItemType = iit.Name
+		, AttributeID = ii.ID
+		, DisplaySequence = c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),'')
+		, AttributeSequence = row_number() over (partition by c.TemplateName order by c.DisplaySequence+isnull('_'+cast(100+ii.Sequence as varchar(max)),''))
+		, Attribute = case when ii.ReportWeight is null then isnull(ii.reportlabel, ii.code) else ii.Code end
+		, ii.ReportLabel
+		, ii.Code
+		, InputItemLabel = ii.Label
+		, Weighted = case when ii.ReportWeight is null then 0 else 1 end
+	from iiCTE c
+	join iiCTE c2 on c.ParentID = c2.LayoutID 
+	join FormTemplateInputItem ii on c.InputAreaID = ii.InputAreaId 
+	left join FormTemplateInputItemType iit on ii.TypeId = iit.Id
+)
+, results as (
+	select aury.AU
+		, aury.RosterYear
+		, g.Location
+		, g.SubmissionModeID
+		, g.SubmissionMode
+		, SubmissionDate = convert(varchar, subs.StartedDate, 101) -- convert to text later
+		, a.Code
+		, a.InputItemLabel
+		, InstanceID = fi.Id
+		, sfo.Label
+		, g.ModeSequence
+	from frmAttributes a
+	left join giftedStuff g on a.TemplateID = g.FormTemplateID
+	cross join (select * from AUs cross join rosterYears) aury 
+	left join MonSubmissions subs on g.SubmissionModeID = subs.SubmissionModeID -- 970
+		and aury.OrgUnitID = subs.OrgUnitID
+		and aury.RosterYearID = subs.RosterYearID
+		and subs.DeletedDate is null -- 889
+		and subs.ReliabilityCheckOfSubmissionsID is null -- 889
+	left join OrgUnit ou on subs.OrgUnitID = ou.ID
+	left join RosterYear ry on subs.RosterYearID = ry.ID
+	left join MonSubmissionRecord sr on subs.ID = sr.SubmissionsID -- 889
+	left join MonSubmissionRecordForm rf on sr.ID = rf.SubmissionRecordID -- 889
+	left join FormInstance fi on rf.ID = fi.Id -- 889
+	left join FormInstanceInterval fii on fi.Id = fii.InstanceId -- 889
+	left join FormInputValue fiv on fii.Id = fiv.IntervalId -- note that fiv has an IntervalID column, but this is something different
+		and a.AttributeID = fiv.InputFieldId -- 889
+		-- when left joining, we get 890 records!
+	left join FormInputSingleSelectValue ssv on fiv.Id = ssv.Id
+	left join FormTemplateInputSelectFieldOption sfo on ssv.SelectedOptionID = sfo.ID
+	where 
+		a.InputItemLabel like '%assistance%' -------------------------------------------------- may change this later to specific list
+		or
+		(g.SubmissionModeID = '33F88AE5-682B-4EAF-BA73-8A3E14A036CE' and a.InputItemType = 'Date' and a.Code in ('Rev1', 'Rev2'))
+)
+
+select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = 'SubmissionDate', AttributeSequence = 0, InputItemLabel = 'Date of Submission', Value = max(SubmissionDate)
+from results r
+group by AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence
+union all
+select AU, RosterYear, Location, SubmissionMode, SubmissionModeID, ModeSequence, Attribute = Code, AttributeSequence = 1, InputItemLabel, Value = r.Label
+from results r
+--where AU = 'Eagle Re 50, Eagle' -- testing 
+order by AU, RosterYear, ModeSequence, AttributeSequence, Attribute, InputItemLabel
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="AU">
+          <DataField>AU</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RosterYear">
+          <DataField>RosterYear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Location">
+          <DataField>Location</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubmissionMode">
+          <DataField>SubmissionMode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubmissionModeID">
+          <DataField>SubmissionModeID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="ModeSequence">
+          <DataField>ModeSequence</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Attribute">
+          <DataField>Attribute</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AttributeSequence">
+          <DataField>AttributeSequence</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="InputItemLabel">
+          <DataField>InputItemLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Value">
+          <DataField>Value</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="userID">
+      <DataType>String</DataType>
+      <Prompt>user ID</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>59f89f15-1284-4b45-87d6-643900c488b6</rd:ReportID>
+</Report>
